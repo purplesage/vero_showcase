@@ -13,22 +13,30 @@ const Login = () => {
 
     const email = e.target.login_email.value;
     const password = e.target.login_password.value;
-    signInWithEmailAndPassword(auth, email, password);
+
+    signInWithEmailAndPassword(auth, email, password).catch(
+      console.log("WRONG!")
+    );
   };
 
   onAuthStateChanged(auth, (user) => {
-    if (user) handleAdminSignIn(user);
+    if (user) {
+      console.log("here i am", user);
+      handleAdminSignIn(user);
+    }
   });
 
   useEffect(() => {
-    if (adminUser) handleAdminSignInRoutePush();
+    if (adminUser) {
+      console.log(adminUser);
+      handleAdminSignInRoutePush();
+    }
   }, [adminUser]);
 
   return (
     <form
       onSubmit={(e) => {
         handleDefaultLogin(e);
-        handleAdminSignInRoutePush();
       }}
     >
       <label htmlFor="">
