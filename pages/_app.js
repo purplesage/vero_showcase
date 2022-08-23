@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import AdminContext from "../context/AdminContext";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <AdminContext>
+      <Component {...pageProps} />
+    </AdminContext>
+  );
 }
 
-export default MyApp
+export default MyApp;
