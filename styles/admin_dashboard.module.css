@@ -1,0 +1,26 @@
+.mainDiv {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addProductForm {
+  display: flex;
+  flex-direction: column;
+  outline: 2px red solid;
+}
+
+.productDisplay {
+  outline: green 2px solid;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.productDisplay div {
+  outline: red 2px solid;
+}

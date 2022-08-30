@@ -1,5 +1,7 @@
 import React, { createContext, useState } from "react";
 import { useRouter } from "next/router";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 export const adminContext = createContext({});
 
@@ -15,6 +17,12 @@ const AdminContext = ({ children }) => {
   const handleAdminSignIn = (user) => {
     setAdminUser(user.email);
   };
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setAdminUser(user);
+    }
+  });
   return (
     <adminContext.Provider
       value={{ handleAdminSignInRoutePush, handleAdminSignIn, adminUser }}

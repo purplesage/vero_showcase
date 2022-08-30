@@ -2,11 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { adminContext } from "../context/AdminContext";
 import { auth } from "../firebaseConfig";
 
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
-  const { handleAdminSignIn, handleAdminSignInRoutePush, adminUser } =
-    useContext(adminContext);
+  const { handleAdminSignInRoutePush, adminUser } = useContext(adminContext);
 
   const handleDefaultLogin = (e) => {
     e.preventDefault();
@@ -19,16 +18,8 @@ const Login = () => {
     );
   };
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("here i am", user);
-      handleAdminSignIn(user);
-    }
-  });
-
   useEffect(() => {
     if (adminUser) {
-      console.log(adminUser);
       handleAdminSignInRoutePush();
     }
   }, [adminUser]);
