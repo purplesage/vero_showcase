@@ -12,10 +12,34 @@ const ProductInputs = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [sizes, setSizes] = useState("");
-  const [colors, setColors] = useState("");
+
   const [availability, setAvailability] = useState("");
   const [imageName, setImageName] = useState("");
+
+  const [sizeList, setSizeList] = useState([]);
+
+  const addSize = (newSize) => {
+    setSizeList([...sizeList, newSize]);
+  };
+
+  const sizeValue = () => {
+    return document.getElementById("sizes");
+  };
+  const [colorList, setColorList] = useState([]);
+
+  const addColor = (newColor) => {
+    setColorList([...colorList, newColor]);
+  };
+
+  const colorValue = () => {
+    return document.getElementById("colors");
+  };
+
+  const inputReset = () => {
+    setTitle("");
+    setDescription("");
+    setPrice("");
+  };
 
   //todo: esta es la forma básica del objecto. Se necesitan inputs para todos ellos, excepto para el id.
   const nuevoProducto = () => {
@@ -24,9 +48,9 @@ const ProductInputs = () => {
       title: title,
       description: description,
       price: price,
-      categoria: "string",
-      tallas: [],
-      colores: [],
+      category: category,
+      sizes: sizeList,
+      colors: colorList,
       disponibilidad: true,
       imageName: imageName,
     };
@@ -45,11 +69,14 @@ const ProductInputs = () => {
 
   return (
     <form
+      id="product-form"
       className={styles.addProductForm}
       action="Agregar Producto"
       onSubmit={(e) => {
         addProduct(nuevoProducto(), e);
         uploadImage(e.target.imagen.files[0]);
+        inputReset();
+        e.target.reset();
       }}
     >
       <label htmlFor="titulo">
@@ -88,18 +115,71 @@ const ProductInputs = () => {
       {/* todo: handle caregory later. */}
       <label htmlFor="categoria">
         Categoria:
-        <input type="text" name="categoria" id="categoria" />
+        <input
+          list="shoeType"
+          name="categoria"
+          id="categoria"
+          onChange={(e) => setCategory(e.target.value)}
+        />
+        <datalist id="shoeType">
+          <option value="Botas"></option>
+          <option value="Zapatillas"></option>
+          <option value="Tacones"></option>
+          <option value="Plataformas"></option>
+          <option value="Botas de agua"></option>
+          <option value="Abarca | Albarca"></option>
+          <option value="Botines"></option>
+          <option value="Mocasín"></option>
+          <option value="Nauticos"></option>
+          <option value="Zueco"></option>
+          <option value="Alpargata"></option>
+          <option value="Babucha"></option>
+          <option value="Bailarina"></option>
+          <option value="Botas de seguridad"></option>
+          <option value="Chancla"></option>
+          <option value="Chancleta"></option>
+          <option value="Huarache"></option>
+          <option value="Manoletinas"></option>
+        </datalist>
       </label>
 
       {/* todo: handle array later. */}
-      <label htmlFor="tallas">
+      <label htmlFor="sizes">
         Tallas:
-        <input type="text" name="tallas" id="tallas" />
+        <input type="text" name="sizes" id="sizes" />
+        <div style={{ display: "flex" }}>
+          {" "}
+          {/* abstract this style to css later */}
+          {sizeList.length > 0 &&
+            sizeList.map((size) => <p key={uuid()}>{size}</p>)}
+        </div>
+        <button
+          type="button"
+          onClick={() => {
+            addSize(sizeValue().value);
+            sizeValue().value = "";
+          }}
+        >
+          agregar talla
+        </button>
       </label>
 
-      <label htmlFor="colores">
+      <label htmlFor="colors">
         Colores:
-        <input type="text" name="colores" id="colores" />
+        <input type="color" name="colors" id="colors" />
+        <div style={{ display: "flex" }}>
+          {" "}
+          {/* abstract this style to css later */}
+          {colorList.length > 0 &&
+            colorList.map((color) => (
+              <p style={{ color: color }} key={uuid()}>
+                {color}
+              </p>
+            ))}
+        </div>
+        <button type="button" onClick={() => addColor(colorValue().value)}>
+          agregar color
+        </button>
       </label>
 
       {/* todo: make this a switch. */}

@@ -30,6 +30,7 @@ const ProductList = ({ showAs }) => {
               <h3>{productObject.title}</h3>
               <p>{productObject.description}</p>
               <p>{productObject.price}</p>
+              <p>{productObject.category}</p>
               <p>{productObject.imageName}</p>
             </div>
           ))}
