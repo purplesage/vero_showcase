@@ -39,6 +39,8 @@ const ProductInputs = () => {
     setTitle("");
     setDescription("");
     setPrice("");
+    setColorList([]);
+    setSizeList([]);
   };
 
   //todo: esta es la forma básica del objecto. Se necesitan inputs para todos ellos, excepto para el id.
@@ -51,7 +53,7 @@ const ProductInputs = () => {
       category: category,
       sizes: sizeList,
       colors: colorList,
-      disponibilidad: true,
+      disponibilidad: document.getElementById("availability").checked,
       imageName: imageName,
     };
   };
@@ -183,9 +185,9 @@ const ProductInputs = () => {
       </label>
 
       {/* todo: make this a switch. */}
-      <label htmlFor="disponibilidad">
+      <label htmlFor="availability">
         Disponibilidad:
-        <input type="checkbox" name="disponibilidad" id="disponibilidad" />
+        <input type="checkbox" name="availability" id="availability" />
       </label>
 
       <label htmlFor="imagen">
