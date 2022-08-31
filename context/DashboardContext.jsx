@@ -10,9 +10,15 @@ const DashboardContext = ({ children }) => {
 
   const [productList, setProductList] = useState([]);
 
-  const addProduct = async (productObject, e) => {
+  const addProduct = (productObject, e) => {
     e.preventDefault();
     setProductList([...productList, productObject]);
+  };
+
+  const deleteProduct = (deleteId) => {
+    setProductList(
+      productList.filter((productObject) => productObject.id !== deleteId)
+    );
   };
 
   const handleProductListFetch = (list) => {
@@ -46,7 +52,9 @@ const DashboardContext = ({ children }) => {
   }, [productList]);
 
   return (
-    <dashBoardContext.Provider value={{ addProduct, productList }}>
+    <dashBoardContext.Provider
+      value={{ addProduct, productList, deleteProduct }}
+    >
       {children}
     </dashBoardContext.Provider>
   );
