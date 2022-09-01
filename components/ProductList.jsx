@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { dashBoardContext } from "../context/DashboardContext";
 import { storage } from "../firebaseConfig";
 import { ref, deleteObject } from "firebase/storage";
+import Image from "next/image";
 
 const ProductList = ({ showAs }) => {
   const { productList, deleteProduct } = useContext(dashBoardContext);
@@ -31,6 +32,13 @@ const ProductList = ({ showAs }) => {
               <p>{productObject.description}</p>
               <p>{productObject.price}</p>
               <p>{productObject.category}</p>
+              <Image
+                src={productObject.imageUrl}
+                alt="product image"
+                layout="fixed"
+                width="100"
+                height="100"
+              />
               <p>{productObject.imageName}</p>
             </div>
           ))}

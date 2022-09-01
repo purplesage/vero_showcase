@@ -14,7 +14,7 @@ const ProductInputs = () => {
   const [category, setCategory] = useState("");
 
   const [availability, setAvailability] = useState("");
-  const [imageName, setImageName] = useState("");
+  const [imageFile, setImageFile] = useState({});
 
   const [sizeList, setSizeList] = useState([]);
 
@@ -45,6 +45,10 @@ const ProductInputs = () => {
 
   //todo: esta es la forma básica del objecto. Se necesitan inputs para todos ellos, excepto para el id.
   const nuevoProducto = () => {
+    const imageUrl = (file) => {
+      return URL.createObjectURL(file);
+    };
+
     return {
       id: uuid(),
       title: title,
@@ -54,7 +58,8 @@ const ProductInputs = () => {
       sizes: sizeList,
       colors: colorList,
       disponibilidad: document.getElementById("availability").checked,
-      imageName: imageName,
+      imageName: imageFile.name,
+      imageUrl: imageUrl(imageFile),
     };
   };
 
@@ -68,6 +73,8 @@ const ProductInputs = () => {
       console.warn(err.message);
     }
   };
+
+  URL.createObjectURL;
 
   return (
     <form
@@ -145,7 +152,6 @@ const ProductInputs = () => {
         </datalist>
       </label>
 
-      {/* todo: handle array later. */}
       <label htmlFor="sizes">
         Tallas:
         <input type="text" name="sizes" id="sizes" />
@@ -196,7 +202,10 @@ const ProductInputs = () => {
           type="file"
           name="imagen"
           id="imagen"
-          onChange={(e) => setImageName(e.target.files[0].name)}
+          onChange={(e) => {
+            setImageFile(e.target.files[0]);
+            console.log(e.target.files);
+          }}
         />
       </label>
 
