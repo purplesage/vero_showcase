@@ -3,13 +3,13 @@ import { adminContext } from "../context/AdminContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useRouter } from "next/router";
-import ProductList from "../components/ProductList";
+import ProductTable from "../components/ProductTable";
 import styles from "../styles/admin_dashboard.module.css";
 import ProductInputs from "../components/ProductInputs";
 
 const AdminDashboard = () => {
   const router = useRouter();
-  const { adminUser } = useContext(adminContext);
+  const { adminUser, setAdminUser } = useContext(adminContext);
 
   if (adminUser) {
     return (
@@ -19,15 +19,14 @@ const AdminDashboard = () => {
           type="button"
           onClick={() => {
             signOut(auth);
+            setAdminUser(null);
             router.push("/");
           }}
         >
           sign out
         </button>
         <ProductInputs />
-        <div className={styles.productDisplay}>
-          <ProductList showAs="edit" />
-        </div>
+        <ProductTable showAs="edit" />
       </div>
     );
   }

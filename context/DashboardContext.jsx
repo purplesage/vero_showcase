@@ -7,6 +7,7 @@ export const dashBoardContext = createContext({});
 const DashboardContext = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(true);
+  const [isUploading, setIsUploading] = useState(false);
 
   const [productList, setProductList] = useState([]);
 
@@ -45,7 +46,7 @@ const DashboardContext = ({ children }) => {
   useEffect(() => {
     const updateProductList = async () => {
       const docRef = doc(dataBase, `db/products`);
-      await updateDoc(docRef, { productList });
+      await updateDoc(docRef, { productList }).then();
     };
 
     if (!isLoading) updateProductList();
@@ -53,7 +54,13 @@ const DashboardContext = ({ children }) => {
 
   return (
     <dashBoardContext.Provider
-      value={{ addProduct, productList, deleteProduct }}
+      value={{
+        addProduct,
+        productList,
+        deleteProduct,
+        setIsUploading,
+        isUploading,
+      }}
     >
       {children}
     </dashBoardContext.Provider>

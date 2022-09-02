@@ -25,7 +25,12 @@ const AdminContext = ({ children }) => {
   });
   return (
     <adminContext.Provider
-      value={{ handleAdminSignInRoutePush, handleAdminSignIn, adminUser }}
+      value={{
+        handleAdminSignInRoutePush,
+        handleAdminSignIn,
+        adminUser,
+        setAdminUser,
+      }}
     >
       {children}
     </adminContext.Provider>

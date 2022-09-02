@@ -6,7 +6,7 @@ import { storage } from "../firebaseConfig";
 import styles from "../styles/admin_dashboard.module.css";
 
 const ProductInputs = () => {
-  const { addProduct } = useContext(dashBoardContext);
+  const { addProduct, setIsUploading } = useContext(dashBoardContext);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -44,8 +44,8 @@ const ProductInputs = () => {
   };
 
   //todo: esta es la forma básica del objecto. Se necesitan inputs para todos ellos, excepto para el id.
-  const nuevoProducto = () => {
-    const imageUrl = (file) => {
+  const nuevoProducto = (file) => {
+    const imageUrl = () => {
       return URL.createObjectURL(file);
     };
 
@@ -57,9 +57,9 @@ const ProductInputs = () => {
       category: category,
       sizes: sizeList,
       colors: colorList,
-      disponibilidad: document.getElementById("availability").checked,
-      imageName: imageFile.name,
-      imageUrl: imageUrl(imageFile),
+      availability: document.getElementById("availability").checked,
+      imageName: file.name,
+      imageInnerUrl: imageUrl(),
     };
   };
 
@@ -67,8 +67,11 @@ const ProductInputs = () => {
     if (!imageFile) return;
 
     try {
+      setIsUploading(true);
       const fileRef = ref(storage, `images/${imageFile.name}`);
-      await uploadBytesResumable(fileRef, imageFile);
+      await uploadBytesResumable(fileRef, imageFile).then(
+        setIsUploading(false)
+      );
     } catch (err) {
       console.warn(err.message);
     }
@@ -82,7 +85,7 @@ const ProductInputs = () => {
       className={styles.addProductForm}
       action="Agregar Producto"
       onSubmit={(e) => {
-        addProduct(nuevoProducto(), e);
+        addProduct(nuevoProducto(e.target.imagen.files[0]), e);
         uploadImage(e.target.imagen.files[0]);
         inputReset();
         e.target.reset();
@@ -91,6 +94,7 @@ const ProductInputs = () => {
       <label htmlFor="titulo">
         Titulo:
         <input
+          required
           type="text"
           name="titulo"
           id="titulo"
@@ -102,6 +106,7 @@ const ProductInputs = () => {
       <label htmlFor="descripcion">
         Descripcion:
         <input
+          required
           type="text"
           name="descripcion"
           id="descripcion"
@@ -113,6 +118,7 @@ const ProductInputs = () => {
       <label htmlFor="precio">
         Precio:
         <input
+          required
           type="text"
           name="precio"
           id="precio"
@@ -125,6 +131,7 @@ const ProductInputs = () => {
       <label htmlFor="categoria">
         Categoria:
         <input
+          required
           list="shoeType"
           name="categoria"
           id="categoria"
@@ -173,8 +180,7 @@ const ProductInputs = () => {
       </label>
 
       <label htmlFor="colors">
-        Colores:
-        <input type="color" name="colors" id="colors" />
+        Colores: <input type="color" name="colors" id="colors" />
         <div style={{ display: "flex" }}>
           {" "}
           {/* abstract this style to css later */}
@@ -199,6 +205,7 @@ const ProductInputs = () => {
       <label htmlFor="imagen">
         imagen:
         <input
+          required
           type="file"
           name="imagen"
           id="imagen"
