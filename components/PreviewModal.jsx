@@ -10,6 +10,7 @@ const PreviewModal = ({
   sizes,
   colors,
   availability,
+  price,
 }) => {
   const style = {
     position: "absolute",
@@ -35,9 +36,10 @@ const PreviewModal = ({
         height="100"
       />
       <p>{description}</p>
+      <p>{price}</p>
       <p>{sizes}</p>
       <p>{colors}</p>
-      <p>{availability}</p>
+      <p>{availability ? "disponible" : "no disponible"}</p>
     </div>
   );
 };
