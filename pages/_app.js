@@ -1,14 +1,17 @@
 import "../styles/globals.css";
 import AdminContext from "../context/AdminContext";
 import DashboardContext from "../context/DashboardContext";
+import InputsContext from "../context/InputsContext";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AdminContext>
-      <DashboardContext>
-        <Component {...pageProps} />
-      </DashboardContext>
-    </AdminContext>
+    <InputsContext>
+      <AdminContext>
+        <DashboardContext>
+          <Component {...pageProps} />
+        </DashboardContext>
+      </AdminContext>
+    </InputsContext>
   );
 }
 

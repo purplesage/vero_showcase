@@ -45,6 +45,7 @@ const ProductRow = ({
           colors={colors}
           availability={availability}
           price={price}
+          category={category}
         />
       )}
       <TableRow>

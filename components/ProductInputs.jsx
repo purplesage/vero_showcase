@@ -4,68 +4,34 @@ import { v4 as uuid } from "uuid";
 import { uploadBytesResumable, ref } from "firebase/storage";
 import { storage } from "../firebaseConfig";
 import styles from "../styles/admin_dashboard.module.css";
+import Image from "next/image";
+import { inputsContext } from "../context/InputsContext";
 
 const ProductInputs = () => {
   const { addProduct, setIsUploading } = useContext(dashBoardContext);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
-
-  const [availability, setAvailability] = useState("");
-  const [imageFile, setImageFile] = useState({});
-
-  const [sizeList, setSizeList] = useState([]);
-
-  const addSize = (newSize) => {
-    setSizeList([...sizeList, newSize]);
-  };
-
-  const sizeValue = () => {
-    return document.getElementById("sizes");
-  };
-  const [colorList, setColorList] = useState([]);
-
-  const addColor = (newColor) => {
-    setColorList([...colorList, newColor]);
-  };
-
-  const colorValue = () => {
-    return document.getElementById("colors");
-  };
-
-  const inputReset = () => {
-    setTitle("");
-    setDescription("");
-    setPrice("");
-    setColorList([]);
-    setSizeList([]);
-  };
-
-  //todo: esta es la forma básica del objecto. Se necesitan inputs para todos ellos, excepto para el id.
-  const nuevoProducto = (file) => {
-    const imageUrl = () => {
-      return URL.createObjectURL(file);
-    };
-
-    return {
-      id: uuid(),
-      title: title,
-      description: description,
-      price: price,
-      category: category,
-      sizes: sizeList,
-      colors: colorList,
-      availability: document.getElementById("availability").checked,
-      imageName: file.name,
-      imageInnerUrl: imageUrl(),
-    };
-  };
+  const {
+    title,
+    setTitle,
+    description,
+    setDescription,
+    price,
+    setPrice,
+    setCategory,
+    imagePreviewURL,
+    setImagePreviewURL,
+    sizeList,
+    colorList,
+    addSize,
+    sizeValue,
+    addColor,
+    colorValue,
+    inputReset,
+    imageUrl,
+    productObject,
+  } = useContext(inputsContext);
 
   const uploadImage = async (imageFile) => {
-    if (!imageFile) return;
-
     try {
       setIsUploading(true);
       const fileRef = ref(storage, `images/${imageFile.name}`);
@@ -77,16 +43,15 @@ const ProductInputs = () => {
     }
   };
 
-  URL.createObjectURL;
-
   return (
     <form
       id="product-form"
       className={styles.addProductForm}
       action="Agregar Producto"
       onSubmit={(e) => {
-        addProduct(nuevoProducto(e.target.imagen.files[0]), e);
+        addProduct(productObject(e.target.imagen.files[0]), e);
         uploadImage(e.target.imagen.files[0]);
+        setImagePreviewURL("");
         inputReset();
         e.target.reset();
       }}
@@ -209,11 +174,17 @@ const ProductInputs = () => {
           type="file"
           name="imagen"
           id="imagen"
-          onChange={(e) => {
-            setImageFile(e.target.files[0]);
-            console.log(e.target.files);
-          }}
+          onChange={(e) => setImagePreviewURL(imageUrl(e.target.files[0]))}
         />
+        {imagePreviewURL && (
+          <Image
+            src={imagePreviewURL}
+            alt="product image"
+            layout="fixed"
+            width="100"
+            height="100"
+          />
+        )}
       </label>
 
       <button type="submit">Agregar Producto</button>

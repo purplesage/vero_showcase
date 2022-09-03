@@ -22,6 +22,16 @@ const DashboardContext = ({ children }) => {
     );
   };
 
+  const editProduct = (id, editDataObject) => {
+    setProductList(
+      productList.map((productObject) =>
+        productObject.id === id
+          ? { id: productObject.id, ...editDataObject }
+          : productObject
+      )
+    );
+  };
+
   const handleProductListFetch = (list) => {
     setProductList([...list]);
   };

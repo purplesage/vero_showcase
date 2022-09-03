@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { storage } from "../firebaseConfig";
-import { getDownloadURL, ref } from "firebase/storage";
+
 import Image from "next/image";
+import { TableCell } from "@mui/material";
 
 const PreviewModal = ({
   title,
@@ -11,6 +11,7 @@ const PreviewModal = ({
   colors,
   availability,
   price,
+  category,
 }) => {
   const style = {
     position: "absolute",
@@ -25,22 +26,88 @@ const PreviewModal = ({
     backgroundColor: "red",
   };
 
+  const [previewMode, setPreviewMode] = useState(true);
+  const [editMode, setEditMode] = useState(false);
+
   return (
-    <div style={style}>
-      <p>{title}</p>
-      <img
-        src={imageURL}
-        alt="product image"
-        layout="fixed"
-        width="100"
-        height="100"
-      />
-      <p>{description}</p>
-      <p>{price}</p>
-      <p>{sizes}</p>
-      <p>{colors}</p>
-      <p>{availability ? "disponible" : "no disponible"}</p>
-    </div>
+    <>
+      {previewMode && (
+        <TableCell style={style}>
+          <button
+            onClick={() => {
+              setPreviewMode(false);
+              setEditMode(true);
+            }}
+          >
+            editar
+          </button>
+          <p>{title}</p>
+          {imageURL && (
+            <Image
+              src={imageURL}
+              alt="product image"
+              layout="fixed"
+              width="100"
+              height="100"
+            />
+          )}
+          <p>{description}</p>
+          <p>{category}</p>
+          <p>{price}</p>
+          <p>{sizes}</p>
+          <p>{colors}</p>
+          <p>{availability ? "disponible" : "no disponible"}</p>
+        </TableCell>
+      )}
+
+      {editMode && (
+        <TableCell style={style}>
+          <button
+            onClick={() => {
+              setPreviewMode(true);
+              setEditMode(false);
+            }}
+          >
+            salir
+          </button>
+          <input
+            type="text"
+            name="edit-title"
+            id="edit-title"
+            placeholder={`Título: ${title}`}
+          />
+
+          {/* todo: handle image edit */}
+          {imageURL && (
+            <Image
+              src={imageURL}
+              alt="product image"
+              layout="fixed"
+              width="100"
+              height="100"
+            />
+          )}
+          <input
+            type="text"
+            name="edit-description"
+            id="edit-description"
+            placeholder={`Descripción: ${description}`}
+          />
+          <p>{category}</p>
+
+          <input
+            type="text"
+            name="edit-price"
+            id="edit-price"
+            placeholder={price}
+          />
+
+          <p>{sizes}</p>
+          <p>{colors}</p>
+          <p>{availability ? "disponible" : "no disponible"}</p>
+        </TableCell>
+      )}
+    </>
   );
 };
 
