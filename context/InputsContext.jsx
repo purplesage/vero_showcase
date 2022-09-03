@@ -4,11 +4,12 @@ import { v4 as uuid } from "uuid";
 export const inputsContext = createContext({});
 
 const InputsContext = ({ children }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
+  const [titleInput, setTitleInput] = useState("");
+  const [descriptionInput, setDescriptionInput] = useState("");
+  const [priceInput, setPriceInput] = useState("");
+  const [categoryInput, setCategoryInput] = useState("");
   const [imagePreviewURL, setImagePreviewURL] = useState("");
+  const [imageName, setImageName] = useState("");
   const [sizeList, setSizeList] = useState([]);
   const [colorList, setColorList] = useState([]);
 
@@ -29,9 +30,9 @@ const InputsContext = ({ children }) => {
   };
 
   const inputReset = () => {
-    setTitle("");
-    setDescription("");
-    setPrice("");
+    setTitleInput("");
+    setDescriptionInput("");
+    setPriceInput("");
     setColorList([]);
     setSizeList([]);
   };
@@ -44,10 +45,10 @@ const InputsContext = ({ children }) => {
     //nuevo producto
     return {
       id: uuid(),
-      title: title,
-      description: description,
-      price: price,
-      category: category,
+      title: titleInput,
+      description: descriptionInput,
+      price: priceInput,
+      category: categoryInput,
       sizes: sizeList,
       colors: colorList,
       availability: document.getElementById("availability").checked,
@@ -58,14 +59,14 @@ const InputsContext = ({ children }) => {
   return (
     <inputsContext.Provider
       value={{
-        title,
-        setTitle,
-        description,
-        setDescription,
-        price,
-        setPrice,
-        category,
-        setCategory,
+        titleInput,
+        setTitleInput,
+        descriptionInput,
+        setDescriptionInput,
+        priceInput,
+        setPriceInput,
+        categoryInput,
+        setCategoryInput,
         imagePreviewURL,
         setImagePreviewURL,
         sizeList,

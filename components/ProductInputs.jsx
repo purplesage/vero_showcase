@@ -11,13 +11,13 @@ const ProductInputs = () => {
   const { addProduct, setIsUploading } = useContext(dashBoardContext);
 
   const {
-    title,
-    setTitle,
-    description,
-    setDescription,
-    price,
-    setPrice,
-    setCategory,
+    titleInput,
+    setTitleInput,
+    descriptionInput,
+    setDescriptionInput,
+    priceInput,
+    setPriceInput,
+    setCategoryInput,
     imagePreviewURL,
     setImagePreviewURL,
     sizeList,
@@ -63,8 +63,8 @@ const ProductInputs = () => {
           type="text"
           name="titulo"
           id="titulo"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={titleInput}
+          onChange={(e) => setTitleInput(e.target.value)}
         />
       </label>
 
@@ -75,8 +75,8 @@ const ProductInputs = () => {
           type="text"
           name="descripcion"
           id="descripcion"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={descriptionInput}
+          onChange={(e) => setDescriptionInput(e.target.value)}
         />
       </label>
 
@@ -84,11 +84,11 @@ const ProductInputs = () => {
         Precio:
         <input
           required
-          type="text"
+          type="number"
           name="precio"
           id="precio"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          value={priceInput}
+          onChange={(e) => setPriceInput(e.target.value)}
         />
       </label>
 
@@ -100,7 +100,7 @@ const ProductInputs = () => {
           list="shoeType"
           name="categoria"
           id="categoria"
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={(e) => setCategoryInput(e.target.value)}
         />
         <datalist id="shoeType">
           <option value="Botas"></option>

@@ -1,9 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { dashBoardContext } from "../context/DashboardContext";
-import { storage } from "../firebaseConfig";
-import { ref, deleteObject, getDownloadURL } from "firebase/storage";
 import ProductRow from "./ProductRow";
-import Image from "next/image";
 
 //todo: use default imports.
 import {

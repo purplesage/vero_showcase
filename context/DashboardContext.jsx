@@ -22,11 +22,11 @@ const DashboardContext = ({ children }) => {
     );
   };
 
-  const editProduct = (id, editDataObject) => {
+  const editProduct = (id, editProductObject) => {
     setProductList(
       productList.map((productObject) =>
         productObject.id === id
-          ? { id: productObject.id, ...editDataObject }
+          ? { id: productObject.id, ...editProductObject }
           : productObject
       )
     );
@@ -70,6 +70,7 @@ const DashboardContext = ({ children }) => {
         deleteProduct,
         setIsUploading,
         isUploading,
+        editProduct,
       }}
     >
       {children}

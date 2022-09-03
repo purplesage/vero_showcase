@@ -3,6 +3,7 @@ import { TableRow, TableCell } from "@mui/material";
 import { dashBoardContext } from "../context/DashboardContext";
 import { ref, deleteObject, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebaseConfig";
+import { inputsContext } from "../context/InputsContext";
 import PreviewModal from "./PreviewModal";
 
 const ProductRow = ({
@@ -16,6 +17,24 @@ const ProductRow = ({
   availability,
   imageName,
 }) => {
+  const {
+    setTitleInput,
+    setDescriptionInput,
+    setPriceInput,
+    setCategoryInput,
+    setSizeList,
+    setColorList,
+  } = useContext(inputsContext);
+
+  const setInputState = () => {
+    setTitleInput(title);
+    setDescriptionInput(description);
+    setPriceInput(price);
+    setCategoryInput(category);
+    setSizeList(sizes);
+    setColorList(colors);
+  };
+
   const [openModal, setOpenModal] = useState(false);
 
   const { deleteProduct } = useContext(dashBoardContext);
@@ -46,6 +65,7 @@ const ProductRow = ({
           availability={availability}
           price={price}
           category={category}
+          id={id}
         />
       )}
       <TableRow>
@@ -54,6 +74,7 @@ const ProductRow = ({
             onClick={() => {
               setOpenModal(!openModal);
               fetchImage(imageName);
+              setInputState();
             }}
           >
             preview
