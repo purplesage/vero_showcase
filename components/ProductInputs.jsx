@@ -18,7 +18,10 @@ const ProductInputs = () => {
     priceInput,
     setPriceInput,
     setCategoryInput,
+    availabilityInput,
+    setAvailabilityInput,
     imagePreviewURL,
+    setImageName,
     setImagePreviewURL,
     sizeList,
     colorList,
@@ -49,7 +52,7 @@ const ProductInputs = () => {
       className={styles.addProductForm}
       action="Agregar Producto"
       onSubmit={(e) => {
-        addProduct(productObject(e.target.imagen.files[0]), e);
+        addProduct(productObject(), e);
         uploadImage(e.target.imagen.files[0]);
         setImagePreviewURL("");
         inputReset();
@@ -164,7 +167,13 @@ const ProductInputs = () => {
       {/* todo: make this a switch. */}
       <label htmlFor="availability">
         Disponibilidad:
-        <input type="checkbox" name="availability" id="availability" />
+        <input
+          checked={availabilityInput}
+          onChange={() => setAvailabilityInput(!availabilityInput)}
+          type="checkbox"
+          name="availability"
+          id="availability"
+        />
       </label>
 
       <label htmlFor="imagen">
@@ -174,7 +183,10 @@ const ProductInputs = () => {
           type="file"
           name="imagen"
           id="imagen"
-          onChange={(e) => setImagePreviewURL(imageUrl(e.target.files[0]))}
+          onChange={(e) => {
+            setImagePreviewURL(imageUrl(e.target.files[0]));
+            setImageName(e.target.files[0].name);
+          }}
         />
         {imagePreviewURL && (
           <Image

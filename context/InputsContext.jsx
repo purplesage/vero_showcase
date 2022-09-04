@@ -5,9 +5,11 @@ export const inputsContext = createContext({});
 
 const InputsContext = ({ children }) => {
   const [titleInput, setTitleInput] = useState("");
+
   const [descriptionInput, setDescriptionInput] = useState("");
   const [priceInput, setPriceInput] = useState("");
   const [categoryInput, setCategoryInput] = useState("");
+  const [availabilityInput, setAvailabilityInput] = useState(null);
   const [imagePreviewURL, setImagePreviewURL] = useState("");
   const [imageName, setImageName] = useState("");
   const [sizeList, setSizeList] = useState([]);
@@ -41,7 +43,7 @@ const InputsContext = ({ children }) => {
     return URL.createObjectURL(file);
   };
 
-  const productObject = (file) => {
+  const productObject = () => {
     //nuevo producto
     return {
       id: uuid(),
@@ -51,8 +53,10 @@ const InputsContext = ({ children }) => {
       category: categoryInput,
       sizes: sizeList,
       colors: colorList,
-      availability: document.getElementById("availability").checked,
-      imageName: file.name,
+      availability: availabilityInput,
+      imageName: imageName,
+      // imageName: file.name,
+      /* availability: document.getElementById("availability").checked, */
     };
   };
 
@@ -80,6 +84,9 @@ const InputsContext = ({ children }) => {
         inputReset,
         imageUrl,
         productObject,
+        setImageName,
+        availabilityInput,
+        setAvailabilityInput,
       }}
     >
       {children}
