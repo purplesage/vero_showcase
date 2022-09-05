@@ -18,12 +18,20 @@ const InputsContext = ({ children }) => {
     setSizeList([...sizeList, newSize]);
   };
 
+  const deleteSize = (value) => {
+    setSizeList(sizeList.filter((size) => size !== value));
+  };
+
   const sizeValue = () => {
     return document.getElementById("sizes");
   };
 
   const addColor = (newColor) => {
     setColorList([...colorList, newColor]);
+  };
+
+  const deleteColor = (value) => {
+    setColorList(colorList.filter((color) => color !== value));
   };
 
   const colorValue = () => {
@@ -88,6 +96,8 @@ const InputsContext = ({ children }) => {
         setImageName,
         availabilityInput,
         setAvailabilityInput,
+        deleteSize,
+        deleteColor,
       }}
     >
       {children}

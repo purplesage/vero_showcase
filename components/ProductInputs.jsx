@@ -6,6 +6,8 @@ import { storage } from "../firebaseConfig";
 import styles from "../styles/admin_dashboard.module.css";
 import Image from "next/image";
 import { inputsContext } from "../context/InputsContext";
+import SizeList from "./SizeList";
+import ColorList from "./ColorList";
 
 const ProductInputs = ({ setIsOpenInputs }) => {
   const { addProduct, setIsUploading } = useContext(dashBoardContext);
@@ -32,6 +34,8 @@ const ProductInputs = ({ setIsOpenInputs }) => {
     inputReset,
     imageUrl,
     productObject,
+    deleteSize,
+    deleteColor,
   } = useContext(inputsContext);
 
   const uploadImage = async (imageFile) => {
@@ -131,38 +135,16 @@ const ProductInputs = ({ setIsOpenInputs }) => {
       <label htmlFor="sizes">
         Tallas:
         <input type="number" name="sizes" id="sizes" />
-        <div style={{ display: "flex" }}>
-          {" "}
-          {/* abstract this style to css later */}
-          {sizeList.length > 0 &&
-            sizeList.map((size) => <p key={uuid()}>{size}</p>)}
+        <div className={styles.sizesDiv} style={{ display: "flex" }}>
+          <SizeList />
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            addSize(sizeValue().value);
-            sizeValue().value = "";
-          }}
-        >
-          agregar talla
-        </button>
       </label>
 
       <label htmlFor="colors">
         Colores: <input type="color" name="colors" id="colors" />
-        <div style={{ display: "flex" }}>
-          {" "}
-          {/* abstract this style to css later */}
-          {colorList.length > 0 &&
-            colorList.map((color) => (
-              <p style={{ color: color }} key={uuid()}>
-                {color}
-              </p>
-            ))}
+        <div className={styles.colorDiv} style={{ display: "flex" }}>
+          <ColorList />
         </div>
-        <button type="button" onClick={() => addColor(colorValue().value)}>
-          agregar color
-        </button>
       </label>
 
       {/* todo: make this a switch. */}
