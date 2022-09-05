@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { dashBoardContext } from "../context/DashboardContext";
 import { v4 as uuid } from "uuid";
 import { uploadBytesResumable, ref } from "firebase/storage";
@@ -7,7 +7,7 @@ import styles from "../styles/admin_dashboard.module.css";
 import Image from "next/image";
 import { inputsContext } from "../context/InputsContext";
 
-const ProductInputs = () => {
+const ProductInputs = ({ setIsOpenInputs }) => {
   const { addProduct, setIsUploading } = useContext(dashBoardContext);
 
   const {
@@ -55,6 +55,7 @@ const ProductInputs = () => {
         addProduct(productObject(), e);
         uploadImage(e.target.imagen.files[0]);
         setImagePreviewURL("");
+        setIsOpenInputs(false);
         inputReset();
         e.target.reset();
       }}
@@ -129,7 +130,7 @@ const ProductInputs = () => {
 
       <label htmlFor="sizes">
         Tallas:
-        <input type="text" name="sizes" id="sizes" />
+        <input type="number" name="sizes" id="sizes" />
         <div style={{ display: "flex" }}>
           {" "}
           {/* abstract this style to css later */}

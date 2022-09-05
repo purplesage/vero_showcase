@@ -24,6 +24,8 @@ const ProductRow = ({
     setCategoryInput,
     setSizeList,
     setColorList,
+    setAvailabilityInput,
+    setImageName,
   } = useContext(inputsContext);
 
   const setInputState = () => {
@@ -33,6 +35,8 @@ const ProductRow = ({
     setCategoryInput(category);
     setSizeList(sizes);
     setColorList(colors);
+    setAvailabilityInput(availability);
+    setImageName(imageName);
   };
 
   const [openModal, setOpenModal] = useState(false);

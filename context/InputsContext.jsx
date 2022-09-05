@@ -5,11 +5,10 @@ export const inputsContext = createContext({});
 
 const InputsContext = ({ children }) => {
   const [titleInput, setTitleInput] = useState("");
-
   const [descriptionInput, setDescriptionInput] = useState("");
   const [priceInput, setPriceInput] = useState("");
   const [categoryInput, setCategoryInput] = useState("");
-  const [availabilityInput, setAvailabilityInput] = useState(null);
+  const [availabilityInput, setAvailabilityInput] = useState(false);
   const [imagePreviewURL, setImagePreviewURL] = useState("");
   const [imageName, setImageName] = useState("");
   const [sizeList, setSizeList] = useState([]);
@@ -37,6 +36,8 @@ const InputsContext = ({ children }) => {
     setPriceInput("");
     setColorList([]);
     setSizeList([]);
+    setAvailabilityInput(false);
+    setImageName("");
   };
 
   const imageUrl = (file) => {
