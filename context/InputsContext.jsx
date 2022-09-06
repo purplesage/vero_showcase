@@ -1,4 +1,6 @@
 import React, { createContext, useState } from "react";
+import { storage } from "../firebaseConfig";
+import { uploadBytesResumable, ref } from "firebase/storage";
 import { v4 as uuid } from "uuid";
 
 export const inputsContext = createContext({});
@@ -13,6 +15,8 @@ const InputsContext = ({ children }) => {
   const [imageName, setImageName] = useState("");
   const [sizeList, setSizeList] = useState([]);
   const [colorList, setColorList] = useState([]);
+
+  const [isUploading, setIsUploading] = useState(false);
 
   const addSize = (newSize) => {
     setSizeList([...sizeList, newSize]);
@@ -56,8 +60,19 @@ const InputsContext = ({ children }) => {
     return URL.createObjectURL(file);
   };
 
+  const uploadImage = async (imageFile) => {
+    try {
+      setIsUploading(true);
+      const fileRef = ref(storage, `images/${imageFile.name}`);
+      await uploadBytesResumable(fileRef, imageFile).then(
+        setIsUploading(false)
+      );
+    } catch (err) {
+      console.warn(err.message);
+    }
+  };
+
   const productObject = () => {
-    //nuevo producto
     return {
       id: uuid(),
       title: titleInput,
@@ -68,8 +83,6 @@ const InputsContext = ({ children }) => {
       colors: colorList,
       availability: availabilityInput,
       imageName: imageName,
-      // imageName: file.name,
-      /* availability: document.getElementById("availability").checked, */
     };
   };
 
@@ -97,11 +110,13 @@ const InputsContext = ({ children }) => {
         inputReset,
         imageUrl,
         productObject,
+        imageName,
         setImageName,
         availabilityInput,
         setAvailabilityInput,
         deleteSize,
         deleteColor,
+        uploadImage,
       }}
     >
       {children}

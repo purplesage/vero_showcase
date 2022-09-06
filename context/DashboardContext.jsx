@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
-import { dataBase } from "../firebaseConfig";
+import { dataBase, storage } from "../firebaseConfig";
+import { ref, deleteObject } from "firebase/storage";
 
 export const dashBoardContext = createContext({});
 
 const DashboardContext = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(true);
-  const [isUploading, setIsUploading] = useState(false);
 
   const [productList, setProductList] = useState([]);
 
@@ -22,6 +22,11 @@ const DashboardContext = ({ children }) => {
     );
   };
 
+  const deleteFileFromStorage = async (fileName) => {
+    const file_ref = ref(storage, `images/${fileName}`);
+
+    await deleteObject(file_ref);
+  };
   const editProduct = (id, editProductObject) => {
     setProductList(
       productList.map((productObject) =>
@@ -68,9 +73,8 @@ const DashboardContext = ({ children }) => {
         addProduct,
         productList,
         deleteProduct,
-        setIsUploading,
-        isUploading,
         editProduct,
+        deleteFileFromStorage,
       }}
     >
       {children}

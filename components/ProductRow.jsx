@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { TableRow, TableCell } from "@mui/material";
 import { dashBoardContext } from "../context/DashboardContext";
-import { ref, deleteObject, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebaseConfig";
 import { inputsContext } from "../context/InputsContext";
 import PreviewModal from "./PreviewModal";
@@ -41,13 +41,13 @@ const ProductRow = ({
 
   const [openModal, setOpenModal] = useState(false);
 
-  const { deleteProduct } = useContext(dashBoardContext);
+  const { deleteProduct, deleteFileFromStorage } = useContext(dashBoardContext);
 
-  const deleteFileFromStorage = async (fileName) => {
-    const file_ref = ref(storage, `images/${fileName}`);
+  // const deleteFileFromStorage = async (fileName) => {
+  //   const file_ref = ref(storage, `images/${fileName}`);
 
-    await deleteObject(file_ref);
-  };
+  //   await deleteObject(file_ref);
+  // };
 
   const [imageURL, setImageURL] = useState("");
 

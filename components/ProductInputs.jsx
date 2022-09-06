@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { dashBoardContext } from "../context/DashboardContext";
-import { v4 as uuid } from "uuid";
-import { uploadBytesResumable, ref } from "firebase/storage";
-import { storage } from "../firebaseConfig";
+
 import styles from "../styles/admin_dashboard.module.css";
 import Image from "next/image";
 import { inputsContext } from "../context/InputsContext";
@@ -10,7 +8,7 @@ import SizeList from "./SizeList";
 import ColorList from "./ColorList";
 
 const ProductInputs = ({ setIsOpenInputs }) => {
-  const { addProduct, setIsUploading } = useContext(dashBoardContext);
+  const { addProduct } = useContext(dashBoardContext);
 
   const {
     titleInput,
@@ -25,30 +23,23 @@ const ProductInputs = ({ setIsOpenInputs }) => {
     imagePreviewURL,
     setImageName,
     setImagePreviewURL,
-    sizeList,
-    colorList,
-    addSize,
-    sizeValue,
-    addColor,
-    colorValue,
     inputReset,
     imageUrl,
     productObject,
-    deleteSize,
-    deleteColor,
+    uploadImage,
   } = useContext(inputsContext);
 
-  const uploadImage = async (imageFile) => {
-    try {
-      setIsUploading(true);
-      const fileRef = ref(storage, `images/${imageFile.name}`);
-      await uploadBytesResumable(fileRef, imageFile).then(
-        setIsUploading(false)
-      );
-    } catch (err) {
-      console.warn(err.message);
-    }
-  };
+  // const uploadImage = async (imageFile) => {
+  //   try {
+  //     setIsUploading(true);
+  //     const fileRef = ref(storage, `images/${imageFile.name}`);
+  //     await uploadBytesResumable(fileRef, imageFile).then(
+  //       setIsUploading(false)
+  //     );
+  //   } catch (err) {
+  //     console.warn(err.message);
+  //   }
+  // };
 
   return (
     <form

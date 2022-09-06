@@ -45,10 +45,16 @@ const PreviewModal = ({
     setCategoryInput,
     availabilityInput,
     setAvailabilityInput,
-    sizeList,
-    colorList,
     productObject,
+    imageName,
+    setImageName,
+    uploadImage,
   } = useContext(inputsContext);
+
+  const handleImageEdit = (imageFile) => {
+    if (imageFile.name !== imageName) return;
+    uploadImage(imageFile);
+  };
 
   const { editProduct } = useContext(dashBoardContext);
 
@@ -103,6 +109,7 @@ const PreviewModal = ({
               onSubmit={(e) => {
                 e.preventDefault();
                 editProduct(id, productObject());
+                handleImageEdit(e.target.editImage.files[0]);
               }}
             >
               <label htmlFor="edit-title">
@@ -116,16 +123,28 @@ const PreviewModal = ({
                   placeholder={`Título: ${title}`}
                 />
               </label>
+
               {/* todo: handle image edit */}
               {imageURL && (
-                <Image
-                  src={imageURL}
-                  alt="product image"
-                  layout="fixed"
-                  width="100"
-                  height="100"
-                />
+                <div>
+                  <Image
+                    src={imageURL}
+                    alt="product image"
+                    layout="fixed"
+                    width="100"
+                    height="100"
+                  />
+
+                  <input
+                    required
+                    type="file"
+                    name="editImage"
+                    id="editImage"
+                    onChange={(e) => setImageName(e.target.files[0].name)}
+                  />
+                </div>
               )}
+
               <label htmlFor="edit-description">
                 Descripción:
                 <input
@@ -137,6 +156,7 @@ const PreviewModal = ({
                   placeholder={`Descripción: ${description}`}
                 />
               </label>
+
               <label htmlFor="categoria">
                 Categoria:
                 <input
@@ -167,6 +187,7 @@ const PreviewModal = ({
                   <option value="Manoletinas"></option>
                 </datalist>
               </label>
+
               <label htmlFor="edit-price">
                 Precio:
                 <input
@@ -178,6 +199,7 @@ const PreviewModal = ({
                   placeholder={price}
                 />
               </label>
+
               <label htmlFor="edit-sizes">
                 Tallas:
                 <input type="text" name="edit-sizes" id="edit-sizes" />
