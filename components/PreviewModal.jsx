@@ -5,6 +5,8 @@ import { TableCell, TableRow } from "@mui/material";
 import { inputsContext } from "../context/InputsContext";
 import { v4 as uuid } from "uuid";
 import { dashBoardContext } from "../context/DashboardContext";
+import SizeList from "./SizeList";
+import ColorList from "./ColorList";
 
 const PreviewModal = ({
   title,
@@ -180,41 +182,18 @@ const PreviewModal = ({
                 Tallas:
                 <input type="text" name="edit-sizes" id="edit-sizes" />
                 <div style={{ display: "flex" }}>
-                  {" "}
-                  {/* abstract this style to css later */}
-                  {sizeList.length > 0 &&
-                    sizeList.map((size) => <p key={uuid()}>{size}</p>)}
+                  <SizeList edit={true} />
                 </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    addSize(sizeValue().value);
-                    sizeValue().value = "";
-                  }}
-                >
-                  agregar talla
-                </button>
               </label>
+
               <label htmlFor="edit-colors">
                 Colores:
                 <input type="color" name="edit-colors" id="edit-colors" />
                 <div style={{ display: "flex" }}>
-                  {" "}
-                  {/* abstract this style to css later */}
-                  {colorList.length > 0 &&
-                    colorList.map((color) => (
-                      <p style={{ color: color }} key={uuid()}>
-                        {color}
-                      </p>
-                    ))}
+                  <ColorList edit={true} />
                 </div>
-                <button
-                  type="button"
-                  onClick={() => addColor(colorValue().value)}
-                >
-                  agregar color
-                </button>
               </label>
+
               <label htmlFor="edit-availability">
                 Disponibilidad:
                 <input

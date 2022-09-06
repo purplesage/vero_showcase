@@ -27,22 +27,3 @@
   height: 3rem;
   outline: red 2px solid;
 }
-
-.sizesDiv {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.sizesDiv div {
-  border: black 1px solid;
-}
-
-.colorDiv {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.colorDiv div {
-  padding: 1rem;
-  border-radius: 50%;
-}

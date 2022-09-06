@@ -22,8 +22,10 @@ const InputsContext = ({ children }) => {
     setSizeList(sizeList.filter((size) => size !== value));
   };
 
-  const sizeValue = () => {
-    return document.getElementById("sizes");
+  const sizeValue = (edit) => {
+    if (!edit) return document.getElementById("sizes");
+
+    return document.getElementById("edit-sizes");
   };
 
   const addColor = (newColor) => {
@@ -34,8 +36,10 @@ const InputsContext = ({ children }) => {
     setColorList(colorList.filter((color) => color !== value));
   };
 
-  const colorValue = () => {
-    return document.getElementById("colors");
+  const colorValue = (edit) => {
+    if (!edit) return document.getElementById("colors");
+
+    return document.getElementById("edit-colors");
   };
 
   const inputReset = () => {

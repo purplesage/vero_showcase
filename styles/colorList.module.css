@@ -1,0 +1,9 @@
+.colorDiv {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.colorDiv div {
+  padding: 1rem;
+  border-radius: 50%;
+}

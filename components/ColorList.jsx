@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { inputsContext } from "../context/InputsContext";
 import { v4 as uuid } from "uuid";
+import styles from "../styles/colorList.module.css";
 
-const ColorList = () => {
+const ColorList = ({ edit }) => {
   const { deleteColor, addColor, colorValue, colorList } =
     useContext(inputsContext);
   return (
-    <>
+    <div className={styles.colorDiv} style={{ display: "flex" }}>
       {colorList.length > 0 &&
         colorList.map((color) => (
           <div
@@ -18,10 +19,10 @@ const ColorList = () => {
           </div>
         ))}
 
-      <button type="button" onClick={() => addColor(colorValue().value)}>
+      <button type="button" onClick={() => addColor(colorValue(edit).value)}>
         agregar color
       </button>
-    </>
+    </div>
   );
 };
 

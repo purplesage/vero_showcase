@@ -1,0 +1,8 @@
+.sizesDiv {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sizesDiv div {
+  border: black 1px solid;
+}
