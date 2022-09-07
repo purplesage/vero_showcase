@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 
 import Image from "next/image";
 import { TableCell, TableRow } from "@mui/material";
@@ -51,15 +51,20 @@ const PreviewModal = ({
     uploadImage,
   } = useContext(inputsContext);
 
-  const handleImageEdit = (imageFile) => {
-    if (imageFile.name !== imageName) return;
-    uploadImage(imageFile);
-  };
-
-  const { editProduct } = useContext(dashBoardContext);
+  const { editProduct, deleteFileFromStorage } = useContext(dashBoardContext);
 
   const [previewMode, setPreviewMode] = useState(true);
   const [editMode, setEditMode] = useState(false);
+  const imageNameRef = useRef(imageName);
+
+  const handleImageEdit = (imageFile) => {
+    if (imageFile.name !== imageName) return;
+
+    if (imageFile.name !== imageNameRef.current) {
+      uploadImage(imageFile);
+      deleteFileFromStorage(imageNameRef.current);
+    }
+  };
 
   return (
     <>
