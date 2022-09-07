@@ -3,7 +3,7 @@ import AdminContext from "../context/AdminContext";
 import DashboardContext from "../context/DashboardContext";
 import InputsContext from "../context/InputsContext";
 
-//todo: implement image edit preview.
+//todo: implement dynamic routes and everything related to it.
 
 function MyApp({ Component, pageProps }) {
   return (

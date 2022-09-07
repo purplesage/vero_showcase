@@ -1,10 +1,10 @@
 import React from "react";
-import ProductList from "../components/ProductList";
+import ProductTable from "../components/ProductTable";
 
 const Collection = () => {
   return (
     <div>
-      <ProductList showAs="default" />
+      <ProductTable showAs="default" />
     </div>
   );
 };
