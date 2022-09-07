@@ -29,17 +29,8 @@ const ProductInputs = ({ setIsOpenInputs }) => {
     uploadImage,
   } = useContext(inputsContext);
 
-  // const uploadImage = async (imageFile) => {
-  //   try {
-  //     setIsUploading(true);
-  //     const fileRef = ref(storage, `images/${imageFile.name}`);
-  //     await uploadBytesResumable(fileRef, imageFile).then(
-  //       setIsUploading(false)
-  //     );
-  //   } catch (err) {
-  //     console.warn(err.message);
-  //   }
-  // };
+  //setImagePreviewURL
+  //imageUrl
 
   return (
     <form

@@ -49,6 +49,9 @@ const PreviewModal = ({
     imageName,
     setImageName,
     uploadImage,
+    imagePreviewURL,
+    setImagePreviewURL,
+    imageUrl,
   } = useContext(inputsContext);
 
   const { editProduct, deleteFileFromStorage } = useContext(dashBoardContext);
@@ -140,12 +143,25 @@ const PreviewModal = ({
                     height="100"
                   />
 
+                  {imagePreviewURL && (
+                    <Image
+                      src={imagePreviewURL}
+                      alt="product image"
+                      layout="fixed"
+                      width="100"
+                      height="100"
+                    />
+                  )}
+
                   <input
                     required
                     type="file"
                     name="editImage"
                     id="editImage"
-                    onChange={(e) => setImageName(e.target.files[0].name)}
+                    onChange={(e) => {
+                      setImageName(e.target.files[0].name);
+                      setImagePreviewURL(imageUrl(e.target.files[0]));
+                    }}
                   />
                 </div>
               )}

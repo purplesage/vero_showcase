@@ -26,6 +26,7 @@ const ProductRow = ({
     setColorList,
     setAvailabilityInput,
     setImageName,
+    setImagePreviewURL,
   } = useContext(inputsContext);
 
   const setInputState = () => {
@@ -37,17 +38,12 @@ const ProductRow = ({
     setColorList(colors);
     setAvailabilityInput(availability);
     setImageName(imageName);
+    setImagePreviewURL("");
   };
 
   const [openModal, setOpenModal] = useState(false);
 
   const { deleteProduct, deleteFileFromStorage } = useContext(dashBoardContext);
-
-  // const deleteFileFromStorage = async (fileName) => {
-  //   const file_ref = ref(storage, `images/${fileName}`);
-
-  //   await deleteObject(file_ref);
-  // };
 
   const [imageURL, setImageURL] = useState("");
 

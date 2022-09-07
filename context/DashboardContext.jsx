@@ -27,6 +27,7 @@ const DashboardContext = ({ children }) => {
 
     await deleteObject(file_ref);
   };
+
   const editProduct = (id, editProductObject) => {
     setProductList(
       productList.map((productObject) =>
