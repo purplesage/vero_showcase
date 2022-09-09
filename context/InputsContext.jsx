@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import { storage } from "../firebaseConfig";
-import { uploadBytesResumable, ref } from "firebase/storage";
+import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
 import { v4 as uuid } from "uuid";
 
 export const inputsContext = createContext({});
@@ -15,6 +15,7 @@ const InputsContext = ({ children }) => {
   const [imageName, setImageName] = useState("");
   const [sizeList, setSizeList] = useState([]);
   const [colorList, setColorList] = useState([]);
+  const [imageURL, setImageURL] = useState("");
 
   const [isUploading, setIsUploading] = useState(false);
 
@@ -58,6 +59,14 @@ const InputsContext = ({ children }) => {
 
   const imageUrl = (file) => {
     return URL.createObjectURL(file);
+  };
+
+  const fetchImage = async (fileName, setProductImageUrl = null) => {
+    const fileRef = ref(storage, `images/${fileName}`);
+    const url = await getDownloadURL(fileRef);
+    setImageURL(url);
+
+    if (setProductImageUrl) setProductImageUrl(url);
   };
 
   const uploadImage = async (imageFile) => {
@@ -117,6 +126,8 @@ const InputsContext = ({ children }) => {
         deleteSize,
         deleteColor,
         uploadImage,
+        fetchImage,
+        imageURL,
       }}
     >
       {children}

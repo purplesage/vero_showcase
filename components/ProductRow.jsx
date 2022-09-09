@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
 import { TableRow, TableCell } from "@mui/material";
 import { dashBoardContext } from "../context/DashboardContext";
-import { ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../firebaseConfig";
 import { inputsContext } from "../context/InputsContext";
 import PreviewModal from "./PreviewModal";
 
@@ -27,6 +25,8 @@ const ProductRow = ({
     setAvailabilityInput,
     setImageName,
     setImagePreviewURL,
+    fetchImage,
+    imageURL,
   } = useContext(inputsContext);
 
   const setInputState = () => {
@@ -44,14 +44,6 @@ const ProductRow = ({
   const [openModal, setOpenModal] = useState(false);
 
   const { deleteProduct, deleteFileFromStorage } = useContext(dashBoardContext);
-
-  const [imageURL, setImageURL] = useState("");
-
-  const fetchImage = async (fileName) => {
-    const fileRef = ref(storage, `images/${fileName}`);
-    const url = await getDownloadURL(fileRef);
-    setImageURL(url);
-  };
 
   return (
     <>

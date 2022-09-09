@@ -12,61 +12,46 @@ import {
   Table,
 } from "@mui/material";
 
-const ProductTable = ({ showAs }) => {
+const ProductTable = () => {
   const { productList } = useContext(dashBoardContext);
 
-  if (showAs === "edit") {
-    return (
-      <>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell> </TableCell>
-                <TableCell>Titulo</TableCell>
-                <TableCell>Descripcion</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Categoría</TableCell>
-                <TableCell>Colores</TableCell>
-                <TableCell>Tallas</TableCell>
-                <TableCell>Disponibilidad</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {productList.length > 0 &&
-                productList.map((productObject) => (
-                  <ProductRow
-                    key={productObject.id}
-                    id={productObject.id}
-                    title={productObject.title}
-                    description={productObject.description}
-                    price={productObject.price}
-                    category={productObject.category}
-                    colors={productObject.colors}
-                    sizes={productObject.sizes}
-                    availability={productObject.availability}
-                    imageName={productObject.imageName}
-                  />
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </>
-    );
-  } else if (showAs === "default") {
-    return (
-      <>
-        {productList.length > 0 &&
-          productList.map((productObject) => (
-            <div key={productObject.id}>
-              <h3>{productObject.title}</h3>
-              <p>{productObject.description}</p>
-              <p>{productObject.price}</p>
-            </div>
-          ))}
-      </>
-    );
-  }
+  return (
+    <>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell> </TableCell>
+              <TableCell>Titulo</TableCell>
+              <TableCell>Descripcion</TableCell>
+              <TableCell>Price</TableCell>
+              <TableCell>Categoría</TableCell>
+              <TableCell>Colores</TableCell>
+              <TableCell>Tallas</TableCell>
+              <TableCell>Disponibilidad</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {productList.length > 0 &&
+              productList.map((productObject) => (
+                <ProductRow
+                  key={productObject.id}
+                  id={productObject.id}
+                  title={productObject.title}
+                  description={productObject.description}
+                  price={productObject.price}
+                  category={productObject.category}
+                  colors={productObject.colors}
+                  sizes={productObject.sizes}
+                  availability={productObject.availability}
+                  imageName={productObject.imageName}
+                />
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
+  );
 };
 
 export default ProductTable;
