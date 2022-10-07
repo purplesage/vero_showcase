@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { dashBoardContext } from "../context/DashboardContext";
 import ProductCard from "./ProductCard";
+import styles from "../styles/productListComponent.module.css";
 
 const ProductListComponent = () => {
   const { productList } = useContext(dashBoardContext);
   return (
-    <div>
+    <div className={styles.productList}>
       {productList.length > 0 &&
         productList.map((productObject) => {
           return (

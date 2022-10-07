@@ -15,7 +15,7 @@ const ProductCard = ({ title, image, description, price, sizes, colors }) => {
 
     handleImageUrl();
   }, []);
-  // converToPath(title)
+
   return (
     <div>
       <h3>{title}</h3>
