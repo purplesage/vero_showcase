@@ -1,26 +1,36 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import { inputsContext } from "../context/InputsContext";
+import Link from "next/link";
+import { converToPath } from "../lib/util";
 
 const ProductCard = ({ title, image, description, price, sizes, colors }) => {
   const [imgURL, setimgURL] = useState("");
   const { fetchImage } = useContext(inputsContext);
 
-  const handleImageUrl = (async () => {
-    await fetchImage(image, setimgURL);
-  })();
+  useEffect(() => {
+    const handleImageUrl = async () => {
+      await fetchImage(image, setimgURL);
+    };
 
+    handleImageUrl();
+  }, []);
+  // converToPath(title)
   return (
     <div>
       <h3>{title}</h3>
       {imgURL ? (
-        <Image
-          src={imgURL}
-          alt="product image"
-          layout="fixed"
-          width="100"
-          height="100"
-        />
+        <Link href={`/catalog/${converToPath(title)}`}>
+          <a>
+            <Image
+              src={imgURL}
+              alt="product image"
+              layout="fixed"
+              width="100"
+              height="100"
+            />
+          </a>
+        </Link>
       ) : (
         <p>loading...</p>
       )}
