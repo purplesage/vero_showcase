@@ -4,17 +4,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
 /* font-family: 'Dancing Script', cursive; */
 
-.hero {
+.Hero {
   width: 100%;
   height: 100vh;
-  background-image: url(/hero_shoe.jpg);
+  /* background-image: url(/hero_shoe.jpg); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
 
-.logoContainer {
+.LogoContainer {
   display: flex;
   gap: 4rem;
   flex-direction: column;
@@ -23,9 +23,10 @@
   right: 0;
   transform: translateX(-25vh);
   top: 50vh;
+  z-index: 10;
 }
 
-.logoContainer h1 {
+.LogoContainer h1 {
   display: flex;
   align-items: center;
   color: #f12048;
@@ -34,7 +35,7 @@
   letter-spacing: 0.25rem;
 }
 
-.logoContainer a {
+.LogoContainer a {
   text-decoration: none;
   font-size: 0.9rem;
   font-family: var(--roboto);
@@ -45,6 +46,6 @@
   transform: translateX(0.5rem);
 }
 
-.logoContainer a:hover {
+.LogoContainer a:hover {
   background-color: rgb(31, 31, 31);
 }

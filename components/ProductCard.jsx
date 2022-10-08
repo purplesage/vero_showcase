@@ -5,7 +5,6 @@ import Link from "next/link";
 import { converToPath } from "../lib/util";
 import styles from "../styles/productCard.module.css";
 import { BsCart4 } from "react-icons/bs";
-import { RiEmotionSadLine } from "react-icons/ri";
 
 const ProductCard = ({
   title,
@@ -92,7 +91,7 @@ const ProductCard = ({
         href="#"
       >
         {availability ? "Comprar" : "Agotado"}
-        {availability ? <BsCart4 /> : <RiEmotionSadLine />}
+        {availability && <BsCart4 />}
       </a>
     </div>
   );
