@@ -26,8 +26,8 @@ const ProductCard = ({ title, image, description, price, sizes, colors }) => {
               className={styles.Card__image}
               src={imgURL}
               alt="product image"
-              width="350"
-              height="350"
+              width="380"
+              height="375"
             />
           </a>
         </Link>
@@ -36,11 +36,31 @@ const ProductCard = ({ title, image, description, price, sizes, colors }) => {
       )}
       <div className={styles.CardBody}>
         <h3 className={styles.CardBody__title}>{title}</h3>
-        <p>{description}</p>
-        <h4>{price}</h4>
-        <h4>{sizes}</h4>
-        <h4>{colors}</h4>
+        <p className={styles.CardBody__description}>{description}</p>
+        <h4 className={styles.CardBody__price}>${price}</h4>
+        <div className={styles.CardBody__listContainer}>
+          <h4>Tallas:</h4>
+          <div className={styles.CardBody__sizeList}>
+            {sizes.map((size) => (
+              <div className={styles.CardBody__size}>{size}</div>
+            ))}
+          </div>
+          <h4>Colores:</h4>
+          <div className={styles.CardBody__colorList}>
+            {colors.map((color) => (
+              <div
+                className={styles.CardBody__color}
+                style={{ backgroundColor: color }}
+              >
+                {" "}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+      <a className={styles.Card__buyButton} href="#">
+        Comprar
+      </a>
     </div>
   );
 };

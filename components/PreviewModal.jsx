@@ -61,7 +61,7 @@ const PreviewModal = ({
   const imageNameRef = useRef(imageName);
 
   const handleImageEdit = (imageFile) => {
-    if (imageFile.name !== imageName) return;
+    if (imageFile?.name !== imageName) return;
 
     if (imageFile.name !== imageNameRef.current) {
       uploadImage(imageFile);
@@ -154,7 +154,6 @@ const PreviewModal = ({
                   )}
 
                   <input
-                    required
                     type="file"
                     name="editImage"
                     id="editImage"
