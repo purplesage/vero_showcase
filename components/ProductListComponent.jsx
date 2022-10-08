@@ -18,6 +18,7 @@ const ProductListComponent = () => {
               price={productObject.price}
               sizes={productObject.sizes}
               colors={productObject.colors}
+              availability={productObject.availability}
             />
           );
         })}

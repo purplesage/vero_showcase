@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   gap: 0.9rem;
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
 }
 
 .CardBody__sizeList {
@@ -58,6 +58,7 @@
   border: #f12048 2px solid;
   padding: 0.2rem;
   font-weight: bold;
+  font-size: 0.8rem;
   color: rgb(0, 48, 77);
   border-radius: 0.2rem;
 }
@@ -68,14 +69,16 @@
 }
 
 .CardBody__color {
-  padding: 1rem;
+  padding: 0.7rem;
   border-radius: 50%;
   width: 0.1rem;
   box-shadow: 1px 1px 5px 1px rgb(158, 158, 158);
 }
 
 .Card__buyButton {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
   text-decoration: none;
   background-color: #f12048;
   color: white;
@@ -84,4 +87,29 @@
   font-size: 1.5rem;
   border-bottom-left-radius: 0.4rem;
   border-bottom-right-radius: 0.4rem;
+}
+
+.Card__buyButton:hover {
+  background-color: #d11a3b;
+}
+
+.Card__buyButton_unavailable {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  background-color: rgb(248, 226, 226);
+  color: #f12048;
+  padding: 1.5rem;
+  font-family: "Lobster", cursive;
+  font-size: 1.5rem;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+  border: #f12048 3px dashed;
+}
+
+.CardBody__ruler {
+  color: black;
+  width: 50%;
+  height: 1px;
 }

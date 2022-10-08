@@ -4,8 +4,18 @@ import { inputsContext } from "../context/InputsContext";
 import Link from "next/link";
 import { converToPath } from "../lib/util";
 import styles from "../styles/productCard.module.css";
+import { BsCart4 } from "react-icons/bs";
+import { RiEmotionSadLine } from "react-icons/ri";
 
-const ProductCard = ({ title, image, description, price, sizes, colors }) => {
+const ProductCard = ({
+  title,
+  image,
+  description,
+  price,
+  sizes,
+  colors,
+  availability,
+}) => {
   const [imgURL, setimgURL] = useState("");
   const { fetchImage } = useContext(inputsContext);
 
@@ -35,17 +45,31 @@ const ProductCard = ({ title, image, description, price, sizes, colors }) => {
         <p>loading...</p>
       )}
       <div className={styles.CardBody}>
-        <h3 className={styles.CardBody__title}>{title}</h3>
+        <h3
+          className={styles.CardBody__title}
+          style={{ opacity: !availability && "0.7" }}
+        >
+          {title}
+        </h3>
         <p className={styles.CardBody__description}>{description}</p>
-        <h4 className={styles.CardBody__price}>${price}</h4>
-        <div className={styles.CardBody__listContainer}>
-          <h4>Tallas:</h4>
+        <h4
+          className={styles.CardBody__price}
+          style={{ opacity: !availability && "0.7" }}
+        >
+          ${price}
+        </h4>
+        <hr className={styles.CardBody__ruler} />
+        <div
+          className={styles.CardBody__listContainer}
+          style={{ opacity: !availability && "0.7" }}
+        >
+          <p>Tallas:</p>
           <div className={styles.CardBody__sizeList}>
             {sizes.map((size) => (
               <div className={styles.CardBody__size}>{size}</div>
             ))}
           </div>
-          <h4>Colores:</h4>
+          <p>Colores:</p>
           <div className={styles.CardBody__colorList}>
             {colors.map((color) => (
               <div
@@ -58,8 +82,17 @@ const ProductCard = ({ title, image, description, price, sizes, colors }) => {
           </div>
         </div>
       </div>
-      <a className={styles.Card__buyButton} href="#">
-        Comprar
+      <a
+        disabled={availability}
+        className={
+          availability
+            ? styles.Card__buyButton
+            : styles.Card__buyButton_unavailable
+        }
+        href="#"
+      >
+        {availability ? "Comprar" : "Agotado"}
+        {availability ? <BsCart4 /> : <RiEmotionSadLine />}
       </a>
     </div>
   );
