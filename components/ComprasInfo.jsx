@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import pic from "../public/shoping1.jpg";
+import styles from "../styles/comprasInfo.module.css";
 
 const ComprasInfo = () => {
   return (
-    <div>
+    <div className={styles.Container}>
       <Image src={pic} width="100" height="100" />
       <p>Cómo comprar</p>
       <p>

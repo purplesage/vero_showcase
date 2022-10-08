@@ -1,0 +1,6 @@
+.Container {
+  width: 100%;
+  height: 60vh;
+  background-color: #4ec9fa;
+  background-image: linear-gradient(90deg, #00b2d6 0%, #cee8f7 100%);
+}

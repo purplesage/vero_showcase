@@ -9,6 +9,7 @@
   font-family: var(--roboto);
   background-color: white;
   color: black;
+  box-shadow: 1px 1px 10px 1px rgb(134, 134, 134);
 }
 
 .Card__image {
@@ -39,7 +40,7 @@
 .CardBody__price {
   font-family: "Lobster", cursive;
   font-size: 1.3rem;
-  color: rgb(0, 134, 211);
+  color: rgb(20, 20, 20);
 }
 
 .CardBody__listContainer {
