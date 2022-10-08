@@ -14,15 +14,37 @@
   position: relative;
 }
 
-.hero h1 {
+.logoContainer {
   display: flex;
+  gap: 4rem;
+  flex-direction: column;
   align-items: center;
   position: absolute;
   right: 0;
   transform: translateX(-25vh);
   top: 50vh;
+}
+
+.logoContainer h1 {
+  display: flex;
+  align-items: center;
   color: #f12048;
   font-family: "Dancing Script", cursive;
-  font-size: 4.5em;
+  font-size: 5em;
   letter-spacing: 0.25rem;
+}
+
+.logoContainer a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-family: var(--roboto);
+  background: rgb(20, 20, 20);
+  color: white;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+  border-radius: 0.3rem;
+  transform: translateX(0.5rem);
+}
+
+.logoContainer a:hover {
+  background-color: rgb(31, 31, 31);
 }

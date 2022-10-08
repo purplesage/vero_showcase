@@ -4,10 +4,13 @@ import styles from "../styles/hero.module.css";
 const Hero = () => {
   return (
     <div className={styles.hero}>
-      <h1>
-        <img src="/logo.svg" alt="vashti logo" />
-        Vashti
-      </h1>
+      <div className={styles.logoContainer}>
+        <h1>
+          <img src="/logo.svg" alt="vashti logo" />
+          Vashti
+        </h1>
+        <a href="#catalogo">Ver catálogo</a>
+      </div>
     </div>
   );
 };

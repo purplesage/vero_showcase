@@ -1,7 +1,10 @@
 .productList {
   display: flex;
-  background-color: #0c3058;
+  background-color: #092646;
   color: white;
   width: 100%;
   height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }

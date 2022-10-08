@@ -6,7 +6,7 @@ import styles from "../styles/productListComponent.module.css";
 const ProductListComponent = () => {
   const { productList } = useContext(dashBoardContext);
   return (
-    <div className={styles.productList}>
+    <div id="catalogo" className={styles.productList}>
       {productList.length > 0 &&
         productList.map((productObject) => {
           return (

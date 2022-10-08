@@ -3,6 +3,7 @@ import Image from "next/image";
 import { inputsContext } from "../context/InputsContext";
 import Link from "next/link";
 import { converToPath } from "../lib/util";
+import styles from "../styles/productCard.module.css";
 
 const ProductCard = ({ title, image, description, price, sizes, colors }) => {
   const [imgURL, setimgURL] = useState("");
@@ -17,7 +18,7 @@ const ProductCard = ({ title, image, description, price, sizes, colors }) => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.card}>
       <h3>{title}</h3>
       {imgURL ? (
         <Link href={`/catalog/${converToPath(title)}`}>
