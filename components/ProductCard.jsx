@@ -18,27 +18,29 @@ const ProductCard = ({ title, image, description, price, sizes, colors }) => {
   }, []);
 
   return (
-    <div className={styles.card}>
-      <h3>{title}</h3>
+    <div className={styles.Card}>
       {imgURL ? (
         <Link href={`/catalog/${converToPath(title)}`}>
           <a>
             <Image
+              className={styles.Card__image}
               src={imgURL}
               alt="product image"
-              layout="fixed"
-              width="100"
-              height="100"
+              width="350"
+              height="350"
             />
           </a>
         </Link>
       ) : (
         <p>loading...</p>
       )}
-      <p>{description}</p>
-      <h4>{price}</h4>
-      <h4>{sizes}</h4>
-      <h4>{colors}</h4>
+      <div className={styles.CardBody}>
+        <h3 className={styles.CardBody__title}>{title}</h3>
+        <p>{description}</p>
+        <h4>{price}</h4>
+        <h4>{sizes}</h4>
+        <h4>{colors}</h4>
+      </div>
     </div>
   );
 };
