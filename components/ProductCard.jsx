@@ -46,21 +46,21 @@ const ProductCard = ({
       <div className={styles.CardBody}>
         <h3
           className={styles.CardBody__title}
-          style={{ opacity: !availability && "0.7" }}
+          style={{ opacity: !availability && "0.5" }}
         >
           {title}
         </h3>
         <p className={styles.CardBody__description}>{description}</p>
         <h4
           className={styles.CardBody__price}
-          style={{ opacity: !availability && "0.7" }}
+          style={{ opacity: !availability && "0.5" }}
         >
           ${price}
         </h4>
         <hr className={styles.CardBody__ruler} />
         <div
           className={styles.CardBody__listContainer}
-          style={{ opacity: !availability && "0.7" }}
+          style={{ opacity: !availability && "0.5" }}
         >
           <p>Tallas:</p>
           <div className={styles.CardBody__sizeList}>

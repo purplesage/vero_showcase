@@ -175,6 +175,10 @@ select {
 }
 /* ----------------------------------- */
 
+body {
+  overflow: auto;
+}
+
 :root {
   --roboto: "Roboto", sans-serif;
 }

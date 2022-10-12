@@ -10,6 +10,42 @@
   position: relative;
 }
 
+.instagramIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  position: absolute;
+  top: 6vh;
+  right: 10vh;
+  color: white;
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  color: #f12048;
+}
+
+.instagramIcon:hover {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+  color: white;
+}
+
+.instagramIcon svg {
+  width: 2.3rem;
+  height: 2.3rem;
+}
+
+.instagramIcon svg:hover {
+  color: white;
+}
+
 .LogoContainer {
   display: flex;
   gap: 4rem;
@@ -18,13 +54,15 @@
   position: absolute;
   right: 0;
   transform: translateX(-25vh);
-  top: 50vh;
+  top: 45vh;
 }
 
 .LogoContainer h1 {
   display: flex;
   align-items: center;
   color: #f12048;
+  text-shadow: 2px 2px rgb(29, 29, 29);
+
   font-family: "Dancing Script", cursive;
   font-size: 5em;
   letter-spacing: 0.25rem;

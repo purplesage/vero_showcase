@@ -8,8 +8,8 @@
   flex-direction: column;
   font-family: var(--roboto);
   background-color: white;
-  color: black;
-  box-shadow: 1px 1px 10px 1px rgb(134, 134, 134);
+  color: rgb(24, 23, 23);
+  box-shadow: 1px 1px 10px 1px rgb(145, 145, 145);
 }
 
 .Card__image {

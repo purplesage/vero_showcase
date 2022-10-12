@@ -3,11 +3,15 @@ import styles from "../styles/hero.module.css";
 import heroImage from "../public/hero_shoe.jpg";
 import logo from "../public/logo.svg";
 import Image from "next/image";
+import { BsInstagram } from "react-icons/bs";
 
 const Hero = () => {
   return (
     <div className={styles.Hero}>
-      <div class="custom-shape-divider-top-1665269735">
+      <div className={styles.instagramIcon}>
+        <BsInstagram />
+      </div>
+      <div className="custom-shape-divider-top-1665269735">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +20,7 @@ const Hero = () => {
         >
           <path
             d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z"
-            class="shape-fill"
+            className="shape-fill"
           ></path>
         </svg>
       </div>
