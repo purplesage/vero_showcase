@@ -31,7 +31,7 @@ const ComprasInfo = () => {
               Consulta toda la información necesaria antes de comprar; el
               modelo, la talla y el color.
             </p>
-            <GiConverseShoe />
+            <GiConverseShoe className={styles.listItem__svg} />
           </li>
           <li className={styles.Body__list__listItem}>
             <span>2 </span>
@@ -39,7 +39,7 @@ const ComprasInfo = () => {
               Una vez confirmado tu pedido a través de whatsapp se agenda el día
               y la hora de entrega.
             </p>
-            <IoLogoWhatsapp />
+            <IoLogoWhatsapp className={styles.listItem__svg} />
           </li>
           <li className={styles.Body__list__listItem}>
             <span>3</span>
@@ -47,7 +47,10 @@ const ComprasInfo = () => {
               Puedes Cancelar por transferencia o efectivo al momento de la
               entrega.
             </p>
-            <SiCashapp />
+            <SiCashapp
+              className={styles.listItem__svg}
+              style={{ marginTop: "1.3rem" }}
+            />
           </li>
         </ol>
       </div>
