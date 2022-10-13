@@ -13,10 +13,9 @@
 
 .Container__backgroundSVG {
   position: absolute;
-  color: #f12046;
+  color: rgba(255, 217, 0, 0.712);
   width: 25vw;
   height: 25vh;
-  display: none;
 }
 
 .Container__title {

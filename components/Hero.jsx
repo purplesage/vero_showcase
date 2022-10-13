@@ -11,7 +11,7 @@ const Hero = () => {
       <div className={styles.instagramIcon}>
         <BsInstagram />
       </div>
-      <div className="custom-shape-divider-top-1665269735">
+      {/* <div className="custom-shape-divider-top-1665269735">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@ const Hero = () => {
             className="shape-fill"
           ></path>
         </svg>
-      </div>
+      </div> */}
       <Image layout="fill" src={heroImage} alt="vashti logo" priority />
       <div className={styles.LogoContainer}>
         <h1>

@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "../styles/tips.module.css";
-import { GiHighHeel } from "react-icons/gi";
+import { BiRuler } from "react-icons/bi";
 
 const Tips = () => {
   return (
     <div className={styles.Container}>
-      <GiHighHeel className={styles.Container__backgroundSVG} />
+      <BiRuler className={styles.Container__backgroundSVG} />
       <h3 className={styles.Container__title}>Recomendaciones de tallas</h3>
 
       <ul className={styles.Container__list}>

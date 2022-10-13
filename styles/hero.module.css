@@ -38,8 +38,8 @@
 }
 
 .instagramIcon svg {
-  width: 2.3rem;
-  height: 2.3rem;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 .instagramIcon svg:hover {
@@ -54,7 +54,7 @@
   position: absolute;
   right: 0;
   transform: translateX(-25vh);
-  top: 45vh;
+  top: 35vh;
 }
 
 .LogoContainer h1 {

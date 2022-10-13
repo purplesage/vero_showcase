@@ -1,0 +1,39 @@
+.Container {
+  background-color: #72d0ea;
+  width: 100%;
+  height: 60vh;
+  box-sizing: border-box;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.CircleWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: white 3px solid;
+  border-radius: 50%;
+  box-shadow: 1px 1px 10px 1px rgb(44, 44, 44);
+}
+
+.CircleWrapper__body {
+  position: absolute;
+  top: 0;
+}
+
+.CircleWrapper__image {
+  border-radius: 50%;
+}
+
+.Container__title {
+  color: #f12048;
+  font-family: "Lobster", cursive;
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  text-shadow: 2px 2px rgb(29, 29, 29);
+}

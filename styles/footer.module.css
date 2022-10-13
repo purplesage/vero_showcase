@@ -1,0 +1,7 @@
+.Container {
+  box-sizing: border-box;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  width: 100%;
+  height: 3rem;
+}
