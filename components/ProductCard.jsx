@@ -64,14 +64,17 @@ const ProductCard = ({
         >
           <p>Tallas:</p>
           <div className={styles.CardBody__sizeList}>
-            {sizes.map((size) => (
-              <div className={styles.CardBody__size}>{size}</div>
+            {sizes.map((size, index) => (
+              <div key={index} className={styles.CardBody__size}>
+                {size}
+              </div>
             ))}
           </div>
           <p>Colores:</p>
           <div className={styles.CardBody__colorList}>
-            {colors.map((color) => (
+            {colors.map((color, index) => (
               <div
+                key={index}
                 className={styles.CardBody__color}
                 style={{ backgroundColor: color }}
               >
