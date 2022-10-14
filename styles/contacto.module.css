@@ -24,6 +24,7 @@
 .CircleWrapper__body {
   position: absolute;
   top: 0;
+  left: 40;
 }
 
 .CircleWrapper__image {
@@ -34,6 +35,21 @@
   color: #f12048;
   font-family: "Lobster", cursive;
   font-size: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   text-shadow: 2px 2px rgb(29, 29, 29);
+  letter-spacing: 0.15rem;
+}
+
+.Container__info {
+  color: rgb(255, 255, 255);
+  font-family: "Kanit", sans-serif;
+  font-size: 1.3rem;
+  text-shadow: 2px 2px rgb(29, 29, 29);
+  line-height: 2rem;
+}
+
+.Info__svgIcon {
+  color: #f12048;
+  margin-right: 0.5rem;
+  margin-left: 2rem;
 }
