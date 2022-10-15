@@ -97,9 +97,27 @@ const InputsContext = ({ children }) => {
   };
 
   const handleProductCreation = async (addProduct, imageFile, e) => {
-    const upload = await uploadImage(imageFile);
-    const fetch = await fetchImage(imageName);
-    const add = addProduct(productObject(), e);
+    await uploadImage(imageFile);
+    await fetchImage(imageName);
+    addProduct(productObject(), e);
+  };
+
+  const handleProductEdit = async (
+    editProductFunction,
+    newProductObject,
+    imageFile = null,
+    deleteFileFunction,
+    prevImageRef,
+    productID
+  ) => {
+    if (imageFile) {
+      await uploadImage(imageFile);
+      await fetchImage(imageName);
+      editProductFunction(productID, newProductObject);
+      deleteFileFunction(prevImageRef);
+    } else {
+      editProductFunction(productID, newProductObject);
+    }
   };
 
   return (
@@ -136,6 +154,8 @@ const InputsContext = ({ children }) => {
         fetchImage,
         imageURL,
         handleProductCreation,
+        setImageURL,
+        handleProductEdit,
       }}
     >
       {children}

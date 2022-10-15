@@ -52,6 +52,7 @@ const PreviewModal = ({
     imagePreviewURL,
     setImagePreviewURL,
     imageUrl,
+    handleProductEdit,
   } = useContext(inputsContext);
 
   const { editProduct, deleteFileFromStorage } = useContext(dashBoardContext);
@@ -116,8 +117,16 @@ const PreviewModal = ({
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                editProduct(id, productObject());
-                handleImageEdit(e.target.editImage.files[0]);
+                handleProductEdit(
+                  editProduct,
+                  productObject(),
+                  e.target.editImage.files[0],
+                  deleteFileFromStorage,
+                  imageNameRef.current,
+                  id
+                );
+                // editProduct(id, productObject());
+                // handleImageEdit(e.target.editImage.files[0]);
               }}
             >
               <label htmlFor="edit-title">
