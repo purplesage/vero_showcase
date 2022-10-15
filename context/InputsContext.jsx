@@ -92,7 +92,12 @@ const InputsContext = ({ children }) => {
       colors: colorList,
       availability: availabilityInput,
       imageName: imageName,
+      imageURL: imageURL,
     };
+  };
+
+  const handleProductCreation = async (addProduct) => {
+    await uploadImage().then(fetchImage(imageName)).then(addProduct());
   };
 
   return (
