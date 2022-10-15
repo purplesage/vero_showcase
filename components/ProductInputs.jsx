@@ -27,6 +27,7 @@ const ProductInputs = ({ setIsOpenInputs }) => {
     imageUrl,
     productObject,
     uploadImage,
+    handleProductCreation,
   } = useContext(inputsContext);
 
   return (
@@ -35,8 +36,10 @@ const ProductInputs = ({ setIsOpenInputs }) => {
       className={styles.addProductForm}
       action="Agregar Producto"
       onSubmit={(e) => {
-        addProduct(productObject(), e);
-        uploadImage(e.target.imagen.files[0]);
+        handleProductCreation(addProduct, e.target.imagen.files[0], e);
+
+        // addProduct(productObject(), e);
+        // uploadImage(e.target.imagen.files[0]);
         setImagePreviewURL("");
         setIsOpenInputs(false);
         inputReset();

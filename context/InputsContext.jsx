@@ -96,8 +96,10 @@ const InputsContext = ({ children }) => {
     };
   };
 
-  const handleProductCreation = async (addProduct) => {
-    await uploadImage().then(fetchImage(imageName)).then(addProduct());
+  const handleProductCreation = async (addProduct, imageFile, e) => {
+    const upload = await uploadImage(imageFile);
+    const fetch = await fetchImage(imageName);
+    const add = addProduct(productObject(), e);
   };
 
   return (
@@ -133,6 +135,7 @@ const InputsContext = ({ children }) => {
         uploadImage,
         fetchImage,
         imageURL,
+        handleProductCreation,
       }}
     >
       {children}
