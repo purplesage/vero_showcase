@@ -187,25 +187,3 @@ html {
 :root {
   --roboto: "Roboto", sans-serif;
 }
-
-.custom-shape-divider-top-1665269735 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-  z-index: 10;
-}
-
-.custom-shape-divider-top-1665269735 svg {
-  position: relative;
-  display: block;
-  width: calc(115% + 1.3px);
-  height: 316px;
-}
-
-.custom-shape-divider-top-1665269735 .shape-fill {
-  fill: rgb(20, 20, 20);
-}

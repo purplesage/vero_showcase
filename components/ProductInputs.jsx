@@ -29,9 +29,6 @@ const ProductInputs = ({ setIsOpenInputs }) => {
     uploadImage,
   } = useContext(inputsContext);
 
-  //setImagePreviewURL
-  //imageUrl
-
   return (
     <form
       id="product-form"
