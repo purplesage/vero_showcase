@@ -14,6 +14,7 @@ const ProductRow = ({
   sizes,
   availability,
   imageName,
+  imageURL,
 }) => {
   const {
     setTitleInput,
@@ -26,7 +27,7 @@ const ProductRow = ({
     setImageName,
     setImagePreviewURL,
     fetchImage,
-    imageURL,
+    imageUrl,
   } = useContext(inputsContext);
 
   const setInputState = () => {

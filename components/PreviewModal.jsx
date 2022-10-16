@@ -51,24 +51,17 @@ const PreviewModal = ({
     uploadImage,
     imagePreviewURL,
     setImagePreviewURL,
-    imageUrl,
     handleProductEdit,
+    imageUrl,
   } = useContext(inputsContext);
 
   const { editProduct, deleteFileFromStorage } = useContext(dashBoardContext);
 
+  console.log(imageURL);
+
   const [previewMode, setPreviewMode] = useState(true);
   const [editMode, setEditMode] = useState(false);
   const imageNameRef = useRef(imageName);
-
-  const handleImageEdit = (imageFile) => {
-    if (imageFile?.name !== imageName) return;
-
-    if (imageFile.name !== imageNameRef.current) {
-      uploadImage(imageFile);
-      deleteFileFromStorage(imageNameRef.current);
-    }
-  };
 
   return (
     <>

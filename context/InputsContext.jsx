@@ -16,6 +16,7 @@ const InputsContext = ({ children }) => {
   const [sizeList, setSizeList] = useState([]);
   const [colorList, setColorList] = useState([]);
   const [imageURL, setImageURL] = useState("");
+  const [imageFile, setImageFile] = useState({});
 
   const [isUploading, setIsUploading] = useState(false);
 
@@ -62,11 +63,11 @@ const InputsContext = ({ children }) => {
   };
 
   const fetchImage = async (fileName, setProductImageUrl = null) => {
+    if (setProductImageUrl) setProductImageUrl(url);
+
     const fileRef = ref(storage, `images/${fileName}`);
     const url = await getDownloadURL(fileRef);
-    setImageURL(url);
-
-    if (setProductImageUrl) setProductImageUrl(url);
+    return url;
   };
 
   const uploadImage = async (imageFile) => {
@@ -81,7 +82,7 @@ const InputsContext = ({ children }) => {
     }
   };
 
-  const productObject = () => {
+  const productObject = (imgurl) => {
     return {
       id: uuid(),
       title: titleInput,
@@ -91,15 +92,16 @@ const InputsContext = ({ children }) => {
       sizes: sizeList,
       colors: colorList,
       availability: availabilityInput,
+      imageURL: imgurl,
       imageName: imageName,
-      imageURL: imageURL,
     };
   };
 
   const handleProductCreation = async (addProduct, imageFile, e) => {
+    e.preventDefault();
     await uploadImage(imageFile);
-    await fetchImage(imageName);
-    addProduct(productObject(), e);
+    const image = await fetchImage(imageFile.name);
+    addProduct(productObject(image));
   };
 
   const handleProductEdit = async (
@@ -152,10 +154,12 @@ const InputsContext = ({ children }) => {
         deleteColor,
         uploadImage,
         fetchImage,
-        imageURL,
+        imageUrl,
         handleProductCreation,
         setImageURL,
         handleProductEdit,
+        imageFile,
+        setImageFile,
       }}
     >
       {children}

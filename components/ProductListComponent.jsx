@@ -15,7 +15,7 @@ const ProductListComponent = ({ productList }) => {
             <ProductCard
               key={productObject.id}
               title={productObject.title}
-              image={productObject.imageName}
+              imageURL={productObject.imageURL}
               description={productObject.description}
               price={productObject.price}
               sizes={productObject.sizes}

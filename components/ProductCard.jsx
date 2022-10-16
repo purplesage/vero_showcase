@@ -8,32 +8,45 @@ import { BsCart4 } from "react-icons/bs";
 
 const ProductCard = ({
   title,
-  image,
+  imageURL,
   description,
   price,
   sizes,
   colors,
   availability,
 }) => {
-  const [imgURL, setimgURL] = useState("");
-  const { fetchImage } = useContext(inputsContext);
+  console.log(imageURL);
+  // const [imgURL, setimgURL] = useState("");
+  // const { fetchImage } = useContext(inputsContext);
 
-  useEffect(() => {
-    const handleImageUrl = async () => {
-      await fetchImage(image, setimgURL);
-    };
+  // useEffect(() => {
+  //   const handleImageUrl = async () => {
+  //     await fetchImage(image, setimgURL);
+  //   };
 
-    handleImageUrl();
-  }, []);
+  //   handleImageUrl();
+  // }, []);
+
+  <Link href={`/catalog/${converToPath(title)}`}>
+    <a>
+      <Image
+        className={styles.Card__image}
+        src={imageURL}
+        alt="product image"
+        width="380"
+        height="375"
+      />
+    </a>
+  </Link>;
 
   return (
     <div className={styles.Card}>
-      {imgURL ? (
+      {imageURL ? (
         <Link href={`/catalog/${converToPath(title)}`}>
           <a>
             <Image
               className={styles.Card__image}
-              src={imgURL}
+              src={imageURL}
               alt="product image"
               width="380"
               height="375"

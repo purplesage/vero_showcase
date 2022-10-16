@@ -45,6 +45,7 @@ const ProductTable = () => {
                   sizes={productObject.sizes}
                   availability={productObject.availability}
                   imageName={productObject.imageName}
+                  imageURL={productObject.imageURL}
                 />
               ))}
           </TableBody>

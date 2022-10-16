@@ -11,8 +11,7 @@ const DashboardContext = ({ children }) => {
 
   const [productList, setProductList] = useState([]);
 
-  const addProduct = (productObject, e) => {
-    e.preventDefault();
+  const addProduct = (productObject) => {
     setProductList([...productList, productObject]);
   };
 
@@ -62,7 +61,7 @@ const DashboardContext = ({ children }) => {
   useEffect(() => {
     const updateProductList = async () => {
       const docRef = doc(dataBase, `db/products`);
-      await updateDoc(docRef, { productList }).then();
+      await updateDoc(docRef, { productList });
     };
 
     if (!isLoading) updateProductList();
