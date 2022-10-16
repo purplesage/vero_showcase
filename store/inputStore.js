@@ -13,7 +13,6 @@ const useProductInputStore = create((set) => ({
   category: "",
   availability: false,
   imagePreviewURL: "",
-  uploadedImageName: "",
   sizeList: [],
   colorList: [],
 

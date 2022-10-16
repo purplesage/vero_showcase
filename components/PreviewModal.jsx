@@ -57,8 +57,6 @@ const PreviewModal = ({
 
   const { editProduct, deleteFileFromStorage } = useContext(dashBoardContext);
 
-  console.log(imageURL);
-
   const [previewMode, setPreviewMode] = useState(true);
   const [editMode, setEditMode] = useState(false);
   const imageNameRef = useRef(imageName);
