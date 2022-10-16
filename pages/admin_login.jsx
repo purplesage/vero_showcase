@@ -1,11 +1,20 @@
-import React, { useContext, useEffect } from "react";
-import { adminContext } from "../context/AdminContext";
+import React, { useEffect, useState } from "react";
 import { auth } from "../firebaseConfig";
-
+import { useRouter } from "next/router";
+import { onAuthStateChanged } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import useAdminStore from "../store/admin";
 
 const Login = () => {
-  const { handleAdminSignInRoutePush, adminUser } = useContext(adminContext);
+  // const [adminUser, setAdminUser] = useState(null);
+  const adminUser = useAdminStore((state) => state.adminUser);
+  const setAdminUser = useAdminStore((state) => state.setAdminUser);
+
+  const router = useRouter();
+
+  const handleAdminSignInRoutePush = () => {
+    router.push("admin_dashboard");
+  };
 
   const handleDefaultLogin = (e) => {
     e.preventDefault();
@@ -17,6 +26,12 @@ const Login = () => {
       console.log("WRONG!")
     );
   };
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setAdminUser(user);
+    }
+  });
 
   useEffect(() => {
     if (adminUser) {

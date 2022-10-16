@@ -15,30 +15,6 @@ const ProductCard = ({
   colors,
   availability,
 }) => {
-  console.log(imageURL);
-  // const [imgURL, setimgURL] = useState("");
-  // const { fetchImage } = useContext(inputsContext);
-
-  // useEffect(() => {
-  //   const handleImageUrl = async () => {
-  //     await fetchImage(image, setimgURL);
-  //   };
-
-  //   handleImageUrl();
-  // }, []);
-
-  <Link href={`/catalog/${converToPath(title)}`}>
-    <a>
-      <Image
-        className={styles.Card__image}
-        src={imageURL}
-        alt="product image"
-        width="380"
-        height="375"
-      />
-    </a>
-  </Link>;
-
   return (
     <div className={styles.Card}>
       {imageURL ? (
