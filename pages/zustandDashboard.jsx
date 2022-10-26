@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useInputs } from "../lib/util";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
-import { sizeValue } from "../store/inputStore";
+import { sizeValue, colorValue } from "../store/inputStore";
 import { v4 as uuid } from "uuid";
 
 const ZustandDashboard = () => {
@@ -25,6 +25,9 @@ const ZustandDashboard = () => {
     sizeList,
     addSize,
     deleteSize,
+    colorList,
+    addColor,
+    deleteColor,
   } = useInputs(useProductInputStore);
 
   const addProductToFirebase = async () => {
@@ -114,6 +117,28 @@ const ZustandDashboard = () => {
               }}
             >
               agregar talla
+            </button>
+          </div>
+        </div>
+      </label>
+
+      <label htmlFor="colors">
+        Colores: <input type="color" name="colors" id="colors-zustand" />
+        <div style={{ display: "flex" }}>
+          <div style={{ display: "flex" }}>
+            {colorList.length > 0 &&
+              colorList.map((color) => (
+                <div
+                  onClick={() => deleteColor(color)}
+                  style={{ backgroundColor: color, padding: "1rem" }}
+                  key={uuid()}
+                >
+                  {" "}
+                </div>
+              ))}
+
+            <button type="button" onClick={() => addColor(colorValue())}>
+              agregar color
             </button>
           </div>
         </div>

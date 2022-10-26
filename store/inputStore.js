@@ -12,7 +12,7 @@ export const sizeValue = (edit) => {
 };
 
 export const colorValue = (edit) => {
-  if (!edit) return document.getElementById("colors").value;
+  if (!edit) return document.getElementById("colors-zustand").value;
 
   return document.getElementById("edit-colors").value;
 };
@@ -74,6 +74,7 @@ const useProductInputStore = create((set, get) => ({
     category: get().category,
     availability: get().availability,
     sizeList: get().sizeList,
+    colorList: get().colorList,
   }),
 }));
 
