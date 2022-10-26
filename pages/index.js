@@ -9,11 +9,23 @@ import Contacto from "../components/Contacto";
 import { doc, getDoc } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
 
-export default function Home({ productList }) {
+import { useQuery, useQueryClient } from "react-query";
+
+export default function Home() {
+  const queryClient = useQueryClient();
+
+  const { data } = useQuery("productList", async () => {
+    const ref = doc(dataBase, `db/products`);
+    const document = await getDoc(ref);
+    const productList = document.data().productList;
+
+    return productList;
+  });
+
   return (
     <div className={styles.container}>
       <Hero />
-      <Collection productList={productList} />
+      <Collection productList={data} />
       <ComprasInfo />
       <Contacto />
       {/* <Tips /> */}
@@ -21,15 +33,3 @@ export default function Home({ productList }) {
     </div>
   );
 }
-
-export const getStaticProps = async () => {
-  const ref = doc(dataBase, `db/products`);
-  const document = await getDoc(ref);
-  const productList = document.data().productList;
-
-  return {
-    props: {
-      productList,
-    },
-  };
-};
