@@ -6,7 +6,7 @@ const createImagePreviewURL = (file) => {
 };
 
 export const sizeValue = (edit) => {
-  if (!edit) return document.getElementById("sizes").value;
+  if (!edit) return document.getElementById("sizes-zustand").value;
 
   return document.getElementById("edit-sizes").value;
 };
@@ -73,6 +73,7 @@ const useProductInputStore = create((set, get) => ({
     price: get().price,
     category: get().category,
     availability: get().availability,
+    sizeList: get().sizeList,
   }),
 }));
 

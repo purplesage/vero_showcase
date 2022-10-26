@@ -1,7 +1,11 @@
 import React from "react";
 import useProductInputStore from "../store/inputStore";
 import Image from "next/image";
-import { inputsObject } from "../lib/util";
+import { useInputs } from "../lib/util";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { dataBase } from "../firebaseConfig";
+import { sizeValue } from "../store/inputStore";
+import { v4 as uuid } from "uuid";
 
 const ZustandDashboard = () => {
   const {
@@ -18,13 +22,22 @@ const ZustandDashboard = () => {
     imagePreviewURL,
     setImagePreviewURL,
     newProduct,
-  } = inputsObject(useProductInputStore);
+    sizeList,
+    addSize,
+    deleteSize,
+  } = useInputs(useProductInputStore);
+
+  const addProductToFirebase = async () => {
+    await updateDoc(doc(dataBase, "db/products"), {
+      productList: arrayUnion(newProduct()),
+    });
+  };
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(newProduct());
+        addProductToFirebase();
       }}
     >
       <label htmlFor="">title</label>
@@ -81,6 +94,29 @@ const ZustandDashboard = () => {
           name="availability"
           id="availability"
         />
+      </label>
+
+      <label htmlFor="sizes">
+        Tallas:
+        <input type="number" name="sizes" id="sizes-zustand" />
+        <div>
+          <div>
+            {sizeList.length > 0 &&
+              sizeList.map((size) => (
+                <div onClick={() => deleteSize(size)} key={uuid()}>
+                  {size}
+                </div>
+              ))}
+            <button
+              type="button"
+              onClick={() => {
+                addSize(sizeValue());
+              }}
+            >
+              agregar talla
+            </button>
+          </div>
+        </div>
       </label>
 
       <label htmlFor="imagen">

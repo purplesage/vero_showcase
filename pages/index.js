@@ -11,16 +11,24 @@ import { dataBase } from "../firebaseConfig";
 
 import { useQuery, useQueryClient } from "react-query";
 
-export default function Home() {
-  const queryClient = useQueryClient();
-
-  const { data } = useQuery("productList", async () => {
+const fetchProductList = async () => {
+  try {
     const ref = doc(dataBase, `db/products`);
     const document = await getDoc(ref);
     const productList = document.data().productList;
 
     return productList;
-  });
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+export default function Home() {
+  const queryClient = useQueryClient();
+
+  const { data } = useQuery("productList", fetchProductList);
+
+  console.log(data);
 
   return (
     <div className={styles.container}>
