@@ -9,19 +9,9 @@ import Contacto from "../components/Contacto";
 import { doc, getDoc } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
 
+import { fetchProductList } from "../lib/util";
+
 import { useQuery, useQueryClient } from "react-query";
-
-const fetchProductList = async () => {
-  try {
-    const ref = doc(dataBase, `db/products`);
-    const document = await getDoc(ref);
-    const productList = document.data().productList;
-
-    return productList;
-  } catch (err) {
-    throw new Error(err.message);
-  }
-};
 
 export default function Home() {
   const queryClient = useQueryClient();

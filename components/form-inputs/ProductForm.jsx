@@ -1,6 +1,10 @@
 import React from "react";
+import styles from "../../styles/form-styles/ProductForm.module.css";
+
+//zustand store
 import useProductInputStore from "../../store/inputStore";
 
+//input components
 import TitleInput from "./TitleInput";
 import DescriptionInput from "./DescriptionInput";
 import PriceInput from "./PriceInput";
@@ -10,8 +14,10 @@ import SizeInput from "./SizeInput";
 import ColorInput from "./ColorInput";
 import ImageInput from "./ImageInput";
 
+//utility functions
 import { useInputs } from "../../lib/util";
 
+//firebase related functions
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
 import { dataBase, storage } from "../../firebaseConfig";
@@ -70,6 +76,7 @@ const ProductForm = () => {
   };
   return (
     <form
+      className={styles.productForm}
       onSubmit={(e) => {
         handleProductCreation(e, e.target.imagen.files[0]);
       }}
