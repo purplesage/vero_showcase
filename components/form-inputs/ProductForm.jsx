@@ -74,21 +74,25 @@ const ProductForm = () => {
   };
 
   const handleProductCreation = async (imageFile) => {
-    // e.preventDefault();
     await uploadImage(imageFile);
     const imageURL = await fetchImage(imageFile.name);
     setImageURL(imageURL);
     addProductToFirebase();
   };
 
-  const addProduct = useMutation((imageFile) => {
-    return handleProductCreation(imageFile);
-  });
+  const addProduct = useMutation(
+    (imageFile) => handleProductCreation(imageFile),
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries(["productList"]);
+      },
+    }
+  );
   return (
     <form
       className={styles.productForm}
       onSubmit={(e) => {
-        // handleProductCreation(e, e.target.imagen.files[0]);
         e.preventDefault();
         addProduct.mutate(e.target.imagen.files[0]);
       }}
