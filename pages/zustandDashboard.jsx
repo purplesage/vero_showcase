@@ -1,9 +1,12 @@
 import React from "react";
 import useProductInputStore from "../store/inputStore";
 import Image from "next/image";
+
 import { useInputs } from "../lib/util";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { dataBase } from "../firebaseConfig";
+import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
+
+import { dataBase, storage } from "../firebaseConfig";
 import { sizeValue, colorValue } from "../store/inputStore";
 import { v4 as uuid } from "uuid";
 
@@ -28,6 +31,7 @@ const ZustandDashboard = () => {
     colorList,
     addColor,
     deleteColor,
+    setImageURL,
   } = useInputs(useProductInputStore);
 
   const addProductToFirebase = async () => {
@@ -36,11 +40,35 @@ const ZustandDashboard = () => {
     });
   };
 
+  const uploadImage = async (imageFile) => {
+    try {
+      const fileRef = ref(storage, `images/${imageFile.name}`);
+      await uploadBytesResumable(fileRef, imageFile);
+    } catch (err) {
+      console.warn(err.message);
+    }
+  };
+
+  const fetchImage = async (fileName) => {
+    const fileRef = ref(storage, `images/${fileName}`);
+    const url = await getDownloadURL(fileRef);
+    return url;
+  };
+
+  const handleProductCreation = async (imageFile) => {
+    await uploadImage(imageFile);
+    const imageURL = await fetchImage(imageFile.name);
+    setImageURL(imageURL);
+    addProductToFirebase();
+  };
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        addProductToFirebase();
+        handleProductCreation(e.target.imagen.files[0]);
+        /* addProductToFirebase();
+        uploadImage(e.target.imagen.files[0]); */
       }}
     >
       <label htmlFor="">title</label>

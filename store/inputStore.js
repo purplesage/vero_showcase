@@ -27,7 +27,7 @@ const useProductInputStore = create((set, get) => ({
   imagePreviewURL: "",
   sizeList: [],
   colorList: [],
-  imageName: "",
+  imageURL: "",
 
   //actions
   setTitle: (e) => set({ title: e.target.value }),
@@ -44,8 +44,7 @@ const useProductInputStore = create((set, get) => ({
   setImagePreviewURL: (e) =>
     set({ imagePreviewURL: createImagePreviewURL(e.target.files[0]) }),
 
-  setUploadedImageName: (e) =>
-    set({ uploadedImageName: e.target.files[0].name }),
+  setImageURL: (url) => set({ imageURL: url }),
 
   setColorList: (colors) => set({ colorList: [...colors] }),
 
@@ -75,6 +74,7 @@ const useProductInputStore = create((set, get) => ({
     availability: get().availability,
     sizeList: get().sizeList,
     colorList: get().colorList,
+    imageURL: get().imageURL,
   }),
 }));
 
