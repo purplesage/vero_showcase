@@ -18,8 +18,8 @@ const ProductListComponent = ({ productList }) => {
               imageURL={productObject.imageURL}
               description={productObject.description}
               price={productObject.price}
-              sizes={productObject.sizes}
-              colors={productObject.colors}
+              sizes={productObject.sizeList}
+              colors={productObject.colorList}
               availability={productObject.availability}
             />
           );
