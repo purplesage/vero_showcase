@@ -4,6 +4,10 @@ import styles from "../../styles/form-styles/ProductForm.module.css";
 //zustand store
 import useProductInputStore from "../../store/inputStore";
 
+//react query functions
+
+import { useQueryClient, useMutation } from "@tanstack/react-query";
+
 //input components
 import TitleInput from "./TitleInput";
 import DescriptionInput from "./DescriptionInput";
@@ -23,6 +27,8 @@ import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
 import { dataBase, storage } from "../../firebaseConfig";
 
 const ProductForm = () => {
+  const queryClient = useQueryClient();
+
   const {
     title,
     setTitle,
@@ -67,18 +73,24 @@ const ProductForm = () => {
     return url;
   };
 
-  const handleProductCreation = async (e, imageFile) => {
-    e.preventDefault();
+  const handleProductCreation = async (imageFile) => {
+    // e.preventDefault();
     await uploadImage(imageFile);
     const imageURL = await fetchImage(imageFile.name);
     setImageURL(imageURL);
     addProductToFirebase();
   };
+
+  const addProduct = useMutation((imageFile) => {
+    return handleProductCreation(imageFile);
+  });
   return (
     <form
       className={styles.productForm}
       onSubmit={(e) => {
-        handleProductCreation(e, e.target.imagen.files[0]);
+        // handleProductCreation(e, e.target.imagen.files[0]);
+        e.preventDefault();
+        addProduct.mutate(e.target.imagen.files[0]);
       }}
     >
       <TitleInput title={title} setTitle={setTitle} />

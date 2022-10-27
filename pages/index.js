@@ -6,19 +6,17 @@ import ComprasInfo from "../components/ComprasInfo";
 import Tips from "../components/Tips";
 import Footer from "../components/Footer";
 import Contacto from "../components/Contacto";
-import { doc, getDoc } from "firebase/firestore";
-import { dataBase } from "../firebaseConfig";
 
 import { fetchProductList } from "../lib/util";
 
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function Home() {
   const queryClient = useQueryClient();
 
-  const { data } = useQuery("productList", fetchProductList);
-
-  console.log(data);
+  const { data } = useQuery(["productList"], fetchProductList, {
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <div className={styles.container}>
