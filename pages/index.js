@@ -14,9 +14,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 export default function Home() {
   const queryClient = useQueryClient();
 
-  const { data } = useQuery(["productList"], fetchProductList, {
-    refetchOnWindowFocus: false,
-  });
+  const { data } = useQuery(["productList"], fetchProductList);
 
   return (
     <div className={styles.container}>
