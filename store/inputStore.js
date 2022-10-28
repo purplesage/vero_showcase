@@ -1,4 +1,5 @@
 import create from "zustand";
+import { v4 as uuid } from "uuid";
 
 //utility functions
 const createImagePreviewURL = (file) => {
@@ -67,6 +68,7 @@ const useProductInputStore = create((set, get) => ({
     })),
 
   productFactory: () => ({
+    id: uuid(),
     title: get().title,
     description: get().description,
     price: get().price,

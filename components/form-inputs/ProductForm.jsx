@@ -5,7 +5,6 @@ import styles from "../../styles/form-styles/ProductForm.module.css";
 import useProductInputStore from "../../store/inputStore";
 
 //react query functions
-
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 //input components
@@ -53,8 +52,9 @@ const ProductForm = () => {
   } = useInputs(useProductInputStore);
 
   const addProductToFirebase = async () => {
+    const product = newProduct();
     await updateDoc(doc(dataBase, "db/products"), {
-      productList: arrayUnion(newProduct()),
+      shoeList: arrayUnion(product),
     });
   };
 
@@ -85,7 +85,7 @@ const ProductForm = () => {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries(["productList"]);
+        queryClient.invalidateQueries(["shoeList"]);
       },
     }
   );
