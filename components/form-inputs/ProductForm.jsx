@@ -15,7 +15,7 @@ import SizeInput from "./SizeInput";
 import ColorInput from "./ColorInput";
 import ImageInput from "./ImageInput";
 
-const ProductForm = ({ productAction, imageURL }) => {
+const ProductForm = ({ productAction, imageURL, clsname }) => {
   const {
     title,
     setTitle,
@@ -43,7 +43,7 @@ const ProductForm = ({ productAction, imageURL }) => {
         <Image src={imageURL} alt="product image" width="100" height="100" />
       )}
       <form
-        className={styles.productForm}
+        className={clsname || styles.productForm}
         onSubmit={(e) => {
           e.preventDefault();
           productAction.mutate(e.target.imagen.files[0]);

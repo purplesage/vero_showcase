@@ -7,9 +7,13 @@ const EditProductForm = ({ imageURL }) => {
   const editProduct = () => {};
 
   return (
-    <div className={styles.container}>
-      <ProductForm productAction={editProduct} imageURL={imageURL} />
-    </div>
+    <tr className={styles.container}>
+      <ProductForm
+        productAction={editProduct}
+        imageURL={imageURL}
+        clsname="edit"
+      />
+    </tr>
   );
 };
 
