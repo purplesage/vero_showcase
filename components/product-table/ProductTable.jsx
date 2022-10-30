@@ -1,31 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { fetchShoeList } from "../../lib/util";
 import { v4 as uuid } from "uuid";
+import useProductInputStore from "../../store/inputStore";
 
 import { updateDoc, doc } from "firebase/firestore";
 import { dataBase } from "../../firebaseConfig";
+import EditProductForm from "../form-inputs/EditProductForm";
 
 const ProductTable = () => {
   const queryClient = useQueryClient();
+  const [showEditInputs, setShowInputs] = useState(false);
+  const setInputValuesForEditing = useProductInputStore(
+    (state) => state.setInputValuesForEditing
+  );
 
   const { data, isLoading, isError, error } = useQuery(
     ["shoeList"],
     fetchShoeList
   );
 
-  const deleteProduct = async (deleteId) => {
-    const shoeList = data.filter((shoeObject) => shoeObject.id !== deleteId);
+  const updateProductList = async (updatedList) => {
     const docRef = doc(dataBase, `db/products`);
-    await updateDoc(docRef, { shoeList });
+    await updateDoc(docRef, { shoeList: updatedList });
   };
 
-  const deleteProductFromFirestore = useMutation(
+  const deleteProduct = async (deleteId) => {
+    const shoeList = data.filter((shoeObject) => shoeObject.id !== deleteId);
+    await updateProductList(shoeList);
+  };
+
+  const productDeletionMutation = useMutation(
     (deleteId) => deleteProduct(deleteId),
     {
       onSuccess: () => {
-        // Invalidate and refetch
         queryClient.invalidateQueries(["shoeList"]);
       },
     }
@@ -39,7 +48,8 @@ const ProductTable = () => {
     <table>
       <thead>
         <tr>
-          <th>delete</th>
+          <th></th>
+          <th></th>
           <th>Título</th>
           <th>Descripcion</th>
           <th>Price</th>
@@ -54,10 +64,18 @@ const ProductTable = () => {
           data.map((item) => (
             <tr key={item.id}>
               <td>
-                <p>{item.id}</p>
+                {showEditInputs && <EditProductForm imageURL={item.imageURL} />}
                 <button
-                  onClick={() => deleteProductFromFirestore.mutate(item.id)}
+                  onClick={() => {
+                    setInputValuesForEditing(item);
+                    setShowInputs((prevState) => !prevState);
+                  }}
                 >
+                  Editar
+                </button>
+              </td>
+              <td>
+                <button onClick={() => productDeletionMutation.mutate(item.id)}>
                   Borrar producto
                 </button>
               </td>

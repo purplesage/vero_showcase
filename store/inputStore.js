@@ -67,6 +67,18 @@ const useProductInputStore = create((set, get) => ({
       colorList: state.colorList.filter((color) => color !== value),
     })),
 
+  setInputValuesForEditing: (productObject) =>
+    set({
+      title: productObject.title,
+      description: productObject.description,
+      price: productObject.price,
+      category: productObject.category,
+      availability: productObject.availability,
+      sizeList: productObject.sizeList,
+      colorList: productObject.colorList,
+      imageURL: productObject.imageURL,
+    }),
+
   productFactory: () => ({
     id: uuid(),
     title: get().title,

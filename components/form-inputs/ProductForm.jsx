@@ -1,11 +1,8 @@
 import React from "react";
 import styles from "../../styles/form-styles/ProductForm.module.css";
 
-//zustand store
+import { useInputs } from "../../lib/util";
 import useProductInputStore from "../../store/inputStore";
-
-//react query functions
-import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 //input components
 import TitleInput from "./TitleInput";
@@ -17,17 +14,7 @@ import SizeInput from "./SizeInput";
 import ColorInput from "./ColorInput";
 import ImageInput from "./ImageInput";
 
-//utility functions
-import { useInputs } from "../../lib/util";
-
-//firebase related functions
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
-import { dataBase, storage } from "../../firebaseConfig";
-
-const ProductForm = () => {
-  const queryClient = useQueryClient();
-
+const ProductForm = ({ productAction }) => {
   const {
     title,
     setTitle,
@@ -41,60 +28,20 @@ const ProductForm = () => {
     setAvailability,
     imagePreviewURL,
     setImagePreviewURL,
-    newProduct,
     sizeList,
     addSize,
     deleteSize,
     colorList,
     addColor,
     deleteColor,
-    setImageURL,
   } = useInputs(useProductInputStore);
 
-  const addProductToFirebase = async () => {
-    const product = newProduct();
-    await updateDoc(doc(dataBase, "db/products"), {
-      shoeList: arrayUnion(product),
-    });
-  };
-
-  const uploadImage = async (imageFile) => {
-    try {
-      const fileRef = ref(storage, `images/${imageFile.name}`);
-      await uploadBytesResumable(fileRef, imageFile);
-    } catch (err) {
-      console.warn(err.message);
-    }
-  };
-
-  const fetchImage = async (fileName) => {
-    const fileRef = ref(storage, `images/${fileName}`);
-    const url = await getDownloadURL(fileRef);
-    return url;
-  };
-
-  const handleProductCreation = async (imageFile) => {
-    await uploadImage(imageFile);
-    const imageURL = await fetchImage(imageFile.name);
-    setImageURL(imageURL);
-    addProductToFirebase();
-  };
-
-  const addProduct = useMutation(
-    (imageFile) => handleProductCreation(imageFile),
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries(["shoeList"]);
-      },
-    }
-  );
   return (
     <form
       className={styles.productForm}
       onSubmit={(e) => {
         e.preventDefault();
-        addProduct.mutate(e.target.imagen.files[0]);
+        productAction.mutate(e.target.imagen.files[0]);
       }}
     >
       <TitleInput title={title} setTitle={setTitle} />
