@@ -76,7 +76,6 @@ const useProductInputStore = create((set, get) => ({
       availability: productObject.availability,
       sizeList: productObject.sizeList,
       colorList: productObject.colorList,
-      imageURL: productObject.imageURL,
     }),
 
   productFactory: () => ({
