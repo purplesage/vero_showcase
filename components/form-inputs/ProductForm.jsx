@@ -15,7 +15,7 @@ import SizeInput from "./SizeInput";
 import ColorInput from "./ColorInput";
 import ImageInput from "./ImageInput";
 
-const ProductForm = ({ productAction }) => {
+const ProductForm = ({ productAction, isEdit }) => {
   const {
     title,
     setTitle,
@@ -37,12 +37,17 @@ const ProductForm = ({ productAction }) => {
     deleteColor,
   } = useInputs(useProductInputStore);
 
+  const handleFormModeAction = (e) => {
+    if (isEdit) return;
+    return productAction.mutate(e.target.imagen.files[0]);
+  };
+
   return (
     <form
       className={styles.productForm}
       onSubmit={(e) => {
         e.preventDefault();
-        productAction.mutate(e.target.imagen.files[0]);
+        handleFormModeAction(e);
       }}
     >
       <TitleInput title={title} setTitle={setTitle} />

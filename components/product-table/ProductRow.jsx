@@ -8,9 +8,18 @@ const ProductRow = ({ item }) => {
   const handleOpenModal = () => {
     setShowModal(true);
   };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   return (
     <>
-      {showModal && <ProductModal productObject={item} />}
+      {showModal && (
+        <ProductModal
+          handleCloseModal={handleCloseModal}
+          productObject={item}
+        />
+      )}
       <tr key={item.id}>
         <td>
           <button onClick={handleOpenModal}>Ver producto</button>
