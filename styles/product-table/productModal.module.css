@@ -1,0 +1,8 @@
+.darkBackdrop {
+  width: 100%;
+  height: 100vw;
+
+  & .container {
+    background-color: hotpink;
+  }
+}

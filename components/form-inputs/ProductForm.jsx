@@ -15,7 +15,7 @@ import SizeInput from "./SizeInput";
 import ColorInput from "./ColorInput";
 import ImageInput from "./ImageInput";
 
-const ProductForm = ({ productAction, imageURL, clsname }) => {
+const ProductForm = ({ productAction }) => {
   const {
     title,
     setTitle,
@@ -38,45 +38,40 @@ const ProductForm = ({ productAction, imageURL, clsname }) => {
   } = useInputs(useProductInputStore);
 
   return (
-    <div>
-      {imageURL && (
-        <Image src={imageURL} alt="product image" width="100" height="100" />
-      )}
-      <form
-        className={clsname || styles.productForm}
-        onSubmit={(e) => {
-          e.preventDefault();
-          productAction.mutate(e.target.imagen.files[0]);
-        }}
-      >
-        <TitleInput title={title} setTitle={setTitle} />
-        <DescriptionInput
-          description={description}
-          setDescription={setDescription}
-        />
-        <PriceInput price={price} setPrice={setPrice} />
-        <CategoryInput category={category} setCategory={setCategory} />
-        <AvailabilityInput
-          availability={availability}
-          setAvailability={setAvailability}
-        />
-        <SizeInput
-          sizeList={sizeList}
-          addSize={addSize}
-          deleteSize={deleteSize}
-        />
-        <ColorInput
-          colorList={colorList}
-          addColor={addColor}
-          deleteColor={deleteColor}
-        />
-        <ImageInput
-          imagePreviewURL={imagePreviewURL}
-          setImagePreviewURL={setImagePreviewURL}
-        />
-        <button type="submit">send</button>
-      </form>
-    </div>
+    <form
+      className={styles.productForm}
+      onSubmit={(e) => {
+        e.preventDefault();
+        productAction.mutate(e.target.imagen.files[0]);
+      }}
+    >
+      <TitleInput title={title} setTitle={setTitle} />
+      <DescriptionInput
+        description={description}
+        setDescription={setDescription}
+      />
+      <PriceInput price={price} setPrice={setPrice} />
+      <CategoryInput category={category} setCategory={setCategory} />
+      <AvailabilityInput
+        availability={availability}
+        setAvailability={setAvailability}
+      />
+      <SizeInput
+        sizeList={sizeList}
+        addSize={addSize}
+        deleteSize={deleteSize}
+      />
+      <ColorInput
+        colorList={colorList}
+        addColor={addColor}
+        deleteColor={deleteColor}
+      />
+      <ImageInput
+        imagePreviewURL={imagePreviewURL}
+        setImagePreviewURL={setImagePreviewURL}
+      />
+      <button type="submit">send</button>
+    </form>
   );
 };
 

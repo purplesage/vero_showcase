@@ -1,32 +1,19 @@
 import React, { useState } from "react";
-import useProductInputStore from "../../store/inputStore";
-import EditProductForm from "../form-inputs/EditProductForm";
 import { v4 as uuid } from "uuid";
+import ProductModal from "./ProductModal";
 
-const ProductRow = ({ item, deleteProductFunction }) => {
-  const [showEditInputs, setShowInputs] = useState(false);
-  const setInputValuesForEditing = useProductInputStore(
-    (state) => state.setInputValuesForEditing
-  );
+const ProductRow = ({ item }) => {
+  const [showModal, setShowModal] = useState(false);
 
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
   return (
     <>
-      {showEditInputs && <EditProductForm imageURL={item.imageURL} />}
+      {showModal && <ProductModal productObject={item} />}
       <tr key={item.id}>
         <td>
-          <button
-            onClick={() => {
-              setInputValuesForEditing(item);
-              setShowInputs((prevState) => !prevState);
-            }}
-          >
-            Editar
-          </button>
-        </td>
-        <td>
-          <button onClick={() => deleteProductFunction.mutate(item.id)}>
-            Borrar producto
-          </button>
+          <button onClick={handleOpenModal}>Ver producto</button>
         </td>
         <td>{item.title}</td>
         <td>{item.description}</td>
