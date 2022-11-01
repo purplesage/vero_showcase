@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { updateDoc, doc } from "firebase/firestore";
-import { dataBase } from "../../firebaseConfig";
+import { dataBase, storage } from "../../firebaseConfig";
+import { ref, deleteObject } from "firebase/storage";
 import useProductInputStore from "../../store/inputStore";
 import styles from "../../styles/product-table/productModal.module.css";
 import { fetchShoeList } from "../../lib/util";
@@ -30,8 +31,15 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     await updateDoc(docRef, { shoeList: updatedList });
   };
 
+  const deleteFileFromStorage = async (fileName) => {
+    const file_ref = ref(storage, `images/${fileName}`);
+
+    await deleteObject(file_ref);
+  };
+
   const deleteProduct = async (deleteId) => {
     const shoeList = data.filter((shoeObject) => shoeObject.id !== deleteId);
+    await deleteFileFromStorage(productObject.fileName);
     await updateProductList(shoeList);
     handleCloseModal();
   };

@@ -29,6 +29,7 @@ const useProductInputStore = create((set, get) => ({
   sizeList: [],
   colorList: [],
   imageURL: "",
+  fileName: "",
 
   //actions
   setTitle: (e) => set({ title: e.target.value }),
@@ -67,6 +68,8 @@ const useProductInputStore = create((set, get) => ({
       colorList: state.colorList.filter((color) => color !== value),
     })),
 
+  setFileName: (e) => set({ fileName: e.target.files[0].name }),
+
   setInputValuesForEditing: (productObject) =>
     set({
       title: productObject.title,
@@ -88,6 +91,7 @@ const useProductInputStore = create((set, get) => ({
     sizeList: get().sizeList,
     colorList: get().colorList,
     imageURL: get().imageURL,
+    fileName: get().fileName,
   }),
 }));
 

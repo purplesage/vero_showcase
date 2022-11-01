@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const ImageInput = ({ imagePreviewURL, setImagePreviewURL }) => {
+const ImageInput = ({ imagePreviewURL, setImagePreviewURL, setFileName }) => {
   return (
     <label htmlFor="imagen">
       imagen:
@@ -10,7 +10,10 @@ const ImageInput = ({ imagePreviewURL, setImagePreviewURL }) => {
         type="file"
         name="imagen"
         id="imagen"
-        onChange={(e) => setImagePreviewURL(e)}
+        onChange={(e) => {
+          setImagePreviewURL(e);
+          setFileName(e);
+        }}
       />
       {imagePreviewURL && (
         <Image

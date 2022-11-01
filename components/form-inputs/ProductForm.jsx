@@ -35,6 +35,7 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
     colorList,
     addColor,
     deleteColor,
+    setFileName,
   } = useInputs(useProductInputStore);
 
   const handleFormModeAction = (e) => {
@@ -74,6 +75,7 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
       <ImageInput
         imagePreviewURL={imagePreviewURL}
         setImagePreviewURL={setImagePreviewURL}
+        setFileName={setFileName}
       />
       <button type="submit">send</button>
     </form>
