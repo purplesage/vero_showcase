@@ -1,15 +1,20 @@
 import React from "react";
 import Image from "next/image";
 
-const ImageInput = ({ imagePreviewURL, setImagePreviewURL, setFileName }) => {
+const ImageInput = ({
+  imagePreviewURL,
+  setImagePreviewURL,
+  setFileName,
+  isEdit,
+}) => {
   return (
     <label htmlFor="imagen">
       imagen:
       <input
-        required
+        required={!isEdit}
         type="file"
         name="imagen"
-        id="imagen"
+        id="image"
         onChange={(e) => {
           setImagePreviewURL(e);
           setFileName(e);

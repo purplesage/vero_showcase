@@ -3,7 +3,12 @@ import ReactDOM from "react-dom";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { updateDoc, doc } from "firebase/firestore";
 import { dataBase, storage } from "../../firebaseConfig";
-import { ref, deleteObject } from "firebase/storage";
+import {
+  ref,
+  deleteObject,
+  getDownloadURL,
+  uploadBytesResumable,
+} from "firebase/storage";
 import useProductInputStore from "../../store/inputStore";
 import styles from "../../styles/product-table/productModal.module.css";
 import { fetchShoeList } from "../../lib/util";
@@ -13,6 +18,8 @@ import ProductForm from "../form-inputs/ProductForm";
 const ProductModal = ({ productObject, handleCloseModal }) => {
   const queryClient = useQueryClient();
   const [isEditMode, setIsEditMode] = useState(false);
+
+  const setImageURL = useProductInputStore((state) => state.setImageURL);
 
   const setInputValuesForEditing = useProductInputStore(
     (state) => state.setInputValuesForEditing
@@ -53,6 +60,21 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     }
   );
 
+  const uploadImage = async (imageFile) => {
+    try {
+      const fileRef = ref(storage, `images/${imageFile.name}`);
+      await uploadBytesResumable(fileRef, imageFile);
+    } catch (err) {
+      console.warn(err.message);
+    }
+  };
+
+  const fetchImage = async (fileName) => {
+    const fileRef = ref(storage, `images/${fileName}`);
+    const url = await getDownloadURL(fileRef);
+    return url;
+  };
+
   const editProduct = async (id) => {
     const editedList = data.map((productObject) =>
       productObject.id === id
@@ -63,8 +85,22 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     handleCloseModal();
   };
 
+  const handleProductEdition = async (imageFile) => {
+    if (imageFile) {
+      await deleteFileFromStorage(productObject.fileName);
+      await uploadImage(imageFile);
+      const imageURL = await fetchImage(imageFile.name);
+      setImageURL(imageURL);
+      await editProduct(productObject.id);
+      console.log("this fired 1", imageFile);
+    } else {
+      console.log("this fired 2", imageFile);
+      await editProduct(productObject.id);
+    }
+  };
+
   const productEditionMutation = useMutation(
-    (id, editProductObject) => editProduct(id),
+    (imageFile) => handleProductEdition(imageFile),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["shoeList"]);

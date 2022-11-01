@@ -39,8 +39,11 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
   } = useInputs(useProductInputStore);
 
   const handleFormModeAction = (e) => {
-    if (isEdit) return productAction.mutate(productId);
-    return productAction.mutate(e.target.imagen.files[0]);
+    if (isEdit) {
+      return productAction.mutate(e.target.image.files[0]);
+    }
+
+    return productAction.mutate(e.target.image.files[0]);
   };
 
   return (
@@ -73,6 +76,7 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
         deleteColor={deleteColor}
       />
       <ImageInput
+        isEdit
         imagePreviewURL={imagePreviewURL}
         setImagePreviewURL={setImagePreviewURL}
         setFileName={setFileName}
