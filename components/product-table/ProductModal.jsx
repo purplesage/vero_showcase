@@ -11,10 +11,16 @@ import ProductForm from "../form-inputs/ProductForm";
 
 const ProductModal = ({ productObject, handleCloseModal }) => {
   const queryClient = useQueryClient();
-  const [editMode, setEditMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
-  const handleEditMode = () => {
-    setEditMode((prev) => !prev);
+  const setInputValuesForEditing = useProductInputStore(
+    (state) => state.setInputValuesForEditing
+  );
+  const newProduct = useProductInputStore((state) => state.productFactory);
+
+  const handleShowEditMode = () => {
+    setIsEditMode((prev) => !prev);
+    setInputValuesForEditing(productObject);
   };
 
   const { data } = useQuery(["shoeList"], fetchShoeList);
@@ -39,24 +45,43 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     }
   );
 
-  const setInputValuesForEditing = useProductInputStore(
-    (state) => state.setInputValuesForEditing
+  const editProduct = async (id) => {
+    const editedList = data.map((productObject) =>
+      productObject.id === id
+        ? { id: productObject.id, ...newProduct() }
+        : productObject
+    );
+    await updateProductList(editedList);
+    handleCloseModal();
+  };
+
+  const productEditionMutation = useMutation(
+    (id, editProductObject) => editProduct(id),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["shoeList"]);
+      },
+    }
   );
 
   return ReactDOM.createPortal(
     <div className={styles.darkBackdrop}>
       <div className={styles.container}>
-        {!editMode ? (
+        {!isEditMode ? (
           <PreviewCard
             productObject={productObject}
             handleCloseModal={handleCloseModal}
             productDeletionMutation={productDeletionMutation}
-            handleEditMode={handleEditMode}
+            handleShowEditMode={handleShowEditMode}
           />
         ) : (
           <>
-            <button onClick={handleEditMode}>Volver</button>
-            <ProductForm isEdit />
+            <button onClick={handleShowEditMode}>Volver</button>
+            <ProductForm
+              productId={productObject.id}
+              productAction={productEditionMutation}
+              isEdit
+            />
           </>
         )}
       </div>

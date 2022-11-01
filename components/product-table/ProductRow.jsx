@@ -29,13 +29,13 @@ const ProductRow = ({ item }) => {
         <td>{item.price}</td>
         <td>{item.category}</td>
         <td>
-          {item.sizeList.map((size) => (
-            <p key={uuid()}>{size}</p>
+          {item?.colorList?.map((color) => (
+            <p key={uuid()}>{color}</p>
           ))}
         </td>
         <td>
-          {item.colorList.map((color) => (
-            <p key={uuid()}>{color}</p>
+          {item?.sizeList?.map((size) => (
+            <p key={uuid()}>{size}</p>
           ))}
         </td>
         <td>

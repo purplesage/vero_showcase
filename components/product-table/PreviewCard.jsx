@@ -4,7 +4,7 @@ const PreviewCard = ({
   productObject,
   handleCloseModal,
   productDeletionMutation,
-  handleEditMode,
+  handleShowEditMode,
 }) => {
   const { title, description, price, category, sizeList, colorList, id } =
     productObject;
@@ -17,16 +17,16 @@ const PreviewCard = ({
       <p>{category}</p>
       <p>{availability ? "yes" : "nope"}</p>
       <div>
-        {sizeList?.map((size) => (
-          <p>{size}</p>
+        {sizeList?.map((size, index) => (
+          <p key={index}>{size}</p>
         ))}
       </div>
       <div>
-        {colorList?.map((color) => (
-          <p>{color}</p>
+        {colorList?.map((color, index) => (
+          <p key={index}>{color}</p>
         ))}
       </div>
-      <button onClick={handleEditMode}>Editar</button>
+      <button onClick={handleShowEditMode}>Editar</button>
       <button onClick={() => productDeletionMutation.mutate(id)}>
         Borrar producto
       </button>
