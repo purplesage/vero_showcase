@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const PreviewCard = ({
   productObject,
@@ -11,6 +12,12 @@ const PreviewCard = ({
   return (
     <>
       <button onClick={handleCloseModal}>close modal</button>
+      <Image
+        src={productObject.imageURL}
+        alt="product image"
+        width="380"
+        height="375"
+      />
       <p>{title}</p>
       <p>{description}</p>
       <p>{price}</p>

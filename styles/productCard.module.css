@@ -9,7 +9,7 @@
   font-family: var(--roboto);
   background-color: white;
   color: rgb(24, 23, 23);
-  box-shadow: 1px 1px 10px 1px rgb(145, 145, 145);
+  width: fit-content;
 }
 
 .Card__image {

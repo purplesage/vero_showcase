@@ -24,7 +24,6 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
   const setInputValuesForEditing = useProductInputStore(
     (state) => state.setInputValuesForEditing
   );
-  const newProduct = useProductInputStore((state) => state.productFactory);
 
   const handleShowEditMode = () => {
     setIsEditMode((prev) => !prev);
@@ -76,6 +75,7 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
   };
 
   const editProduct = async (id) => {
+    const newProduct = useProductInputStore((state) => state.productFactory);
     const editedList = data.map((productObject) =>
       productObject.id === id
         ? { id: productObject.id, ...newProduct() }
@@ -85,28 +85,30 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     handleCloseModal();
   };
 
-  const handleProductEdition = async (imageFile) => {
+  const editProductInFirebase = async (id, imageFile) => {
     if (imageFile) {
       await deleteFileFromStorage(productObject.fileName);
       await uploadImage(imageFile);
       const imageURL = await fetchImage(imageFile.name);
       setImageURL(imageURL);
-      await editProduct(productObject.id);
-      console.log("this fired 1", imageFile);
+      await editProduct(id);
     } else {
-      console.log("this fired 2", imageFile);
-      await editProduct(productObject.id);
+      await editProduct(id);
     }
   };
 
-  const productEditionMutation = useMutation(
-    (imageFile) => handleProductEdition(imageFile),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["shoeList"]);
-      },
-    }
-  );
+  const handleProductEdition = (id, imageFile) => {
+    const productEditionMutation = useMutation(
+      editProductInFirebase(id, imageFile),
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(["shoeList"]);
+        },
+      }
+    );
+
+    return productEditionMutation;
+  };
 
   return ReactDOM.createPortal(
     <div className={styles.darkBackdrop}>
@@ -123,7 +125,7 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
             <button onClick={handleShowEditMode}>Volver</button>
             <ProductForm
               productId={productObject.id}
-              productAction={productEditionMutation}
+              productAction={handleProductEdition}
               isEdit
             />
           </>

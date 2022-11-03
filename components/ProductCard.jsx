@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
-import { inputsContext } from "../context/InputsContext";
+
 import Link from "next/link";
 import { converToPath } from "../lib/util";
 import styles from "../styles/productCard.module.css";
