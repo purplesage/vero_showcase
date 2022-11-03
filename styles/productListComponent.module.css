@@ -13,5 +13,6 @@
 
 .swiper {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  border: red 2px solid;
 }

@@ -11,7 +11,7 @@ import {
 } from "firebase/storage";
 import useProductInputStore from "../../store/inputStore";
 import styles from "../../styles/product-table/productModal.module.css";
-import { fetchShoeList } from "../../lib/util";
+import { fetchShoeList, uploadImage, fetchImage } from "../../lib/util";
 import PreviewCard from "./PreviewCard";
 import ProductForm from "../form-inputs/ProductForm";
 
@@ -58,21 +58,6 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
       },
     }
   );
-
-  const uploadImage = async (imageFile) => {
-    try {
-      const fileRef = ref(storage, `images/${imageFile.name}`);
-      await uploadBytesResumable(fileRef, imageFile);
-    } catch (err) {
-      console.warn(err.message);
-    }
-  };
-
-  const fetchImage = async (fileName) => {
-    const fileRef = ref(storage, `images/${fileName}`);
-    const url = await getDownloadURL(fileRef);
-    return url;
-  };
 
   const editProduct = async (id) => {
     const newProduct = useProductInputStore((state) => state.productFactory);
