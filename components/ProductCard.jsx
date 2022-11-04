@@ -18,17 +18,13 @@ const ProductCard = ({
   return (
     <div className={styles.Card}>
       {imageURL ? (
-        <Link href={`/catalog/${converToPath(title)}`}>
-          <a>
-            <Image
-              className={styles.Card__image}
-              src={imageURL}
-              alt="product image"
-              width="380"
-              height="375"
-            />
-          </a>
-        </Link>
+        <Image
+          className={styles.Card__image}
+          src={imageURL}
+          alt="product image"
+          width="380"
+          height="375"
+        />
       ) : (
         <p>loading...</p>
       )}
@@ -88,5 +84,19 @@ const ProductCard = ({
     </div>
   );
 };
+
+{
+  /* <Link href={`/catalog/${converToPath(title)}`}>
+          <a>
+            <Image
+              className={styles.Card__image}
+              src={imageURL}
+              alt="product image"
+              width="380"
+              height="375"
+            />
+          </a>
+        </Link> */
+}
 
 export default ProductCard;

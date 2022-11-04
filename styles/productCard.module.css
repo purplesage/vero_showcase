@@ -9,7 +9,7 @@
   font-family: var(--roboto);
   background-color: white;
   color: rgb(24, 23, 23);
-  width: fit-content;
+  width: 100%;
 }
 
 .Card__image {

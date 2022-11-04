@@ -20,6 +20,9 @@ const ProductListComponent = ({ productList }) => {
         pagination
         modules={[Navigation]}
         slidesPerView={3}
+        centeredSlides
+        centeredSlidesBounds
+        spaceBetween={126}
       >
         {productList?.length > 0 &&
           productList?.map((productObject) => {
