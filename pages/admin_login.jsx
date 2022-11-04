@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { auth } from "../firebaseConfig";
 import { useRouter } from "next/router";
 import { onAuthStateChanged } from "firebase/auth";
@@ -6,14 +6,12 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import useAdminStore from "../store/admin";
 
 const Login = () => {
-  // const [adminUser, setAdminUser] = useState(null);
-  const adminUser = useAdminStore((state) => state.adminUser);
   const setAdminUser = useAdminStore((state) => state.setAdminUser);
 
   const router = useRouter();
 
   const handleAdminSignInRoutePush = () => {
-    router.push("admin_dashboard");
+    router.push("zustandDashboard");
   };
 
   const handleDefaultLogin = (e) => {
@@ -30,14 +28,9 @@ const Login = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setAdminUser(user);
-    }
-  });
-
-  useEffect(() => {
-    if (adminUser) {
       handleAdminSignInRoutePush();
     }
-  }, [adminUser]);
+  });
 
   return (
     <form
