@@ -11,7 +11,7 @@ import {
 } from "firebase/storage";
 import useProductInputStore from "../../store/inputStore";
 import styles from "../../styles/product-table/productModal.module.css";
-import { fetchShoeList, uploadImage, fetchImage } from "../../lib/util";
+import { fetchShoeList } from "../../lib/util";
 import PreviewCard from "./PreviewCard";
 import ProductForm from "../form-inputs/ProductForm";
 
@@ -20,6 +20,8 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const setImageURL = useProductInputStore((state) => state.setImageURL);
+
+  const newProduct = useProductInputStore((state) => state.productFactory);
 
   const setInputValuesForEditing = useProductInputStore(
     (state) => state.setInputValuesForEditing
@@ -32,6 +34,21 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
 
   const { data } = useQuery(["shoeList"], fetchShoeList);
 
+  const uploadImage = async (imageFile) => {
+    try {
+      const fileRef = ref(storage, `images/${imageFile.name}`);
+      await uploadBytesResumable(fileRef, imageFile);
+    } catch (err) {
+      console.warn(err.message);
+    }
+  };
+
+  const fetchImage = async (fileName) => {
+    const fileRef = ref(storage, `images/${fileName}`);
+    const url = await getDownloadURL(fileRef);
+    return url;
+  };
+
   const updateProductList = async (updatedList) => {
     const docRef = doc(dataBase, `db/products`);
     await updateDoc(docRef, { shoeList: updatedList });
@@ -43,15 +60,15 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     await deleteObject(file_ref);
   };
 
-  const deleteProduct = async (deleteId) => {
+  const deleteProduct = async (deleteId, fileName) => {
     const shoeList = data.filter((shoeObject) => shoeObject.id !== deleteId);
-    await deleteFileFromStorage(productObject.fileName);
+    await deleteFileFromStorage(fileName);
     await updateProductList(shoeList);
     handleCloseModal();
   };
 
   const productDeletionMutation = useMutation(
-    (deleteId) => deleteProduct(deleteId),
+    (deleteId) => deleteProduct(deleteId, productObject.fileName),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["shoeList"]);
@@ -59,8 +76,20 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     }
   );
 
+  // const handleProductDeletion = (deleteId) => {
+  //   const mutation = useMutation(
+  //     deleteProduct(deleteId, productObject.fileName),
+  //     {
+  //       onSuccess: () => {
+  //         queryClient.invalidateQueries(["shoeList"]);
+  //       },
+  //     }
+  //   );
+
+  //   return mutation.mutate;
+  // };
+
   const editProduct = async (id) => {
-    const newProduct = useProductInputStore((state) => state.productFactory);
     const editedList = data.map((productObject) =>
       productObject.id === id
         ? { id: productObject.id, ...newProduct() }
@@ -82,18 +111,14 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     }
   };
 
-  const handleProductEdition = (id, imageFile) => {
-    const productEditionMutation = useMutation(
-      editProductInFirebase(id, imageFile),
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries(["shoeList"]);
-        },
-      }
-    );
-
-    return productEditionMutation;
-  };
+  const handleProductEdition = useMutation(
+    ({ id, imageFile }) => editProductInFirebase(id, imageFile),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["shoeList"]);
+      },
+    }
+  );
 
   return ReactDOM.createPortal(
     <div className={styles.darkBackdrop}>

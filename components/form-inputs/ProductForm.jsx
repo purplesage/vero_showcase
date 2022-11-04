@@ -40,7 +40,10 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
 
   const handleFormModeAction = (e) => {
     if (isEdit) {
-      return productAction.mutate(productId, e.target.image.files[0]);
+      return productAction.mutate({
+        id: productId,
+        imageFile: e.target.image.files[0],
+      });
     }
 
     return productAction.mutate(e.target.image.files[0]);
