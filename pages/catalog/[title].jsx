@@ -1,34 +1,20 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { converToPath } from "../../lib/util";
-import Product from "../../components/Product";
-import { dataBase } from "../../firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
-const ProductPage = ({ productInfo }) => {
-  return <Product product={productInfo}></Product>;
+import { fetchShoeList } from "../../lib/util";
+import { jsonEval } from "@firebase/util";
+const ProductPage = () => {
+  const queryClient = useQueryClient();
+
+  const router = useRouter();
+  const { title } = router.query;
+  const { data } = useQuery(["shoeList"], fetchShoeList);
+  const productInfo = data.find(
+    (productObject) => converToPath(productObject.title) === title
+  );
+
+  return <div>{productInfo.title}</div>;
 };
 
 export default ProductPage;
-
-const fetchList = async () => {
-  //todo: use index to get single item.
-  const ref = doc(dataBase, `db/products`);
-  const document = await getDoc(ref);
-  const productList = document.data().productList;
-
-  return productList;
-};
-
-export async function getServerSideProps({ params }) {
-  const title = params.title;
-  //todo: fetch just a single item.
-  const productList = await fetchList();
-  const product = productList.find(
-    (product) => converToPath(product.title) === title
-  );
-
-  return {
-    props: {
-      productInfo: product,
-    },
-  };
-}

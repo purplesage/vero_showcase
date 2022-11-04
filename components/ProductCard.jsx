@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
-
 import Link from "next/link";
 import { converToPath } from "../lib/util";
 import styles from "../styles/productCard.module.css";
-import { BsCart4 } from "react-icons/bs";
+
 const ProductCard = ({
   title,
   imageURL,
@@ -17,13 +16,17 @@ const ProductCard = ({
   return (
     <div className={styles.Card}>
       {imageURL ? (
-        <Image
-          className={styles.Card__image}
-          src={imageURL}
-          alt="product image"
-          width="380"
-          height="375"
-        />
+        <Link href={`/catalog/${converToPath(title)}`}>
+          <a>
+            <Image
+              className={styles.Card__image}
+              src={imageURL}
+              alt="product image"
+              width="380"
+              height="375"
+            />
+          </a>
+        </Link>
       ) : (
         <p>loading...</p>
       )}
@@ -85,16 +88,16 @@ const ProductCard = ({
 
 {
   /* <Link href={`/catalog/${converToPath(title)}`}>
-          <a>
-            <Image
-              className={styles.Card__image}
-              src={imageURL}
-              alt="product image"
-              width="380"
-              height="375"
-            />
-          </a>
-        </Link> */
+  <a>
+    <Image
+      className={styles.Card__image}
+      src={imageURL}
+      alt="product image"
+      width="380"
+      height="375"
+    />
+  </a>
+</Link>;
+ */
 }
-
 export default ProductCard;

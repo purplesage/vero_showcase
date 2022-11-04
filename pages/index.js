@@ -11,10 +11,14 @@ import { fetchShoeList } from "../lib/util";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-export default function Home() {
+export default function Home(props) {
   const queryClient = useQueryClient();
 
-  const { data } = useQuery(["shoeList"], fetchShoeList);
+  const { data } = useQuery({
+    queryKey: ["shoeList"],
+    queryFn: fetchShoeList,
+    initialData: props.shoeList,
+  });
 
   return (
     <div className={styles.container}>
@@ -26,4 +30,9 @@ export default function Home() {
       <Footer />
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const shoeList = await fetchShoeList();
+  return { props: { shoeList } };
 }

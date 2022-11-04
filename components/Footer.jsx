@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "../styles/footer.module.css";
-import logo from "../public/logo.svg";
-import Image from "next/image";
 
 const Footer = () => {
   return (
