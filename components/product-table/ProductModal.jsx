@@ -3,15 +3,10 @@ import ReactDOM from "react-dom";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { updateDoc, doc } from "firebase/firestore";
 import { dataBase, storage } from "../../firebaseConfig";
-import {
-  ref,
-  deleteObject,
-  getDownloadURL,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { ref, deleteObject } from "firebase/storage";
 import useProductInputStore from "../../store/inputStore";
 import styles from "../../styles/product-table/productModal.module.css";
-import { fetchShoeList } from "../../lib/util";
+import { fetchShoeList, fetchImage, uploadImage } from "../../lib/util";
 import PreviewCard from "./PreviewCard";
 import ProductForm from "../form-inputs/ProductForm";
 
@@ -33,21 +28,6 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
   };
 
   const { data } = useQuery(["shoeList"], fetchShoeList);
-
-  const uploadImage = async (imageFile) => {
-    try {
-      const fileRef = ref(storage, `images/${imageFile.name}`);
-      await uploadBytesResumable(fileRef, imageFile);
-    } catch (err) {
-      console.warn(err.message);
-    }
-  };
-
-  const fetchImage = async (fileName) => {
-    const fileRef = ref(storage, `images/${fileName}`);
-    const url = await getDownloadURL(fileRef);
-    return url;
-  };
 
   const updateProductList = async (updatedList) => {
     const docRef = doc(dataBase, `db/products`);
@@ -75,19 +55,6 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
       },
     }
   );
-
-  // const handleProductDeletion = (deleteId) => {
-  //   const mutation = useMutation(
-  //     deleteProduct(deleteId, productObject.fileName),
-  //     {
-  //       onSuccess: () => {
-  //         queryClient.invalidateQueries(["shoeList"]);
-  //       },
-  //     }
-  //   );
-
-  //   return mutation.mutate;
-  // };
 
   const editProduct = async (id) => {
     const editedList = data.map((productObject) =>

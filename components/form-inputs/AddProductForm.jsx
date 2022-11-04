@@ -12,12 +12,11 @@ import { useQueryClient, useMutation } from "@tanstack/react-query";
 import ProductForm from "./ProductForm";
 
 //utility functions
-import { useInputs } from "../../lib/util";
+import { useInputs, fetchImage, uploadImage } from "../../lib/util";
 
 //firebase related functions
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { uploadBytesResumable, ref, getDownloadURL } from "firebase/storage";
-import { dataBase, storage } from "../../firebaseConfig";
+import { dataBase } from "../../firebaseConfig";
 
 const AddProductForm = () => {
   const queryClient = useQueryClient();
@@ -29,21 +28,6 @@ const AddProductForm = () => {
     await updateDoc(doc(dataBase, "db/products"), {
       shoeList: arrayUnion(product),
     });
-  };
-
-  const uploadImage = async (imageFile) => {
-    try {
-      const fileRef = ref(storage, `images/${imageFile.name}`);
-      await uploadBytesResumable(fileRef, imageFile);
-    } catch (err) {
-      console.warn(err.message);
-    }
-  };
-
-  const fetchImage = async (fileName) => {
-    const fileRef = ref(storage, `images/${fileName}`);
-    const url = await getDownloadURL(fileRef);
-    return url;
   };
 
   const handleProductCreation = async (imageFile) => {
