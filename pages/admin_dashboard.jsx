@@ -1,12 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import ProductTable from "../components/product-table/ProductTable";
+import AddProductForm from "../components/form-inputs/AddProductForm";
+import { useRouter } from "next/router";
+import useAdminStore from "../store/admin";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import { useRouter } from "next/router";
-import ProductTable from "../components/ProductTable";
-import styles from "../styles/admin_dashboard.module.css";
-import ProductInputs from "../components/ProductInputs";
-import { inputsContext } from "../context/InputsContext";
-import useAdminStore from "../store/admin";
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -14,14 +12,15 @@ const AdminDashboard = () => {
   const adminUser = useAdminStore((state) => state.adminUser);
   const setAdminUser = useAdminStore((state) => state.setAdminUser);
 
-  const { inputReset } = useContext(inputsContext);
-
   const [isOpenInputs, setIsOpenInputs] = useState(false);
+
+  const handleShowInputs = () => {
+    setIsOpenInputs((prev) => !prev);
+  };
 
   if (adminUser) {
     return (
-      <div className={styles.mainDiv}>
-        Admin Dashboard page{" "}
+      <div>
         <button
           type="button"
           onClick={() => {
@@ -35,19 +34,18 @@ const AdminDashboard = () => {
         <button
           type="button"
           onClick={() => {
-            setIsOpenInputs(true);
-            inputReset();
+            handleShowInputs();
           }}
         >
           abrir inputs
         </button>
-        {isOpenInputs && <ProductInputs setIsOpenInputs={setIsOpenInputs} />}
-        <ProductTable showAs="edit" />
+        {isOpenInputs && <AddProductForm />}
+        <ProductTable />
       </div>
     );
   }
 
-  return <div>forbidden!</div>;
+  return <div>Forbidden!!!</div>;
 };
 
 export default AdminDashboard;

@@ -11,7 +11,7 @@ const Login = () => {
   const router = useRouter();
 
   const handleAdminSignInRoutePush = () => {
-    router.push("zustandDashboard");
+    router.push("admin_dashboard");
   };
 
   const handleDefaultLogin = (e) => {
@@ -20,9 +20,7 @@ const Login = () => {
     const email = e.target.login_email.value;
     const password = e.target.login_password.value;
 
-    signInWithEmailAndPassword(auth, email, password).catch(
-      console.log("WRONG!")
-    );
+    signInWithEmailAndPassword(auth, email, password);
   };
 
   onAuthStateChanged(auth, (user) => {
