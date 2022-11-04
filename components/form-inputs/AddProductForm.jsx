@@ -1,7 +1,5 @@
 import React from "react";
 
-import axios from "axios";
-
 //zustand store
 import useProductInputStore from "../../store/inputStore";
 
