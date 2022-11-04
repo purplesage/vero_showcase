@@ -20,6 +20,7 @@ const ProductListComponent = ({ productList }) => {
         pagination
         modules={[Navigation]}
         slidesPerView={3}
+        slidesPerGroup={3}
         centeredSlides
         centeredSlidesBounds
         spaceBetween={126}
