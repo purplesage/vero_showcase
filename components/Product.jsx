@@ -1,31 +1,23 @@
-import React, { useState, useContext, useEffect } from "react";
-import { inputsContext } from "../context/InputsContext";
+import React from "react";
 import Image from "next/image";
 
 const Product = ({ product }) => {
-  const [imgURL, setimgURL] = useState("");
-  const { fetchImage } = useContext(inputsContext);
+  if (product) {
+    return (
+      <div>
+        {product?.title}{" "}
+        <Image
+          src={product?.imageURL}
+          alt="product image"
+          layout="fixed"
+          width="100"
+          height="100"
+        />
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    const handleImageUrl = async () => {
-      await fetchImage(product.imageName, setimgURL);
-    };
-
-    handleImageUrl();
-  }, []);
-
-  return (
-    <div>
-      {product.title}{" "}
-      <Image
-        src={imgURL}
-        alt="product image"
-        layout="fixed"
-        width="100"
-        height="100"
-      />
-    </div>
-  );
+  return <div>cargando...</div>;
 };
 
 export default Product;
