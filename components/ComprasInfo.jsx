@@ -9,7 +9,7 @@ import { SiCashapp } from "react-icons/si";
 
 const ComprasInfo = () => {
   return (
-    <div className={styles.Container}>
+    <div id="compras-info" className={styles.Container}>
       <div className={styles.Container__imageWrapper}>
         <BsPatchQuestionFill
           className={styles.Container__imageWrapper__questionMark}

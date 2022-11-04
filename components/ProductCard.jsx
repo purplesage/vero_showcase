@@ -5,7 +5,6 @@ import Link from "next/link";
 import { converToPath } from "../lib/util";
 import styles from "../styles/productCard.module.css";
 import { BsCart4 } from "react-icons/bs";
-
 const ProductCard = ({
   title,
   imageURL,
@@ -76,10 +75,9 @@ const ProductCard = ({
             ? styles.Card__buyButton
             : styles.Card__buyButton_unavailable
         }
-        href="#"
+        href="#compras-info"
       >
-        {availability ? "Comprar" : "Agotado"}
-        {availability && <BsCart4 />}
+        {availability ? "Disponible" : "Agotado"}
       </a>
     </div>
   );
