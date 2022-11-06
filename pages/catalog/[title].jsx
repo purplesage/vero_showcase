@@ -11,6 +11,7 @@ const ProductPage = () => {
   const router = useRouter();
   const { title } = router.query;
   const { data } = useQuery(["shoeList"], fetchShoeList);
+
   const product = data?.find(
     (productObject) => converToPath(productObject.title) === title
   );
