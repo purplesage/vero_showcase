@@ -1,7 +1,7 @@
 import create from "zustand";
 
 const useAdminStore = create((set) => ({
-  adminUser: "",
+  adminUser: null,
   setAdminUser: (admin) => set({ adminUser: admin }),
 }));
 

@@ -22,6 +22,7 @@ const useProductInputStore = create((set, get) => ({
   //states
   title: "",
   description: "",
+  longDescription: "",
   price: "",
   category: "",
   availability: false,
@@ -35,6 +36,8 @@ const useProductInputStore = create((set, get) => ({
   setTitle: (e) => set({ title: e.target.value }),
 
   setDescription: (e) => set({ description: e.target.value }),
+
+  setLongDescription: (e) => set({ longDescription: e.target.value }),
 
   setPrice: (e) => set({ price: e.target.value }),
 
@@ -74,17 +77,20 @@ const useProductInputStore = create((set, get) => ({
     set({
       title: productObject.title,
       description: productObject.description,
+      longDescription: productObject.longDescription,
       price: productObject.price,
       category: productObject.category,
       availability: productObject.availability,
       sizeList: productObject.sizeList,
       colorList: productObject.colorList,
+      imageURL: productObject.imageURL,
     }),
 
   productFactory: () => ({
     id: uuid(),
     title: get().title,
     description: get().description,
+    longDescription: get().longDescription,
     price: get().price,
     category: get().category,
     availability: get().availability,

@@ -8,6 +8,7 @@ import useProductInputStore from "../../store/inputStore";
 //input components
 import TitleInput from "./TitleInput";
 import DescriptionInput from "./DescriptionInput";
+import LongDescriptionInput from "./LongDescriptionInput";
 import PriceInput from "./PriceInput";
 import CategoryInput from "./CategoryInput";
 import AvailabilityInput from "./AvailabilityInput";
@@ -21,6 +22,8 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
     setTitle,
     description,
     setDescription,
+    longDescription,
+    setLongDescription,
     price,
     setPrice,
     category,
@@ -61,6 +64,10 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
       <DescriptionInput
         description={description}
         setDescription={setDescription}
+      />
+      <LongDescriptionInput
+        longDescription={longDescription}
+        setLongDescription={setLongDescription}
       />
       <PriceInput price={price} setPrice={setPrice} />
       <CategoryInput category={category} setCategory={setCategory} />

@@ -7,8 +7,16 @@ const PreviewCard = ({
   productDeletionMutation,
   handleShowEditMode,
 }) => {
-  const { title, description, price, category, sizeList, colorList, id } =
-    productObject;
+  const {
+    title,
+    description,
+    price,
+    category,
+    sizeList,
+    colorList,
+    availability,
+    id,
+  } = productObject;
   return (
     <>
       <button onClick={handleCloseModal}>close modal</button>
