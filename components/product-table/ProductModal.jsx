@@ -70,8 +70,12 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
     if (imageFile) {
       await deleteFileFromStorage(productObject.fileName);
       await uploadImage(imageFile);
-      const imageURL = await fetchImage(imageFile.name);
-      setImageURL(imageURL);
+      const fireBaseImageURL = await fetchImage(imageFile.name);
+      const imageKitURL = fireBaseImageURL.replace(
+        "https://firebasestorage.googleapis.com",
+        "https://ik.imagekit.io/purplesage"
+      );
+      setImageURL(imageKitURL);
       await editProduct(id);
     } else {
       await editProduct(id);
