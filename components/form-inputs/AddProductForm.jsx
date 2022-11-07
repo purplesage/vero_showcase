@@ -30,8 +30,12 @@ const AddProductForm = () => {
 
   const handleProductCreation = async (imageFile) => {
     await uploadImage(imageFile);
-    const imageURL = await fetchImage(imageFile.name);
-    setImageURL(imageURL);
+    const fireBaseImageURL = await fetchImage(imageFile.name);
+    const imageKitURL = fireBaseImageURL.replace(
+      "https://firebasestorage.googleapis.com",
+      "https://ik.imagekit.io/purplesage"
+    );
+    setImageURL(imageKitURL);
     addProductToFirebase();
   };
 
