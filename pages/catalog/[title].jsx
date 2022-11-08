@@ -1,5 +1,5 @@
 import React from "react";
-import Product from "../../components/Product";
+import ProductFullCard from "../../components/ProductFullCard";
 import { useRouter } from "next/router";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { converToPath } from "../../lib/util";
@@ -16,7 +16,7 @@ const ProductPage = () => {
     (productObject) => converToPath(productObject.title) === title
   );
 
-  return <Product product={product} />;
+  return <ProductFullCard product={product} />;
 };
 
 export default ProductPage;
