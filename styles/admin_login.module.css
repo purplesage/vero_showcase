@@ -22,7 +22,7 @@
     & h3 {
       font-family: "Lobster", cursive;
       font-size: 2rem;
-      color: rgb(152, 90, 211);
+      color: rgb(119, 58, 177);
     }
 
     & .userLabel,
@@ -30,8 +30,35 @@
       display: flex;
       flex-direction: column;
       font-family: var(--roboto);
-      color: rgb(152, 90, 211);
+      color: rgb(119, 58, 177);
+
       gap: 0.5rem;
+
+      & input {
+        background-color: rgba(210, 161, 255, 0.445);
+        font-size: 1.1rem;
+        width: 100%;
+        padding: 0.4rem;
+        color: rgb(119, 58, 177);
+        border: rgb(152, 90, 211) 1px solid;
+        outline: none;
+        border-radius: 0.3rem;
+      }
+    }
+
+    .loginButton {
+      font-family: "Lobster", cursive;
+      font-size: 1.3rem;
+      background-color: rgb(119, 58, 177);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+      border-radius: 0.3rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(151, 72, 224);
+      }
     }
   }
 }

@@ -43,13 +43,20 @@ const Login = () => {
 
         <label className={styles.userLabel} htmlFor="login_email">
           Usuario:
-          <input type="email" name="login_email" id="login_email" />
+          <input
+            autoComplete="off"
+            type="email"
+            name="login_email"
+            id="login_email"
+          />
         </label>
         <label className={styles.passwordLabel} htmlFor="login_password">
           Contraseña:
           <input type="password" name="login_password" id="login_password" />
         </label>
-        <button type="submit">Entrar</button>
+        <button className={styles.loginButton} type="submit">
+          Entrar
+        </button>
       </form>
     </div>
   );
