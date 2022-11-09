@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { converToPath } from "../lib/util";
 import styles from "../styles/productCard.module.css";
+import { TailSpin } from "react-loader-spinner";
 
 const ProductCard = ({
   title,
@@ -15,8 +16,8 @@ const ProductCard = ({
 }) => {
   return (
     <div className={styles.Card}>
-      {imageURL ? (
-        <Link href={`/catalog/${converToPath(title)}`}>
+      <Link href={`/catalog/${converToPath(title)}`}>
+        {imageURL ? (
           <a>
             <Image
               className={styles.Card__image}
@@ -26,10 +27,17 @@ const ProductCard = ({
               height="375"
             />
           </a>
-        </Link>
-      ) : (
-        <p>loading...</p>
-      )}
+        ) : (
+          <TailSpin
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            visible={true}
+          />
+        )}
+      </Link>
       <div className={styles.CardBody}>
         <h3
           className={styles.CardBody__title}

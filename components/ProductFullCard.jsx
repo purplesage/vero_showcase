@@ -7,7 +7,12 @@ const ProductFullCard = ({ product }) => {
     return (
       <div className={styles.container}>
         <div className={styles.imageContainer}>
-          <Image src={product?.imageURL} alt="product image" layout="fill" />
+          <Image
+            src={product?.imageURL}
+            alt="product image"
+            layout="fill"
+            priority
+          />
         </div>
 
         <div className={styles.infoContainer}>
