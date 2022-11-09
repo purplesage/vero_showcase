@@ -9,6 +9,7 @@ import styles from "../../styles/product-table/productModal.module.css";
 import { fetchShoeList, fetchImage, uploadImage } from "../../lib/util";
 import PreviewCard from "./PreviewCard";
 import ProductForm from "../form-inputs/ProductForm";
+import { TailSpin } from "react-loader-spinner";
 
 const ProductModal = ({ productObject, handleCloseModal }) => {
   const queryClient = useQueryClient();
@@ -101,7 +102,7 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
             productDeletionMutation={productDeletionMutation}
             handleShowEditMode={handleShowEditMode}
           />
-        ) : (
+        ) : !handleProductEdition.isLoading ? (
           <>
             <button onClick={handleShowEditMode}>Volver</button>
             <ProductForm
@@ -110,6 +111,15 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
               isEdit
             />
           </>
+        ) : (
+          <TailSpin
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            visible={true}
+          />
         )}
       </div>
     </div>,

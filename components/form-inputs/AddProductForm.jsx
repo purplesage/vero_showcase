@@ -16,6 +16,8 @@ import { useInputs, fetchImage, uploadImage } from "../../lib/util";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dataBase } from "../../firebaseConfig";
 
+import { TailSpin } from "react-loader-spinner";
+
 const AddProductForm = () => {
   const queryClient = useQueryClient();
 
@@ -48,6 +50,18 @@ const AddProductForm = () => {
       },
     }
   );
+
+  if (addProduct.isLoading)
+    return (
+      <TailSpin
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        visible={true}
+      />
+    );
 
   return <ProductForm productAction={addProduct} />;
 };

@@ -5,7 +5,7 @@
   display: flex;
 
   & .imageContainer {
-    width: 60%;
+    width: 70%;
     height: 100vh;
     position: relative;
   }
@@ -77,6 +77,43 @@
           box-shadow: 1px 1px 5px 1px rgb(158, 158, 158);
         }
       }
+    }
+
+    .buyButton__available {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      width: 50%;
+      background-color: #f12048;
+      color: rgb(255, 255, 255);
+      padding: 1.5rem;
+      font-family: "Lobster", cursive;
+      font-size: 1.5rem;
+      border-radius: 0.4rem;
+    }
+
+    .buyButton__available:hover {
+      background-color: #d11a3b;
+    }
+
+    .buyButton__unavailable {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      background-color: #ffe2e2;
+      color: #f12048;
+      padding: 1.5rem;
+      font-family: "Lobster", cursive;
+      font-size: 1.5rem;
+      border: #f12048 3px dashed;
+      border-radius: 0.4rem;
+    }
+
+    .buyButton__unavailable:hover {
+      cursor: not-allowed;
     }
   }
 }

@@ -42,7 +42,15 @@ const ProductFullCard = ({ product }) => {
               ))}
             </div>
           </div>
-          <a disabled={product.availability} href="#compras-info">
+          <a
+            className={
+              product.availability
+                ? styles.buyButton__available
+                : styles.buyButton__unavailable
+            }
+            disabled={product.availability}
+            href="#compras-info"
+          >
             {product.availability ? "Disponible" : "Agotado"}
           </a>
         </div>
