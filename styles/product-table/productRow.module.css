@@ -1,0 +1,47 @@
+.productRow {
+  & td:not(:last-child) {
+    border-right: rgb(152, 90, 211) 2px solid;
+  }
+
+  & td {
+    text-align: center;
+    color: rgb(80, 36, 122);
+    padding: 0.5rem;
+
+    & div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & button {
+      border: none;
+      color: white;
+      background-color: rgb(80, 36, 122);
+      font-size: 1.1rem;
+      padding: 0.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 2.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(106, 61, 148);
+      }
+    }
+
+    & .colorList {
+      display: flex;
+      gap: 0.4rem;
+
+      & .colorDiv {
+        display: flex;
+        width: auto;
+        border-radius: 50%;
+        padding: 0.5rem;
+      }
+    }
+  }
+}

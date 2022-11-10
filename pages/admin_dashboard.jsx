@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import useAdminStore from "../store/admin";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import styles from "../styles/admin_dashboard.module.css";
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -20,7 +21,18 @@ const AdminDashboard = () => {
 
   if (adminUser) {
     return (
-      <div>
+      <div className={styles.container}>
+        <button
+          type="button"
+          onClick={() => {
+            handleShowInputs();
+          }}
+        >
+          abrir inputs
+        </button>
+
+        {isOpenInputs && <AddProductForm />}
+        <ProductTable />
         <button
           type="button"
           onClick={() => {
@@ -31,16 +43,6 @@ const AdminDashboard = () => {
         >
           sign out
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            handleShowInputs();
-          }}
-        >
-          abrir inputs
-        </button>
-        {isOpenInputs && <AddProductForm />}
-        <ProductTable />
       </div>
     );
   }

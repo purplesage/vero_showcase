@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+.productTable {
+  background-color: rgba(210, 161, 255, 0.445);
+  outline: rgb(152, 90, 211) 2px solid;
+  font-family: var(--roboto);
+  border-radius: 0.3rem;
+  overflow: scroll;
+
+  & thead {
+    background-color: rgb(119, 58, 177);
+    color: white;
+    font-family: "Lobster", cursive;
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+
+    & th {
+      padding: 1rem;
+    }
+
+    & th:not(:last-child) {
+      border-right: rgb(152, 90, 211) 2px solid;
+    }
+  }
+
+  & tr:not(:last-child) {
+    border-bottom: rgb(152, 90, 211) 2px solid;
+  }
+}
