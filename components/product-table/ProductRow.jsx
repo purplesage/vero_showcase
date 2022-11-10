@@ -3,6 +3,8 @@ import { v4 as uuid } from "uuid";
 import ProductModal from "./ProductModal";
 import { FaSearchPlus } from "react-icons/fa";
 import styles from "../../styles/product-table/productRow.module.css";
+import { CgUnavailable } from "react-icons/cg";
+import { CgCheck } from "react-icons/cg";
 
 const ProductRow = ({ item }) => {
   const [showModal, setShowModal] = useState(false);
@@ -46,13 +48,21 @@ const ProductRow = ({ item }) => {
           </div>
         </td>
         <td>
-          <div>
+          <div className={styles.sizeList}>
             {item?.sizeList?.map((size) => (
-              <p key={uuid()}>{size}</p>
+              <p className={styles.size} key={uuid()}>
+                {size}
+              </p>
             ))}
           </div>
         </td>
-        <td>{item.availability ? "disponible" : "no disponible"}</td>
+        <td>
+          {item.availability ? (
+            <CgCheck className={styles.available} />
+          ) : (
+            <CgUnavailable className={styles.notAvailable} />
+          )}
+        </td>
       </tr>
     </>
   );

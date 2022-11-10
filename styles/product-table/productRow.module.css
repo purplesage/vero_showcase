@@ -8,6 +8,18 @@
     color: rgb(80, 36, 122);
     padding: 0.5rem;
 
+    & .available {
+      color: rgb(53, 175, 53);
+      width: 2rem;
+      height: 2rem;
+    }
+
+    & .notAvailable {
+      color: rgb(255, 0, 76);
+      width: 2rem;
+      height: 2rem;
+    }
+
     & div {
       display: flex;
       align-items: center;
@@ -41,6 +53,20 @@
         width: auto;
         border-radius: 50%;
         padding: 0.5rem;
+      }
+    }
+
+    & .sizeList {
+      display: flex;
+      gap: 0.2rem;
+
+      & .size {
+        border: #f12048 1px solid;
+        padding: 0.2rem;
+        font-weight: bold;
+        font-size: 0.8rem;
+        color: rgb(0, 48, 77);
+        border-radius: 0.2rem;
       }
     }
   }
