@@ -3,11 +3,11 @@ import { sizeValue } from "../../store/inputStore";
 
 import { v4 as uuid } from "uuid";
 
-const SizeInput = ({ sizeList, addSize, deleteSize }) => {
+const SizeInput = ({ clsname, sizeList, addSize, deleteSize }) => {
   return (
-    <label htmlFor="sizes">
+    <label className={clsname} htmlFor="sizes">
       Tallas:
-      <input type="number" name="sizes" id="sizes-zustand" />
+      <input maxLength="2" type="number" name="sizes" id="sizes-zustand" />
       <div>
         <div>
           {sizeList.length > 0 &&

@@ -23,8 +23,8 @@ const ProductTable = () => {
         <tr>
           <th>Ver producto</th>
           <th>Título</th>
-          <th>Descripcion corta</th>
-          <th>Price</th>
+          <th>Descripción corta</th>
+          <th>Precio</th>
           <th>Categoría</th>
           <th>Colores</th>
           <th>Tallas</th>

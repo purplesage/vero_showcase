@@ -1,5 +1,46 @@
-.productForm {
-  border: rgb(255, 2, 107) 2px solid;
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+.addProductForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-family: "Lobster", cursive;
+  font-size: 1.2rem;
+
+  & .titleInputLabel,
+  .descriptionInputLabel,
+  .longDescriptionInputLabel,
+  .priceInputLabel,
+  .categoryInputLabel,
+  .sizeInputLabel,
+  .colorInputLabel,
+  .imageInputLabel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & input {
+      font-family: var(--roboto);
+      font-size: 1.1rem;
+      color: white;
+    }
+
+    & input[type="text"] {
+      padding: 0.3rem;
+      border: green 2px solid;
+      border-radius: 0.5rem;
+      background-color: rgb(39, 161, 67);
+      outline: none;
+    }
+
+    & p {
+      text-decoration: underline;
+    }
+  }
+
+  & .titleInputLabel {
+  }
 }

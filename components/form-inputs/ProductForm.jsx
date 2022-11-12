@@ -54,39 +54,66 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
 
   return (
     <form
-      className={styles.productForm}
+      className={isEdit ? styles.editProductForm : styles.addProductForm}
       onSubmit={(e) => {
         e.preventDefault();
         handleFormModeAction(e);
       }}
     >
-      <TitleInput title={title} setTitle={setTitle} />
+      <TitleInput
+        clsname={isEdit ? styles.editTitleInputLabel : styles.titleInputLabel}
+        title={title}
+        setTitle={setTitle}
+      />
       <DescriptionInput
+        clsname={
+          isEdit
+            ? styles.editDescriptionInputLabel
+            : styles.descriptionInputLabel
+        }
         description={description}
         setDescription={setDescription}
       />
       <LongDescriptionInput
+        clsname={
+          isEdit
+            ? styles.editLongDescriptionInputLabel
+            : styles.longDescriptionInputLabel
+        }
         longDescription={longDescription}
         setLongDescription={setLongDescription}
       />
-      <PriceInput price={price} setPrice={setPrice} />
-      <CategoryInput category={category} setCategory={setCategory} />
+      <PriceInput
+        clsname={isEdit ? styles.editPriceInputLabel : styles.priceInputLabel}
+        price={price}
+        setPrice={setPrice}
+      />
+      <CategoryInput
+        clsname={
+          isEdit ? styles.editCategoryInputLabel : styles.categoryInputLabel
+        }
+        category={category}
+        setCategory={setCategory}
+      />
       <AvailabilityInput
         availability={availability}
         setAvailability={setAvailability}
       />
       <SizeInput
+        clsname={isEdit ? styles.editSizeInputLabel : styles.sizeInputLabel}
         sizeList={sizeList}
         addSize={addSize}
         deleteSize={deleteSize}
       />
       <ColorInput
+        clsname={isEdit ? styles.editColorInputLabel : styles.colorInputLabel}
         colorList={colorList}
         addColor={addColor}
         deleteColor={deleteColor}
       />
       <ImageInput
         isEdit
+        clsname={isEdit ? styles.editImageInputLabel : styles.imageInputLabel}
         imagePreviewURL={imagePreviewURL}
         setImagePreviewURL={setImagePreviewURL}
         setFileName={setFileName}

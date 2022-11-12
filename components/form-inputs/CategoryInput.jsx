@@ -1,9 +1,9 @@
 import React from "react";
 
-const CategoryInput = ({ category, setCategory }) => {
+const CategoryInput = ({ clsname, category, setCategory }) => {
   return (
-    <label htmlFor="categoria">
-      Categoria:
+    <label className={clsname} htmlFor="categoria">
+      <p>Categoría:</p>
       <input
         required
         list="shoeType"

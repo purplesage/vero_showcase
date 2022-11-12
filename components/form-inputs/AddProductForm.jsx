@@ -1,4 +1,6 @@
 import React from "react";
+import ReactDOM from "react-dom";
+import styles from "../../styles/form-styles/addProductForm.module.css";
 
 //zustand store
 import useProductInputStore from "../../store/inputStore";
@@ -18,7 +20,7 @@ import { dataBase } from "../../firebaseConfig";
 
 import { TailSpin } from "react-loader-spinner";
 
-const AddProductForm = () => {
+const AddProductForm = ({ closeInputs }) => {
   const queryClient = useQueryClient();
 
   const { newProduct, setImageURL } = useInputs(useProductInputStore);
@@ -45,7 +47,6 @@ const AddProductForm = () => {
     (imageFile) => handleProductCreation(imageFile),
     {
       onSuccess: () => {
-        // Invalidate and refetch
         queryClient.invalidateQueries(["shoeList"]);
       },
     }
@@ -63,7 +64,17 @@ const AddProductForm = () => {
       />
     );
 
-  return <ProductForm productAction={addProduct} />;
+  return ReactDOM.createPortal(
+    <div className={styles.darkBackdrop}>
+      <div className={styles.container}>
+        <button className={styles.closeButton} onClick={closeInputs}>
+          Cerrar
+        </button>
+        <ProductForm productAction={addProduct} />
+      </div>
+    </div>,
+    document.getElementById("productPortal")
+  );
 };
 
 export default AddProductForm;

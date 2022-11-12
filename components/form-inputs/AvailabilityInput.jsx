@@ -3,7 +3,7 @@ import React from "react";
 const AvailabilityInput = ({ availability, setAvailability }) => {
   return (
     <label htmlFor="availability">
-      Disponibilidad:
+      <p>Disponibilidad:</p>
       <input
         checked={availability}
         onChange={() => setAvailability()}

@@ -22,27 +22,30 @@ const AdminDashboard = () => {
   if (adminUser) {
     return (
       <div className={styles.container}>
-        <button
-          type="button"
-          onClick={() => {
-            handleShowInputs();
-          }}
-        >
-          abrir inputs
-        </button>
-
-        {isOpenInputs && <AddProductForm />}
+        <div className={styles.buttonsContainer}>
+          <button
+            className={styles.addProductButton}
+            type="button"
+            onClick={() => {
+              handleShowInputs();
+            }}
+          >
+            Agregar Producto
+          </button>
+          <button
+            className={styles.logOutButton}
+            type="button"
+            onClick={() => {
+              signOut(auth);
+              setAdminUser(null);
+              router.push("/");
+            }}
+          >
+            Cerrar Sesión
+          </button>
+        </div>
+        {isOpenInputs && <AddProductForm closeInputs={handleShowInputs} />}
         <ProductTable />
-        <button
-          type="button"
-          onClick={() => {
-            signOut(auth);
-            setAdminUser(null);
-            router.push("/");
-          }}
-        >
-          sign out
-        </button>
       </div>
     );
   }

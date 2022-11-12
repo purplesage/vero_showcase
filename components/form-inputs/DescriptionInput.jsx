@@ -1,9 +1,9 @@
 import React from "react";
 
-const DescriptionInput = ({ description, setDescription }) => {
+const DescriptionInput = ({ clsname, description, setDescription }) => {
   return (
-    <label htmlFor="description">
-      description:
+    <label className={clsname} htmlFor="description">
+      <p>Descripción:</p>
       <input
         name="description"
         onChange={(e) => setDescription(e)}

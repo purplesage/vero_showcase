@@ -1,9 +1,9 @@
 import React from "react";
 
-const PriceInput = ({ price, setPrice }) => {
+const PriceInput = ({ clsname, price, setPrice }) => {
   return (
-    <label htmlFor="price">
-      price:
+    <label className={clsname} htmlFor="price">
+      <p>Precio:</p>
       <input
         name="price"
         onChange={(e) => setPrice(e)}

@@ -2,9 +2,9 @@ import React from "react";
 import { colorValue } from "../../store/inputStore";
 import { v4 as uuid } from "uuid";
 
-const ColorInput = ({ colorList, addColor, deleteColor }) => {
+const ColorInput = ({ clsname, colorList, addColor, deleteColor }) => {
   return (
-    <label htmlFor="colors">
+    <label className={clsname} htmlFor="colors">
       Colores: <input type="color" name="colors" id="colors-zustand" />
       <div style={{ display: "flex" }}>
         <div style={{ display: "flex" }}>

@@ -1,9 +1,9 @@
 import React from "react";
 
-const TitleInput = ({ title, setTitle }) => {
+const TitleInput = ({ clsname, title, setTitle }) => {
   return (
-    <label htmlFor="title">
-      title:
+    <label className={clsname} htmlFor="title">
+      <p>Título:</p>
       <input
         name="title"
         onChange={(e) => setTitle(e)}

@@ -17,10 +17,6 @@
     & th {
       padding: 1rem;
     }
-
-    & th:not(:last-child) {
-      border-right: rgb(152, 90, 211) 2px solid;
-    }
   }
 
   & tr:not(:last-child) {

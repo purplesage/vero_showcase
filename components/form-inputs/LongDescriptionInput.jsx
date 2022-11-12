@@ -1,9 +1,13 @@
 import React from "react";
 
-const LongDescriptionInput = ({ longDescription, setLongDescription }) => {
+const LongDescriptionInput = ({
+  clsname,
+  longDescription,
+  setLongDescription,
+}) => {
   return (
-    <label htmlFor="long-description">
-      Descripción larga:
+    <label className={clsname} htmlFor="long-description">
+      <p>Descripción larga:</p>
       <textarea
         required
         name="long-description"

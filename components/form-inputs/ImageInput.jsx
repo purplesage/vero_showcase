@@ -6,10 +6,11 @@ const ImageInput = ({
   setImagePreviewURL,
   setFileName,
   isEdit,
+  clsname,
 }) => {
   return (
-    <label htmlFor="imagen">
-      imagen:
+    <label className={clsname} htmlFor="imagen">
+      <p>Imagen:</p>
       <input
         required={!isEdit}
         type="file"
