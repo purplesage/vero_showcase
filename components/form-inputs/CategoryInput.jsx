@@ -6,6 +6,7 @@ const CategoryInput = ({ clsname, category, setCategory }) => {
       <p>Categoría:</p>
       <input
         required
+        autoComplete="off"
         list="shoeType"
         name="categoria"
         id="categoria"

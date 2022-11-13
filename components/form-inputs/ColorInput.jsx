@@ -4,10 +4,12 @@ import { v4 as uuid } from "uuid";
 
 const ColorInput = ({ clsname, colorList, addColor, deleteColor }) => {
   return (
-    <label className={clsname} htmlFor="colors">
-      Colores: <input type="color" name="colors" id="colors-zustand" />
-      <div style={{ display: "flex" }}>
+    <div>
+      <label className={clsname} htmlFor="colors">
+        <p>Colores:</p>
+
         <div style={{ display: "flex" }}>
+          <input type="color" name="colors" id="colors-zustand" />
           {colorList.length > 0 &&
             colorList.map((color) => (
               <div
@@ -18,13 +20,12 @@ const ColorInput = ({ clsname, colorList, addColor, deleteColor }) => {
                 {" "}
               </div>
             ))}
-
-          <button type="button" onClick={() => addColor(colorValue())}>
-            agregar color
-          </button>
         </div>
-      </div>
-    </label>
+        <button type="button" onClick={() => addColor(colorValue())}>
+          agregar color
+        </button>
+      </label>
+    </div>
   );
 };
 

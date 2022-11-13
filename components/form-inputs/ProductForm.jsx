@@ -96,21 +96,28 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
         setCategory={setCategory}
       />
       <AvailabilityInput
+        clsname={
+          isEdit
+            ? styles.editAvailabilityInputLabel
+            : styles.availabilityInputLabel
+        }
         availability={availability}
         setAvailability={setAvailability}
       />
-      <SizeInput
-        clsname={isEdit ? styles.editSizeInputLabel : styles.sizeInputLabel}
-        sizeList={sizeList}
-        addSize={addSize}
-        deleteSize={deleteSize}
-      />
-      <ColorInput
-        clsname={isEdit ? styles.editColorInputLabel : styles.colorInputLabel}
-        colorList={colorList}
-        addColor={addColor}
-        deleteColor={deleteColor}
-      />
+      <div className={styles.listContainer}>
+        <SizeInput
+          clsname={isEdit ? styles.editSizeInputLabel : styles.sizeInputLabel}
+          sizeList={sizeList}
+          addSize={addSize}
+          deleteSize={deleteSize}
+        />
+        <ColorInput
+          clsname={isEdit ? styles.editColorInputLabel : styles.colorInputLabel}
+          colorList={colorList}
+          addColor={addColor}
+          deleteColor={deleteColor}
+        />
+      </div>
       <ImageInput
         isEdit
         clsname={isEdit ? styles.editImageInputLabel : styles.imageInputLabel}

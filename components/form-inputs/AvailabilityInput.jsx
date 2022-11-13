@@ -1,8 +1,8 @@
 import React from "react";
 
-const AvailabilityInput = ({ availability, setAvailability }) => {
+const AvailabilityInput = ({ clsname, availability, setAvailability }) => {
   return (
-    <label htmlFor="availability">
+    <label className={clsname} htmlFor="availability">
       <p>Disponibilidad:</p>
       <input
         checked={availability}
