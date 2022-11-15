@@ -1,25 +1,31 @@
 import React from "react";
+import styles from "../../styles/form-styles/colorInput.module.css";
 import { colorValue } from "../../store/inputStore";
 import { v4 as uuid } from "uuid";
 
-const ColorInput = ({ clsname, colorList, addColor, deleteColor }) => {
+const ColorInput = ({ isEdit, colorList, addColor, deleteColor }) => {
   return (
     <div>
-      <label className={clsname} htmlFor="colors">
+      <label
+        className={isEdit ? styles.editColorInputLabel : styles.colorInputLabel}
+        htmlFor="colors"
+      >
         <p>Colores:</p>
 
-        <div style={{ display: "flex" }}>
+        <div className={isEdit ? styles.wrapper : styles.wrapper}>
           <input type="color" name="colors" id="colors-zustand" />
-          {colorList.length > 0 &&
-            colorList.map((color) => (
-              <div
-                onClick={() => deleteColor(color)}
-                style={{ backgroundColor: color, padding: "1rem" }}
-                key={uuid()}
-              >
-                {" "}
-              </div>
-            ))}
+          <div className={isEdit ? styles.colorList : styles.colorList}>
+            {colorList.length > 0 &&
+              colorList.map((color) => (
+                <div
+                  onClick={() => deleteColor(color)}
+                  style={{ backgroundColor: color, padding: "1rem" }}
+                  key={uuid()}
+                >
+                  {" "}
+                </div>
+              ))}
+          </div>
         </div>
         <button type="button" onClick={() => addColor(colorValue())}>
           agregar color

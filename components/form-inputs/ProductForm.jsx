@@ -60,58 +60,37 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
         handleFormModeAction(e);
       }}
     >
-      <TitleInput
-        clsname={isEdit ? styles.editTitleInputLabel : styles.titleInputLabel}
-        title={title}
-        setTitle={setTitle}
-      />
+      <TitleInput isEdit={isEdit} title={title} setTitle={setTitle} />
       <DescriptionInput
-        clsname={
-          isEdit
-            ? styles.editDescriptionInputLabel
-            : styles.descriptionInputLabel
-        }
+        isEdit={isEdit}
         description={description}
         setDescription={setDescription}
       />
       <LongDescriptionInput
-        clsname={
-          isEdit
-            ? styles.editLongDescriptionInputLabel
-            : styles.longDescriptionInputLabel
-        }
-        longDescription={longDescription}
+        isEdit={isEdit}
+        Description={longDescription}
         setLongDescription={setLongDescription}
       />
-      <PriceInput
-        clsname={isEdit ? styles.editPriceInputLabel : styles.priceInputLabel}
-        price={price}
-        setPrice={setPrice}
-      />
+      <PriceInput isEdit={isEdit} price={price} setPrice={setPrice} />
       <CategoryInput
-        clsname={
-          isEdit ? styles.editCategoryInputLabel : styles.categoryInputLabel
-        }
+        isEdit={isEdit}
         category={category}
         setCategory={setCategory}
       />
       <AvailabilityInput
-        clsname={
-          isEdit
-            ? styles.editAvailabilityInputLabel
-            : styles.availabilityInputLabel
-        }
+        isEdit={isEdit}
         availability={availability}
         setAvailability={setAvailability}
       />
       <div className={styles.listContainer}>
         <SizeInput
-          clsname={isEdit ? styles.editSizeInputLabel : styles.sizeInputLabel}
+          isEdit={isEdit}
           sizeList={sizeList}
           addSize={addSize}
           deleteSize={deleteSize}
         />
         <ColorInput
+          isEdit={isEdit}
           clsname={isEdit ? styles.editColorInputLabel : styles.colorInputLabel}
           colorList={colorList}
           addColor={addColor}

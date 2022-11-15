@@ -1,0 +1,46 @@
+.colorInputLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .colorList {
+    display: flex;
+  }
+
+  & .wrapper {
+    display: flex;
+  }
+  & input {
+    height: 3rem;
+    width: 3rem;
+    outline: none;
+    border-radius: 50%;
+    background: rgb(119, 58, 177);
+    cursor: pointer;
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+      border-radius: 50%;
+      border: none;
+    }
+  }
+
+  & button {
+    background-color: rgb(119, 58, 177);
+    color: white;
+    font-family: "Lobster", cursive;
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+      background-color: rgb(135, 65, 201);
+    }
+  }
+}

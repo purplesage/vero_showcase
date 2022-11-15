@@ -1,8 +1,14 @@
 import React from "react";
+import styles from "../../styles/form-styles/titleInput.module.css";
 
-const TitleInput = ({ clsname, title, setTitle }) => {
+const TitleInput = ({ isEdit, title, setTitle }) => {
+  console.log(isEdit);
+
   return (
-    <label className={clsname} htmlFor="title">
+    <label
+      className={isEdit ? styles.editTitleInputLabel : styles.titleInputLabel}
+      htmlFor="title"
+    >
       <p>Título:</p>
       <input
         name="title"

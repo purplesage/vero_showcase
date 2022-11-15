@@ -1,8 +1,14 @@
 import React from "react";
+import styles from "../../styles/form-styles/categoryInput.module.css";
 
-const CategoryInput = ({ clsname, category, setCategory }) => {
+const CategoryInput = ({ isEdit, category, setCategory }) => {
   return (
-    <label className={clsname} htmlFor="categoria">
+    <label
+      className={
+        isEdit ? styles.editCategoryInputLabel : styles.categoryInputLabel
+      }
+      htmlFor="categoria"
+    >
       <p>Categoría:</p>
       <input
         required

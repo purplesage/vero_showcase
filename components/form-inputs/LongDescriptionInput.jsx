@@ -1,12 +1,20 @@
 import React from "react";
+import styles from "../../styles/form-styles/longDescriptionInput.module.css";
 
 const LongDescriptionInput = ({
-  clsname,
+  isEdit,
   longDescription,
   setLongDescription,
 }) => {
   return (
-    <label className={clsname} htmlFor="long-description">
+    <label
+      className={
+        isEdit
+          ? styles.editLongDescriptionInputLabel
+          : styles.longDescriptionInputLabel
+      }
+      htmlFor="long-description"
+    >
       <p>Descripción larga:</p>
       <textarea
         required

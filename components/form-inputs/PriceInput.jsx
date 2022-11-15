@@ -1,8 +1,12 @@
 import React from "react";
+import styles from "../../styles/form-styles/priceInput.module.css";
 
-const PriceInput = ({ clsname, price, setPrice }) => {
+const PriceInput = ({ isEdit, price, setPrice }) => {
   return (
-    <label className={clsname} htmlFor="price">
+    <label
+      className={isEdit ? styles.editPriceInputLabel : styles.priceInputLabel}
+      htmlFor="price"
+    >
       <p>Precio:</p>
       <input
         name="price"

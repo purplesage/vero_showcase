@@ -70,7 +70,7 @@ const AddProductForm = ({ closeInputs }) => {
         <button className={styles.closeButton} onClick={closeInputs}>
           Cerrar
         </button>
-        <ProductForm productAction={addProduct} />
+        <ProductForm productAction={addProduct} isEdit={false} />
       </div>
     </div>,
     document.getElementById("productPortal")

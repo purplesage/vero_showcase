@@ -1,8 +1,16 @@
 import React from "react";
+import styles from "../../styles/form-styles/availabilityInput.module.css";
 
-const AvailabilityInput = ({ clsname, availability, setAvailability }) => {
+const AvailabilityInput = ({ isEdit, availability, setAvailability }) => {
   return (
-    <label className={clsname} htmlFor="availability">
+    <label
+      className={
+        isEdit
+          ? styles.editAvailabilityInputLabel
+          : styles.availabilityInputLabel
+      }
+      htmlFor="availability"
+    >
       <p>Disponibilidad:</p>
       <input
         checked={availability}

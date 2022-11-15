@@ -1,8 +1,14 @@
 import React from "react";
+import styles from "../../styles/form-styles/descriptionInput.module.css";
 
-const DescriptionInput = ({ clsname, description, setDescription }) => {
+const DescriptionInput = ({ isEdit, description, setDescription }) => {
   return (
-    <label className={clsname} htmlFor="description">
+    <label
+      className={
+        isEdit ? styles.editDescriptionInputLabel : styles.descriptionInputLabel
+      }
+      htmlFor="description"
+    >
       <p>Descripción corta:</p>
       <input
         autoComplete="off"
