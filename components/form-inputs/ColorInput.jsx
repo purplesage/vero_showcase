@@ -18,8 +18,9 @@ const ColorInput = ({ isEdit, colorList, addColor, deleteColor }) => {
             {colorList.length > 0 &&
               colorList.map((color) => (
                 <div
+                  className={styles.color}
                   onClick={() => deleteColor(color)}
-                  style={{ backgroundColor: color, padding: "1rem" }}
+                  style={{ backgroundColor: color }}
                   key={uuid()}
                 >
                   {" "}

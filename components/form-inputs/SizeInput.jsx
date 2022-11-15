@@ -5,13 +5,13 @@ import { v4 as uuid } from "uuid";
 
 const SizeInput = ({ isEdit, sizeList, addSize, deleteSize }) => {
   return (
-    <div>
-      <label
-        className={isEdit ? styles.editSizeInputLabel : styles.sizeInputLabel}
-        htmlFor="sizes"
-      >
-        <p>Tallas:</p>
+    <label
+      className={isEdit ? styles.editSizeInputLabel : styles.sizeInputLabel}
+      htmlFor="sizes"
+    >
+      <p>Tallas:</p>
 
+      <div className={styles.wrapper}>
         <input
           autoComplete="off"
           maxLength="2"
@@ -19,24 +19,28 @@ const SizeInput = ({ isEdit, sizeList, addSize, deleteSize }) => {
           name="sizes"
           id="sizes-zustand"
         />
-        <div>
+        <div className={styles.sizeList}>
           {sizeList.length > 0 &&
             sizeList.map((size) => (
-              <div onClick={() => deleteSize(size)} key={uuid()}>
+              <div
+                className={styles.size}
+                onClick={() => deleteSize(size)}
+                key={uuid()}
+              >
                 {size}
               </div>
             ))}
-          <button
-            type="button"
-            onClick={() => {
-              addSize(sizeValue());
-            }}
-          >
-            agregar talla
-          </button>
         </div>
-      </label>
-    </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => {
+          addSize(sizeValue());
+        }}
+      >
+        agregar talla
+      </button>
+    </label>
   );
 };
 
