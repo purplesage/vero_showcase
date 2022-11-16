@@ -1,7 +1,9 @@
 .sizeInputLabel {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  height: 11rem;
+  width: 12rem;
 
   .wrapper {
     display: flex;
@@ -10,6 +12,7 @@
     & .sizeList {
       display: flex;
       gap: 0.3rem;
+      overflow-x: auto;
 
       & .size {
         display: flex;
@@ -19,6 +22,7 @@
         padding: 0.2rem;
         border-radius: 0.2rem;
         cursor: pointer;
+        font-size: 0.9rem;
 
         &:hover {
           border: red 1px solid;
@@ -28,7 +32,7 @@
   }
 
   & input {
-    width: 20%;
+    width: 23%;
     font-family: var(--roboto);
     font-size: 1.1rem;
     color: white;

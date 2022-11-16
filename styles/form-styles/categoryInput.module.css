@@ -9,5 +9,8 @@
     border-radius: 0.5rem;
     background-color: rgb(39, 161, 67);
     outline: none;
+    color: white;
+    font-family: var(--roboto);
+    font-size: 1.1rem;
   }
 }

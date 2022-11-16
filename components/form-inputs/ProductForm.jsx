@@ -104,7 +104,12 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
         setImagePreviewURL={setImagePreviewURL}
         setFileName={setFileName}
       />
-      <button type="submit">send</button>
+      <button
+        className={isEdit ? styles.editSubmitButton : styles.submitButton}
+        type="submit"
+      >
+        Crear Producto
+      </button>
     </form>
   );
 };

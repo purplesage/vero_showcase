@@ -5,6 +5,7 @@
 
   & textarea {
     resize: none;
+    height: 5rem;
     font-family: var(--roboto);
     font-size: 1.1rem;
     color: white;

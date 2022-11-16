@@ -19,6 +19,7 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dataBase } from "../../firebaseConfig";
 
 import { TailSpin } from "react-loader-spinner";
+import { MdClose } from "react-icons/md";
 
 const AddProductForm = ({ closeInputs }) => {
   const queryClient = useQueryClient();
@@ -68,7 +69,7 @@ const AddProductForm = ({ closeInputs }) => {
     <div className={styles.darkBackdrop}>
       <div className={styles.container}>
         <button className={styles.closeButton} onClick={closeInputs}>
-          Cerrar
+          <MdClose />
         </button>
         <ProductForm productAction={addProduct} isEdit={false} />
       </div>

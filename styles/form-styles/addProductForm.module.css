@@ -25,6 +25,19 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      border: none;
+      background-color: rgb(119, 58, 177);
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(135, 65, 201);
+      }
     }
   }
 }

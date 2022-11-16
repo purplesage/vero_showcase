@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
 .addProductForm {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,10 +10,43 @@
   color: white;
   font-family: "Lobster", cursive;
   font-size: 1.2rem;
+  overflow-x: hidden;
+  gap: 1rem;
+  padding: 1rem;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    margin-left: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(119, 58, 177);
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  .submitButton {
+    background-color: rgb(119, 58, 177);
+    color: white;
+    font-family: "Lobster", cursive;
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+      background-color: rgb(135, 65, 201);
+    }
+  }
 
   & .listContainer {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
   }
 
   & .titleInputLabel,
