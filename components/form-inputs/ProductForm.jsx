@@ -16,7 +16,7 @@ import SizeInput from "./SizeInput";
 import ColorInput from "./ColorInput";
 import ImageInput from "./ImageInput";
 
-const ProductForm = ({ productId, productAction, isEdit }) => {
+const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
   const {
     title,
     setTitle,
@@ -60,6 +60,15 @@ const ProductForm = ({ productId, productAction, isEdit }) => {
         handleFormModeAction(e);
       }}
     >
+      {isEdit && (
+        <Image
+          className={styles.image}
+          src={imageURL}
+          alt="product image"
+          width="380"
+          height="380"
+        />
+      )}
       <TitleInput isEdit={isEdit} title={title} setTitle={setTitle} />
       <DescriptionInput
         isEdit={isEdit}

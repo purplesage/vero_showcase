@@ -156,3 +156,15 @@
     }
   }
 }
+
+.editProductForm {
+  position: relative;
+  display: flex;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  font-family: var(--roboto);
+  background-color: white;
+  color: rgb(24, 23, 23);
+  width: 26vw;
+  height: 95vh;
+}

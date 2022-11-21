@@ -106,6 +106,7 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
           <>
             <button onClick={handleShowEditMode}>Volver</button>
             <ProductForm
+              imageURL={productObject.imageURL}
               productId={productObject.id}
               productAction={handleProductEdition}
               isEdit
