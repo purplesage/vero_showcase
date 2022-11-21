@@ -94,18 +94,4 @@ const ProductCard = ({
   );
 };
 
-{
-  /* <Link href={`/catalog/${converToPath(title)}`}>
-  <a>
-    <Image
-      className={styles.Card__image}
-      src={imageURL}
-      alt="product image"
-      width="380"
-      height="375"
-    />
-  </a>
-</Link>;
- */
-}
 export default ProductCard;
