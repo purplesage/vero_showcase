@@ -9,7 +9,7 @@ const DescriptionInput = ({ isEdit, description, setDescription }) => {
       }
       htmlFor="description"
     >
-      <p>Descripción corta:</p>
+      <p>Desc. corta:</p>
       <input
         autoComplete="off"
         name="description"

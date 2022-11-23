@@ -49,7 +49,7 @@ const PreviewCard = ({
       <div className={styles.cardBody}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
-        <p className={styles.description}>"{longDescription}"</p>
+        <p className={styles.longDescription}>"{longDescription}"</p>
         <h4 className={styles.price}>${price}</h4>
         <p className={styles.description}>{category}</p>
 
@@ -84,7 +84,7 @@ const PreviewCard = ({
 
         <div className={styles.actionButtonsContainer}>
           <button className={styles.editButton} onClick={handleShowEditMode}>
-            Editar
+            Editar producto
           </button>
           <button
             className={styles.deleteButton}

@@ -14,3 +14,27 @@
     outline: none;
   }
 }
+
+.editTitleInputLabel {
+  display: flex;
+  align-items: center;
+  padding-left: 1.5rem;
+  gap: 1rem;
+  margin-left: 0;
+
+  & p {
+    color: gray;
+    font-size: 0.8rem;
+  }
+
+  & input {
+    color: #f12048;
+    font-family: "Lobster", cursive;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    width: 60%;
+    border: 2px #f12046e0 solid;
+    text-align: center;
+    margin-right: 1rem;
+  }
+}

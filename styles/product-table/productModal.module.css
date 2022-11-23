@@ -1,4 +1,5 @@
 .darkBackdrop {
+  box-sizing: border-box;
   position: absolute;
   display: flex;
   align-items: center;
@@ -8,9 +9,28 @@
   top: 0;
   background-color: rgba(0, 0, 0, 0.705);
   backdrop-filter: blur(2px);
+  padding: 1rem;
 
   & .container {
+    position: relative;
     width: fit-content;
-    height: fit-content;
+    /* overflow-y: auto; */
+
+    & .backButton {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+      font-size: 2rem;
+      background-color: #f12048;
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      padding: 0.2rem;
+      cursor: pointer;
+    }
   }
 }

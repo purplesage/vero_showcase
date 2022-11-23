@@ -167,4 +167,22 @@
   color: rgb(24, 23, 23);
   width: 26vw;
   height: 95vh;
+  border-radius: 0.5rem;
+
+  & .image {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  & .bodyContainer {
+    overflow-x: auto;
+    height: 100%;
+    padding-top: 1rem;
+
+    & .body {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
 }

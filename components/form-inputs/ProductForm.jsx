@@ -41,26 +41,18 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
     setFileName,
   } = useInputs(useProductInputStore);
 
-  const handleFormModeAction = (e) => {
-    if (isEdit) {
-      return productAction.mutate({
-        id: productId,
-        imageFile: e.target.image.files[0],
-      });
-    }
-
-    return productAction.mutate(e.target.image.files[0]);
-  };
-
-  return (
-    <form
-      className={isEdit ? styles.editProductForm : styles.addProductForm}
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleFormModeAction(e);
-      }}
-    >
-      {isEdit && (
+  if (isEdit)
+    return (
+      <form
+        className={styles.editProductForm}
+        onSubmit={(e) => {
+          e.preventDefault();
+          productAction.mutate({
+            id: productId,
+            imageFile: e.target.image.files[0],
+          });
+        }}
+      >
         <Image
           className={styles.image}
           src={imageURL}
@@ -68,7 +60,70 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
           width="380"
           height="380"
         />
-      )}
+        <div className={styles.bodyContainer}>
+          <div className={styles.body}>
+            <TitleInput isEdit title={title} setTitle={setTitle} />
+            <DescriptionInput
+              isEdit
+              description={description}
+              setDescription={setDescription}
+            />
+            <LongDescriptionInput
+              isEdit
+              Description={longDescription}
+              setLongDescription={setLongDescription}
+            />
+            <PriceInput isEdit price={price} setPrice={setPrice} />
+            <CategoryInput
+              isEdit
+              category={category}
+              setCategory={setCategory}
+            />
+            <AvailabilityInput
+              isEdit
+              availability={availability}
+              setAvailability={setAvailability}
+            />
+            <div className={styles.listContainer}>
+              <SizeInput
+                isEdit
+                sizeList={sizeList}
+                addSize={addSize}
+                deleteSize={deleteSize}
+              />
+              <ColorInput
+                isEdit
+                clsname={
+                  isEdit ? styles.editColorInputLabel : styles.colorInputLabel
+                }
+                colorList={colorList}
+                addColor={addColor}
+                deleteColor={deleteColor}
+              />
+            </div>
+            <ImageInput
+              isEdit
+              clsname={styles.editImageInputLabel}
+              imagePreviewURL={imagePreviewURL}
+              setImagePreviewURL={setImagePreviewURL}
+              setFileName={setFileName}
+            />
+            <button className={styles.editSubmitButton} type="submit">
+              Crear Producto
+            </button>
+          </div>
+        </div>
+      </form>
+    );
+
+  return (
+    <form
+      className={styles.addProductForm}
+      onSubmit={(e) => {
+        e.preventDefault();
+        productAction.mutate(e.target.image.files[0]);
+      }}
+    >
       <TitleInput isEdit={isEdit} title={title} setTitle={setTitle} />
       <DescriptionInput
         isEdit={isEdit}
@@ -100,7 +155,7 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
         />
         <ColorInput
           isEdit={isEdit}
-          clsname={isEdit ? styles.editColorInputLabel : styles.colorInputLabel}
+          clsname={styles.colorInputLabel}
           colorList={colorList}
           addColor={addColor}
           deleteColor={deleteColor}
@@ -108,15 +163,12 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
       </div>
       <ImageInput
         isEdit
-        clsname={isEdit ? styles.editImageInputLabel : styles.imageInputLabel}
+        clsname={styles.imageInputLabel}
         imagePreviewURL={imagePreviewURL}
         setImagePreviewURL={setImagePreviewURL}
         setFileName={setFileName}
       />
-      <button
-        className={isEdit ? styles.editSubmitButton : styles.submitButton}
-        type="submit"
-      >
+      <button className={styles.submitButton} type="submit">
         Crear Producto
       </button>
     </form>

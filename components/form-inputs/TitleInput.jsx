@@ -2,8 +2,6 @@ import React from "react";
 import styles from "../../styles/form-styles/titleInput.module.css";
 
 const TitleInput = ({ isEdit, title, setTitle }) => {
-  console.log(isEdit);
-
   return (
     <label
       className={isEdit ? styles.editTitleInputLabel : styles.titleInputLabel}
