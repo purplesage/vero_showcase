@@ -70,7 +70,7 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
             />
             <LongDescriptionInput
               isEdit
-              Description={longDescription}
+              longDescription={longDescription}
               setLongDescription={setLongDescription}
             />
             <PriceInput isEdit price={price} setPrice={setPrice} />
