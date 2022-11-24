@@ -12,9 +12,9 @@ const ColorInput = ({ isEdit, colorList, addColor, deleteColor }) => {
       >
         <p>Colores:</p>
 
-        <div className={isEdit ? styles.wrapper : styles.wrapper}>
+        <div className={styles.wrapper}>
           <input type="color" name="colors" id="colors-zustand" />
-          <div className={isEdit ? styles.colorList : styles.colorList}>
+          <div className={styles.colorList}>
             {colorList.length > 0 &&
               colorList.map((color) => (
                 <div
