@@ -1,0 +1,31 @@
+.editColorInputLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+  & p {
+    color: gray;
+    font-size: 0.9rem;
+    width: 5rem;
+    text-align: center;
+  }
+
+  & input::file-selector-button {
+    color: #f12048;
+    background-color: white;
+    border: #f12048 2px solid;
+    border-radius: 0.5rem;
+    font-family: "Lobster", cursive;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+
+    &:hover {
+      color: white;
+      background-color: #f12048;
+    }
+  }
+}

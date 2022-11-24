@@ -1,15 +1,18 @@
 import React from "react";
 import Image from "next/image";
+import styles from "../../styles/form-styles/imageInput.module.css";
 
 const ImageInput = ({
   imagePreviewURL,
   setImagePreviewURL,
   setFileName,
   isEdit,
-  clsname,
 }) => {
   return (
-    <label className={clsname} htmlFor="imagen">
+    <label
+      className={isEdit ? styles.editColorInputLabel : styles.colorInputLabel}
+      htmlFor="imagen"
+    >
       <p>Imagen:</p>
       <input
         required={!isEdit}
@@ -26,8 +29,8 @@ const ImageInput = ({
           src={imagePreviewURL}
           alt="product image"
           layout="fixed"
-          width="100"
-          height="100"
+          width="200"
+          height="200"
         />
       )}
     </label>

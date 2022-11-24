@@ -187,4 +187,24 @@
       gap: 1.5rem;
     }
   }
+
+  & .editSubmitButton {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    background-color: rgb(245, 148, 37);
+    color: white;
+    padding: 1rem;
+    font-family: "Lobster", cursive;
+    font-size: 1.5rem;
+    width: 100%;
+    border-bottom-left-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(245, 148, 37, 0.877);
+    }
+  }
 }

@@ -10,7 +10,7 @@ import { fetchShoeList, fetchImage, uploadImage } from "../../lib/util";
 import PreviewCard from "./PreviewCard";
 import ProductForm from "../form-inputs/ProductForm";
 import { TailSpin } from "react-loader-spinner";
-import { TiArrowBackOutline } from "react-icons/ti";
+import { MdOutlineArrowBack } from "react-icons/md";
 
 const ProductModal = ({ productObject, handleCloseModal }) => {
   const queryClient = useQueryClient();
@@ -106,7 +106,7 @@ const ProductModal = ({ productObject, handleCloseModal }) => {
         ) : !handleProductEdition.isLoading ? (
           <>
             <button className={styles.backButton} onClick={handleShowEditMode}>
-              <TiArrowBackOutline />
+              <MdOutlineArrowBack />
             </button>
             <ProductForm
               imageURL={productObject.imageURL}

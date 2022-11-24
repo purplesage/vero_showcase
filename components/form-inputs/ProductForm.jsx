@@ -93,9 +93,6 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
               />
               <ColorInput
                 isEdit
-                clsname={
-                  isEdit ? styles.editColorInputLabel : styles.colorInputLabel
-                }
                 colorList={colorList}
                 addColor={addColor}
                 deleteColor={deleteColor}
@@ -109,7 +106,7 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
               setFileName={setFileName}
             />
             <button className={styles.editSubmitButton} type="submit">
-              Crear Producto
+              Confirmar edición
             </button>
           </div>
         </div>
