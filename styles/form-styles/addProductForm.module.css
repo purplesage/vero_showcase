@@ -25,7 +25,6 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
-      font-size: 2rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,6 +36,11 @@
 
       &:hover {
         background-color: rgb(135, 65, 201);
+      }
+
+      & svg {
+        height: 1.7rem;
+        width: 1.7rem;
       }
     }
   }

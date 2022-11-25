@@ -100,7 +100,6 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
             </div>
             <ImageInput
               isEdit
-              clsname={styles.editImageInputLabel}
               imagePreviewURL={imagePreviewURL}
               setImagePreviewURL={setImagePreviewURL}
               setFileName={setFileName}
@@ -159,7 +158,6 @@ const ProductForm = ({ productId, imageURL, productAction, isEdit }) => {
         />
       </div>
       <ImageInput
-        isEdit
         clsname={styles.imageInputLabel}
         imagePreviewURL={imagePreviewURL}
         setImagePreviewURL={setImagePreviewURL}

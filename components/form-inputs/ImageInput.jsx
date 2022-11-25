@@ -10,7 +10,7 @@ const ImageInput = ({
 }) => {
   return (
     <label
-      className={isEdit ? styles.editColorInputLabel : styles.colorInputLabel}
+      className={isEdit ? styles.editImageInputLabel : styles.imageInputLabel}
       htmlFor="imagen"
     >
       <p>Imagen:</p>
