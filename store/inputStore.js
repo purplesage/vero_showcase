@@ -84,6 +84,21 @@ const useProductInputStore = create((set, get) => ({
       sizeList: productObject.sizeList,
       colorList: productObject.colorList,
       imageURL: productObject.imageURL,
+      imagePreviewURL: "",
+    }),
+
+  resetInputs: () =>
+    set({
+      title: "",
+      description: "",
+      longDescription: "",
+      price: "",
+      category: "",
+      availability: false,
+      sizeList: [],
+      colorList: [],
+      imageURL: "",
+      imagePreviewURL: "",
     }),
 
   productFactory: () => ({

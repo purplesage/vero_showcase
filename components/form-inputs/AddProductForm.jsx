@@ -36,11 +36,13 @@ const AddProductForm = ({ closeInputs }) => {
   const handleProductCreation = async (imageFile) => {
     await uploadImage(imageFile);
     const fireBaseImageURL = await fetchImage(imageFile.name);
-    const imageKitURL = fireBaseImageURL.replace(
+
+    //todo: for now this api for image optimization slows down image load. Need to check why.
+    /* const imageKitURL = fireBaseImageURL.replace(
       "https://firebasestorage.googleapis.com",
       "https://ik.imagekit.io/purplesage"
-    );
-    setImageURL(imageKitURL);
+    ); */
+    setImageURL(fireBaseImageURL);
     addProductToFirebase();
   };
 

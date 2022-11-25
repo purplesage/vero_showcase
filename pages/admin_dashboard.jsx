@@ -6,12 +6,14 @@ import useAdminStore from "../store/admin";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import styles from "../styles/admin_dashboard.module.css";
+import useProductInputStore from "../store/inputStore";
 
 const AdminDashboard = () => {
   const router = useRouter();
 
   const adminUser = useAdminStore((state) => state.adminUser);
   const setAdminUser = useAdminStore((state) => state.setAdminUser);
+  const resetInputs = useProductInputStore((state) => state.resetInputs);
 
   const [isOpenInputs, setIsOpenInputs] = useState(false);
 
@@ -28,6 +30,7 @@ const AdminDashboard = () => {
             type="button"
             onClick={() => {
               handleShowInputs();
+              resetInputs();
             }}
           >
             Agregar Producto

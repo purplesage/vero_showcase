@@ -187,13 +187,13 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: #05a7d4f5;
+      background: #f12048;
       height: 2rem;
       width: 2rem;
     }
 
     &::-webkit-scrollbar-track {
-      background: #05a7d49c;
+      background: #f1204673;
     }
 
     & .body {
