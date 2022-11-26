@@ -51,29 +51,36 @@ const AddProductForm = ({ closeInputs }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["shoeList"]);
+        closeInputs();
       },
     }
   );
 
-  if (addProduct.isLoading)
-    return (
-      <TailSpin
-        height="80"
-        width="80"
-        color="#4fa94d"
-        ariaLabel="tail-spin-loading"
-        radius="1"
-        visible={true}
-      />
-    );
-
   return ReactDOM.createPortal(
     <div className={styles.darkBackdrop}>
       <div className={styles.container}>
-        <button className={styles.closeButton} onClick={closeInputs}>
+        <button
+          style={{ display: addProduct.isLoading && "none" }}
+          className={styles.closeButton}
+          onClick={closeInputs}
+        >
           <MdClose />
         </button>
-        <ProductForm productAction={addProduct} isEdit={false} />
+
+        {addProduct.isLoading ? (
+          <div className={styles.spinnerContainer}>
+            <TailSpin
+              height="80"
+              width="80"
+              color="rgb(119, 58, 177)"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              visible={true}
+            />
+          </div>
+        ) : (
+          <ProductForm productAction={addProduct} isEdit={false} />
+        )}
       </div>
     </div>,
     document.getElementById("productPortal")

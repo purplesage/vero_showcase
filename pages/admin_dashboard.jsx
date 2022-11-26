@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductTable from "../components/product-table/ProductTable";
 import AddProductForm from "../components/form-inputs/AddProductForm";
 import { useRouter } from "next/router";
@@ -16,12 +16,17 @@ const AdminDashboard = () => {
   const resetInputs = useProductInputStore((state) => state.resetInputs);
 
   const [isOpenInputs, setIsOpenInputs] = useState(false);
+  const [admin, setAdmin] = useState();
 
   const handleShowInputs = () => {
     setIsOpenInputs((prev) => !prev);
   };
 
-  if (adminUser) {
+  useEffect(() => {
+    setAdmin(adminUser);
+  }, [admin]);
+
+  if (admin) {
     return (
       <div className={styles.container}>
         <div className={styles.buttonsContainer}>
