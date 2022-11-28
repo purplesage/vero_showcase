@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import styles from "../styles/productListComponent.module.css";
+import { useWindowSize } from "../lib/util";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -8,6 +9,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const ProductListComponent = ({ productList }) => {
+  const windowSize = useWindowSize();
+
   if (!productList) {
     return <div>Loading...</div>;
   }
@@ -19,8 +22,8 @@ const ProductListComponent = ({ productList }) => {
         navigation
         pagination
         modules={[Navigation]}
-        slidesPerView={3}
-        slidesPerGroup={3}
+        slidesPerView={windowSize.width > 640 ? 3 : 1}
+        slidesPerGroup={windowSize.width > 640 ? 3 : 1}
         centeredSlides
         centeredSlidesBounds
         spaceBetween={126}

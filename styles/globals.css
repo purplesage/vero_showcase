@@ -187,3 +187,5 @@ html {
 :root {
   --roboto: "Roboto", sans-serif;
 }
+
+@custom-media --small (max-width: 640px);

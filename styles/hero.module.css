@@ -8,6 +8,10 @@
   width: 100%;
   height: 100vh;
   position: relative;
+  background-image: url("../public/hero_shoe.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .instagramIcon {
@@ -80,4 +84,36 @@
 
 .LogoContainer a:hover {
   background-color: rgb(31, 31, 31);
+}
+
+@media (max-width: 640px) {
+  .Hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../public/heroImage1.jpg");
+  }
+
+  .LogoContainer {
+    position: static;
+    transform: none;
+    gap: 2rem;
+  }
+
+  .instagramIcon {
+    position: static;
+    display: none;
+    transform: none;
+  }
+
+  .LogoContainer a {
+    font-size: 0.8rem;
+    background: rgba(20, 20, 20, 0.795);
+    transform: none;
+  }
+
+  .logo {
+    display: none;
+  }
 }

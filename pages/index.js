@@ -24,7 +24,7 @@ export default function Home(props) {
     <div className={styles.container}>
       <Hero />
       <Collection productList={data} />
-      <ComprasInfo />
+      {/* <ComprasInfo /> */}
       <Contacto />
       {/* <Tips /> */}
       <Footer />
