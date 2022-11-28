@@ -4,6 +4,7 @@ import Link from "next/link";
 import { converToPath } from "../lib/util";
 import styles from "../styles/productCard.module.css";
 import { TailSpin } from "react-loader-spinner";
+import { useWindowSize } from "../lib/util";
 
 const ProductCard = ({
   title,
@@ -14,6 +15,7 @@ const ProductCard = ({
   colors,
   availability,
 }) => {
+  const windowSize = useWindowSize();
   return (
     <div className={styles.Card}>
       <Link href={`/catalog/${converToPath(title)}`}>
@@ -23,8 +25,8 @@ const ProductCard = ({
               className={styles.Card__image}
               src={imageURL}
               alt="product image"
-              width="380"
-              height="375"
+              width={windowSize.width > 640 ? "380" : "330"}
+              height={windowSize.width > 640 ? "380" : "330"}
             />
           </a>
         ) : (
@@ -57,25 +59,30 @@ const ProductCard = ({
           className={styles.CardBody__listContainer}
           style={{ opacity: !availability && "0.5" }}
         >
-          <p>Tallas:</p>
-          <div className={styles.CardBody__sizeList}>
-            {sizes.map((size, index) => (
-              <div key={index} className={styles.CardBody__size}>
-                {size}
-              </div>
-            ))}
+          <div className={styles.sizeList__container}>
+            <p>Tallas:</p>
+            <div className={styles.CardBody__sizeList}>
+              {sizes.map((size, index) => (
+                <div key={index} className={styles.CardBody__size}>
+                  {size}
+                </div>
+              ))}
+            </div>
           </div>
-          <p>Colores:</p>
-          <div className={styles.CardBody__colorList}>
-            {colors.map((color, index) => (
-              <div
-                key={index}
-                className={styles.CardBody__color}
-                style={{ backgroundColor: color }}
-              >
-                {" "}
-              </div>
-            ))}
+
+          <div className={styles.colorList__container}>
+            <p>Colores:</p>
+            <div className={styles.CardBody__colorList}>
+              {colors.map((color, index) => (
+                <div
+                  key={index}
+                  className={styles.CardBody__color}
+                  style={{ backgroundColor: color }}
+                >
+                  {" "}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -50,6 +50,12 @@
   margin-top: 1.5rem;
 }
 
+.sizeList__container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .CardBody__sizeList {
   display: flex;
   gap: 0.5rem;
@@ -62,6 +68,12 @@
   font-size: 0.8rem;
   color: rgb(0, 48, 77);
   border-radius: 0.2rem;
+}
+
+.colorList__container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .CardBody__colorList {
@@ -117,4 +129,28 @@
   color: black;
   width: 60%;
   height: 1px;
+}
+
+@media (max-width: 640px) {
+  .Card {
+    width: fit-content;
+    height: 100%;
+  }
+
+  .CardBody {
+    gap: 0.5rem;
+    padding: 1.5rem;
+    height: 100%;
+  }
+
+  .CardBody__listContainer {
+    margin-top: 0;
+    flex-direction: column;
+  }
+
+  .Card__buyButton,
+  .Card__buyButton_unavailable {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
 }
